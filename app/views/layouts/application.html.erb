@@ -12,7 +12,10 @@
   <body>
     <!-- HEADER -->
     <%= render partial: 'common/header', locals: { navs: @navs}%>
-
+    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
     <%= yield %>
 
     <!-- CONTACT -->
