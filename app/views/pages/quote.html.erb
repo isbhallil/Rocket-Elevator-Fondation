@@ -2,15 +2,21 @@
 
 <section id="request-form">
     <div class="container">
+        <%= form_with model: @quote do |f| %>        
+            <!-- RANGE SELECTOR -->
+            <div class="fancy-form fancy-form-select type-select">
+                <%= f.select('range-type-select' , ['--- select a range  ---', 'standard', 'premium', 'excelium'], {}, {class: 'form-control'}) %>
+            </div>
+
+            <!-- BUILDING-TYPE SELECTOR -->
+            <div class="fancy-form fancy-form-select type-select">
+                <%= f.select('building-type-select' , ['--- select a building type ---', 'residential', 'commercial', 'corporate', 'hybrid'], {}, {class: 'form-control'}) %>
+            </div>
+
+            <!-- ESTIMATE BUILDER -->
+            <%= render partial: 'estimate-builder' %>
         
-        <!-- RANGE SELECTOR -->
-        <%= render partial: 'range-selector' %>
-
-        <!-- BUILDING-TYPE SELECTOR -->
-        <%= render partial: 'building-type-selector' %>
-
-        <!-- ESTIMATE BUILDER -->
-        <%= render partial: 'estimate-builder' %>
-
+            <%= f.submit %>
+        <% end %>
     </div>
 </section>

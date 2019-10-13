@@ -4,5 +4,7 @@ class PagesController < ApplicationController
     end
 
     def quote
+        puts "quote : "
+        puts params
     end
 end

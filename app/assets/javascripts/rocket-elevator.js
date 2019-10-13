@@ -167,8 +167,15 @@ $('#range-type-select').bind('change', function () {
 })
 
 // DISPLAY PROPER FORM ACCORDING TO BUILDING TYPE
-$('#building-type-select').change(function () {
+  $('#building-type-select').change(function () {
+  console.log('ok')
   let buildingType = getSelectedItem(buildingTypeSelect)
+    
+
+// const residentialForm = $('#residential-form');
+// const commercialForm = $('#commercial-form');
+// const corporateForm = $('#corporate-form');
+// const hybridForm = $('#hybrid-form');
   
   switch (buildingType.value) {
     case 'Residential':
