@@ -12,9 +12,9 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       
 
       t.integer   'elevator-shafts'
-      t.decimal   'elevator-unit-cost'
-      t.decimal   'setup-fees'
-      t.decimal   'total'
+      t.float     'elevator-unit-cost'
+      t.float     'setup-fees'
+      t.float     'total'
       
       t.string    'contact'
       t.string    'phone'

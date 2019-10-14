@@ -8,8 +8,6 @@ gem 'owlcarousel-rails'
 gem 'jquery-turbolinks'
 gem 'devise'
 
-
-gem 'quiet_assets', group: :development
 gem "awesome_print", require:"ap" 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

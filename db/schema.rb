@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 2019_10_14_032710) do
     t.integer "max-occupants"
     t.integer "hours"
     t.integer "elevator-shafts"
-    t.decimal "elevator-unit-cost", precision: 10
-    t.decimal "setup-fees", precision: 10
-    t.decimal "total", precision: 10
+    t.float "elevator-unit-cost"
+    t.float "setup-fees"
+    t.float "total"
     t.string "contact"
     t.string "phone"
     t.datetime "created_at", null: false

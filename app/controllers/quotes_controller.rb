@@ -62,23 +62,26 @@ class QuotesController < ApplicationController
     if q['range-type'] == 'standard'
       setupRatio = 0.1
       unitCost = 7565
-
-      q['elevator-unit-cost'] = unitCost
       totalElevatorCost = q['elevator-shafts'].to_f * unitCost.to_f
-      q['setup-fees'] = totalElevatorCost.to_f * setupRatio.to_f
-      q['total'] = totalElevatorCost.to_f + q['setup-fees'].to_f
+      ap totalElevatorCost
 
-      
-      puts 'PRINT ================================'
-      puts q['elevator-shafts']
-      puts totalElevatorCost
-      puts q['setup-fees'].to_f
-      puts q['total']
-      puts "================================ PRINT"
+      ap 'setup-fees: '
+      q['setup-fees'] = totalElevatorCost.to_f / 10.to_f
+      x = totalElevatorCost.to_f / 10.to_f
+      ap q['setup-fees']
+      ap x.class
+      ap 12.to_f / 10
+      q['elevator-unit-cost'] = unitCost
+
+      q['total'] = totalElevatorCost + q['setup-fees']
+      puts 'PRINT ==============================='
+      ap q
+
       
     elsif q['range-type'] == 'premium'
       setupRatio = 0.13
       unitCost = 12345
+      puts unitCost
 
       q['elevator-unit-cost'] = unitCost
       totalElevatorCost = q['elevator-shafts'] * unitCost
