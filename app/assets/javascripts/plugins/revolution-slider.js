@@ -1,4 +1,5 @@
-jQuery(document).ready(function() {
+$(document).on('turbolinks:load', function () {   
+jQuery(document).ready(function () {
 	var revapi;
 
 
@@ -116,3 +117,4 @@ jQuery(document).ready(function() {
 		jQuery("#is_wide, #is_boxed").bind("click", function() { revapi.revredraw(); });
 	}
 });	//ready
+});

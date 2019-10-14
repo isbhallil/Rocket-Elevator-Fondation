@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_183441) do
+ActiveRecord::Schema.define(version: 2019_10_14_032710) do
 
   create_table "awards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "building_type"
@@ -51,6 +51,25 @@ ActiveRecord::Schema.define(version: 2019_10_13_183441) do
     t.string "image_src"
     t.string "title"
     t.string "p"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "range-type"
+    t.string "building-type"
+    t.integer "units"
+    t.integer "stories"
+    t.integer "basements"
+    t.integer "parking-spaces"
+    t.integer "max-occupants"
+    t.integer "hours"
+    t.integer "elevator-shafts"
+    t.decimal "elevator-unit-cost", precision: 10
+    t.decimal "setup-fees", precision: 10
+    t.decimal "total", precision: 10
+    t.string "contact"
+    t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

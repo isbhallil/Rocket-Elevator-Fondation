@@ -5,11 +5,13 @@
         <%= form_with model: @quote do |f| %>        
             <!-- RANGE SELECTOR -->
             <div class="fancy-form fancy-form-select type-select">
+                <%= f.label("Choose your elevator's model") %>
                 <%= f.select('range-type-select' , ['--- select a range  ---', 'standard', 'premium', 'excelium'], {}, {class: 'form-control'}) %>
             </div>
 
             <!-- BUILDING-TYPE SELECTOR -->
-            <div class="fancy-form fancy-form-select type-select">
+            <div class="fancy-form fancy-form-select type-select" id="building-type-wrapper">
+                <%= f.label("What's your project type ?") %>
                 <%= f.select('building-type-select' , ['--- select a building type ---', 'residential', 'commercial', 'corporate', 'hybrid'], {}, {class: 'form-control'}) %>
             </div>
 
@@ -17,17 +19,17 @@
             <div id='residential-form'>
                 <div class="fancy-form fancy-form-select">
                     <%= f.label('how many appartments ?') %>
-                    <%= f.number_field('residential-appartments', {class: 'form-control residential-form'}) %>
+                    <%= f.number_field('residential-appartments', {class: 'form-control residential-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form fancy-form-select">
                     <%= f.label('how many stories ?') %>
-                    <%= f.number_field('residential-stories', {class: 'form-control residential-form'}) %>
+                    <%= f.number_field('residential-stories', {class: 'form-control residential-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form fancy-form-select">
                     <%= f.label('How many basements ?') %>
-                    <%= f.number_field('residential-basements', {class: 'form-control residential-form'}) %>
+                    <%= f.number_field('residential-basements', {class: 'form-control residential-form', value: 0}) %>
                 </div>
             </div>
 
@@ -35,50 +37,50 @@
             <div id='commercial-form'>
                 <div class="fancy-form">
                     <%= f.label('how many stories ?') %>
-                    <%= f.number_field('commercial-stories', {class: 'form-control commercial-form'}) %>
+                    <%= f.number_field('commercial-stories', {class: 'form-control commercial-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form">
                     <%= f.label('how many basements ?') %>
-                    <%= f.number_field('commercial-basements', {class: 'form-control commercial-form'}) %>
+                    <%= f.number_field('commercial-basements', {class: 'form-control commercial-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form">
                     <%= f.label('how many parking spaces ?') %>
-                    <%= f.number_field('commercial-parking-spaces', {class: 'form-control commercial-form'}) %>
+                    <%= f.number_field('commercial-parking-spaces', {class: 'form-control commercial-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form">
                     <%= f.label('How many elevator shafts ?') %>
-                    <%= f.number_field('commercial-elevator-shafts', {class: 'form-control commercial-form'}) %>
+                    <%= f.number_field('commercial-elevator-shafts', {class: 'form-control commercial-form', value: 0}) %>
                 </div>
             </div>
 
-            <!-- COMMERCIAL INPUTS-->
+            <!-- CORPORATE INPUTS-->
             <div id='corporate-form'>
                 <div class="fancy-form">
                     <%= f.label('how many stories ?') %>
-                    <%= f.number_field('corporate-stories', {class: 'form-control corporate-form'}) %>
+                    <%= f.number_field('corporate-stories', {class: 'form-control corporate-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form">
                     <%= f.label('how many units ?') %>
-                    <%= f.number_field('corporate-units', {class: 'form-control corporate-form'}) %>
+                    <%= f.number_field('corporate-units', {class: 'form-control corporate-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form">
                     <%= f.label('how many basements ?') %>
-                    <%= f.number_field('corporate-basements', {class: 'form-control corporate-form'}) %>
+                    <%= f.number_field('corporate-basements', {class: 'form-control corporate-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form">
                     <%= f.label('How many parking spaces ?') %>
-                    <%= f.number_field('corporate-parking-spaces', {class: 'form-control corporate-form'}) %>
+                    <%= f.number_field('corporate-parking-spaces', {class: 'form-control corporate-form', value: 0}) %>
                 </div>
 
                 <div class="fancy-form">
                     <%= f.label('How many maximum occupants per floor ?') %>
-                    <%= f.number_field('corporate-max-occupants', {class: 'form-control corporate-form'}) %>
+                    <%= f.number_field('corporate-max-occupants', {class: 'form-control corporate-form', value: 0}) %>
                 </div>
             </div>
 
@@ -115,9 +117,7 @@
                 </div>
             </div>
 
-
-
-            <%= f.submit('Get A Quote Now!', class:'btn btn-success') %>
+            <%= f.submit('Get A Quote Now!', class:'btn btn-success', id:'submit-quote') %>
         <% end %>
     </div>
 </section>

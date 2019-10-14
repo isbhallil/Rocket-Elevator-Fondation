@@ -47,11 +47,15 @@
 }
 
 .hybrid-form {
-    border: 5px solid green;
+    border: 5px green solid;
 }
 
 .fancy-form {
     margin-bottom: 25px;
+}
+
+.container.quote-print {
+    border: 5px solid pink;
 }
 
 

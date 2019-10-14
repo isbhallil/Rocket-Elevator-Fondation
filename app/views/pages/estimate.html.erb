@@ -3,13 +3,15 @@
         <h4>Estimate</h4>
     </div>
 
+    <%= params %>
+
     <div class="toggle-transparent toggle-bordered-full clearfix">
         <div class="toggle active">
             <div class="toggle-content">
 
                 <span class="clearfix">
                     <strong class="float-left">selected range:</strong>
-                    <span id="estimate-range" name="estimaterange" class="float-right"></span>
+                    <span id="estimate-range" name="estimaterange" class="float-right"><%= params['range-type-select']%></span>
                 </span>
                 <span class="clearfix">
                     <span  class="float-left">total of elevator needed:</span>
