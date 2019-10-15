@@ -1,11 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'bcrypt'
 
+# META WEBSITE PORTFOLIO AND AWARDS
 awards = [
     [
         'corporate',
@@ -64,6 +59,8 @@ awards.each do |award|
     Award.create({building_type: award[0], building_name: award[1], building_file: award[2]});
 end
 
+# META WEBSITE NEWS
+
 news =  [
     [
         "https://www.theguardian.com/commentisfree/2019/sep/05/new-york-fear-elevators",
@@ -102,6 +99,8 @@ news.each do |new|
     New.create({ link_src: new[0], image_src: new[1], title: new[2], p: new[3]})
 end
 
+
+# META WEBISTE CLIENTS
 clients =  [
     [
         "https://cdn.worldvectorlogo.com/logos/iata-1.svg",
@@ -146,6 +145,7 @@ clients.each do |client|
     Client.create({image_src: client[0], name: client[1]})
 end
 
+# META WEBSITE NAVS
 navs =  [
     ["home", "top"],
     ["services", 'services'],
@@ -157,4 +157,35 @@ navs =  [
 
 navs.each do |nav|
     Nav.create({title: nav[0], id_name: nav[1]})
+end
+
+
+
+
+# EMPLOYEES AND USERS
+employees = [
+    {firstname: 'Nicolas', lastname: 'Genest', title: 'Comm rep', email: 'nicolas.genest@codeboxx.biz'},
+    {firstname: 'David', lastname: 'Boutin', title: 'Engineer', email: 'david.boutin@codeboxx.biz'},
+    {firstname: 'Remi', lastname: 'Gagnon', title: 'Engineer', email: 'remi.gagnon@codeboxx.biz'},
+    {firstname: 'Mathieu', lastname: 'Lefrancois', title: 'Engineer', email: 'mathieu.lefrancois@codeboxx.biz'},
+    {firstname: 'Mathieu',lastname: 'Lortie', title: 'Engineer', email: 'mathieu.lortie@codeboxx.biz'},
+    {firstname: 'Mathieu', lastname: 'Houde', title: 'Engineer', email: 'mathieu.houde@codeboxx.biz'},
+    {firstname: 'Serge', lastname: 'Savoie', title: 'Engineer',  email: 'serge.savoie@codeboxx.biz'},
+    {firstname: 'Nadya', lastname: 'Fortier', title: 'Director', email: 'nadya.fortier@codeboxx.biz'},
+    {firstname: 'Martin', lastname: 'Chantal', title: 'Engineer', email: 'martin.chantal@codeboxx.biz'}
+}
+
+employees.each do |employee|
+    createEmployee(employee)
+end
+
+def createEmployee(employee)
+    @employee = Employee.new(employee)
+    @employee.user.build({email: employee.email, BCrypt::Password.create(12345678)})
+    
+    if @mod1.try(:save)
+      puts 'employee saved'
+    else
+      puts 'no saved'
+    end
 end
