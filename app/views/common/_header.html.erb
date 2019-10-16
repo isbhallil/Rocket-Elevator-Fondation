@@ -17,9 +17,11 @@
                         <% end %>
 
                         <% if user_signed_in? %>
-                        
-                            <%= render partial: 'common/nav-with-links', locals: { title: 'admin', path: dashboard_path(), method: 'get'}%>
-                        
+
+                            <% if current_user.employee %>
+                             <%= render partial: 'common/nav-with-links', locals: { title: 'admin', path: rails_admin_path(), method: 'get'}%>
+                            <% end %>
+                            
                             <%= render partial: 'common/nav-with-links', locals: { title: 'Edit Profile', path: edit_user_registration_path(), class: '', method: 'get' }%>
                             <%= render partial: 'common/nav-with-links', locals: { title: 'Logout', path: destroy_user_session_path(), method: 'delete' ,class: '' }%>
                         <% else %>
