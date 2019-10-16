@@ -1,0 +1,101 @@
+id,column_id,serial_number,model_type,building_type,status,date_of_installation,date_of_inspection,inspection_certificate,information,notes,created_at,updated_at
+1,1,442-40-0405,Premium,Residential,Active,8/2/1984,10/1/2014,Not Certified,Best elevator in town,long note,4/6/2007,7/15/2014
+2,2,754-91-0045,Standard,Commercial,Inactive,8/30/2004,8/26/1996,Certified,Best elevator in town,medium note,9/13/1993,9/5/2008
+3,3,669-74-4448,Standard,Corporate,Inactive,10/17/2004,6/4/1998,Not Certified,You are going the wrong way,very long note,9/27/2017,8/28/2005
+4,4,689-45-2250,Premium,Corporate,Active,12/25/1990,9/18/2001,Not Certified,Best elevator in town,medium note,11/13/2001,4/27/2014
+5,5,360-78-4956,Premium,Commercial,Active,12/24/2014,2/8/2003,Not Certified,Best elevator in town,very long note,2/23/1983,8/21/1991
+6,6,144-99-3268,Standard,Commercial,Inactive,6/27/1997,12/14/1986,Certified,You are going the wrong way,Short note,12/23/1977,12/11/2007
+7,7,251-25-9791,Premium,Hybrid,Active,11/22/2002,7/26/1999,Certified,Best elevator in town,very long note,7/4/2009,6/28/1986
+8,8,210-29-2213,Premium,Residential,Inactive,5/20/1980,6/1/1977,Certified,What are you doing,long note,7/16/2018,5/5/1990
+9,9,677-28-7023,Excelium,Hybrid,Inactive,3/15/1979,12/19/1980,Not Certified,What are you doing,medium note,7/31/1987,12/11/1978
+10,10,716-44-7395,Premium,Hybrid,Active,7/20/1981,12/20/1980,Certified,What are you doing,long note,3/11/1991,3/27/1993
+11,11,377-84-7089,Excelium,Residential,Active,12/11/2005,2/3/2014,Not Certified,Best elevator in town,long note,10/8/2005,4/1/2003
+12,12,214-02-7315,Standard,Corporate,Active,11/24/1997,10/1/2019,Certified,What are you doing,Short note,3/5/2017,1/2/1991
+13,13,193-22-7208,Excelium,Hybrid,Active,9/8/2006,9/5/1995,Certified,What are you doing,medium note,10/20/2000,4/20/2013
+14,14,875-79-7415,Premium,Hybrid,Active,12/17/1990,6/10/1989,Not Certified,You are going the wrong way,Short note,6/1/1993,8/16/2012
+15,15,341-48-2025,Premium,Hybrid,Active,3/12/2000,4/15/1992,Certified,Best elevator in town,Short note,12/25/2008,6/10/2000
+16,16,828-57-4162,Premium,Commercial,Active,10/28/2000,1/23/2013,Certified,You are going the wrong way,medium note,8/23/2017,11/14/2005
+17,17,723-88-8407,Standard,Corporate,Active,8/13/2007,11/9/2014,Not Certified,You are going the wrong way,very long note,1/17/2008,1/19/1987
+18,18,619-42-0615,Excelium,Commercial,Inactive,9/28/2000,4/14/1999,Not Certified,What are you doing,Short note,7/9/1991,7/28/1987
+19,19,485-98-8297,Standard,Corporate,Active,1/23/1977,7/14/1989,Not Certified,You are going the wrong way,Short note,6/26/1998,2/9/2018
+20,20,155-13-7683,Excelium,Residential,Inactive,7/25/2007,2/4/1979,Certified,What are you doing,medium note,3/24/2004,10/29/2005
+21,21,740-16-0141,Premium,Corporate,Active,5/28/2011,5/9/2002,Not Certified,Best elevator in town,very long note,5/13/1976,3/17/1995
+22,22,273-49-9535,Excelium,Corporate,Active,4/18/1999,6/6/1997,Not Certified,You are going the wrong way,medium note,4/7/2010,2/10/1976
+23,23,158-47-1746,Standard,Corporate,Active,1/4/1995,8/7/2008,Not Certified,Best elevator in town,Short note,6/9/2000,7/22/2014
+24,24,616-09-8618,Standard,Hybrid,Active,9/4/2010,1/23/1988,Certified,What are you doing,medium note,3/5/1976,6/6/1994
+25,25,686-17-4019,Premium,Corporate,Inactive,1/20/1992,12/25/1995,Certified,What are you doing,long note,10/20/1983,7/7/1984
+26,26,707-62-2699,Premium,Hybrid,Inactive,9/29/1988,10/4/2004,Certified,Best elevator in town,long note,1/12/1978,1/23/2011
+27,27,847-39-6201,Standard,Commercial,Active,7/29/2017,9/10/1997,Certified,What are you doing,medium note,1/8/1994,12/6/2017
+28,28,888-36-8929,Premium,Residential,Active,3/9/1982,9/22/2004,Certified,You are going the wrong way,very long note,12/2/2006,11/11/1994
+29,29,141-77-6934,Standard,Corporate,Inactive,3/14/1989,4/17/1992,Certified,Best elevator in town,medium note,11/27/2018,6/3/2002
+30,30,740-29-4531,Excelium,Hybrid,Active,6/15/2006,12/11/1981,Not Certified,You are going the wrong way,Short note,3/15/2016,1/29/2006
+31,31,870-92-2227,Excelium,Corporate,Active,8/17/1977,11/23/1975,Certified,What are you doing,very long note,3/27/1986,6/3/1990
+32,32,481-61-2625,Standard,Corporate,Active,10/5/2013,6/12/1976,Certified,Best elevator in town,very long note,12/22/1986,12/22/2007
+33,33,580-77-1671,Excelium,Corporate,Active,5/10/1986,8/25/1996,Not Certified,Best elevator in town,Short note,8/27/2019,2/20/1977
+34,34,595-24-9881,Excelium,Commercial,Inactive,11/4/1975,8/23/2014,Not Certified,You are going the wrong way,Short note,10/11/1986,3/4/1977
+35,35,372-49-7726,Excelium,Corporate,Active,3/3/2011,9/17/2016,Certified,Best elevator in town,medium note,8/13/1987,5/18/1997
+36,36,322-28-1018,Premium,Hybrid,Active,12/6/1982,7/6/2010,Not Certified,You are going the wrong way,long note,6/11/2001,5/13/1999
+37,37,512-43-7703,Standard,Commercial,Inactive,12/19/2004,6/6/1981,Not Certified,Best elevator in town,very long note,8/7/2016,8/21/1981
+38,38,641-67-1132,Premium,Residential,Active,8/3/2019,4/30/1982,Not Certified,You are going the wrong way,medium note,7/11/2009,3/29/1987
+39,39,242-95-8581,Excelium,Commercial,Active,3/29/1990,7/29/2010,Certified,Best elevator in town,medium note,9/18/2017,5/11/1978
+40,40,480-87-1445,Excelium,Corporate,Inactive,12/14/1976,3/22/2005,Certified,You are going the wrong way,very long note,1/26/1985,1/3/2006
+41,41,539-22-1773,Premium,Hybrid,Inactive,8/20/2018,11/11/2015,Not Certified,Best elevator in town,Short note,12/1/2001,7/19/2019
+42,42,103-31-5099,Standard,Residential,Active,4/21/1982,11/26/2010,Not Certified,What are you doing,long note,10/9/1987,12/13/1984
+43,43,530-51-4886,Standard,Commercial,Active,1/1/1989,10/10/1993,Certified,Best elevator in town,very long note,5/21/2015,4/1/2007
+44,44,466-69-9099,Excelium,Hybrid,Active,3/1/2007,11/29/2013,Not Certified,Best elevator in town,very long note,8/7/2010,11/24/2001
+45,45,238-49-1500,Premium,Hybrid,Inactive,7/30/1985,9/24/1979,Not Certified,You are going the wrong way,very long note,4/2/2015,1/6/1984
+46,46,143-17-0181,Standard,Residential,Inactive,7/6/2016,4/18/1998,Not Certified,What are you doing,very long note,4/28/1985,7/18/1990
+47,47,887-45-8382,Premium,Residential,Active,10/8/1988,10/5/2014,Not Certified,What are you doing,long note,4/7/1982,2/2/1998
+48,48,349-11-5613,Premium,Commercial,Inactive,2/17/2000,7/7/2010,Not Certified,You are going the wrong way,Short note,1/6/1987,4/30/2002
+49,49,634-98-3025,Standard,Corporate,Active,1/29/1984,7/12/2012,Not Certified,Best elevator in town,Short note,9/12/1976,3/27/1980
+50,50,697-65-0675,Premium,Corporate,Active,1/20/2012,2/28/1976,Certified,You are going the wrong way,long note,5/7/2005,9/6/1998
+51,51,139-06-1424,Excelium,Residential,Inactive,6/8/2012,6/20/2018,Certified,You are going the wrong way,Short note,9/25/2011,12/9/2016
+52,52,847-49-5024,Premium,Corporate,Inactive,5/14/2008,2/16/2016,Certified,Best elevator in town,long note,2/24/2015,3/30/2008
+53,53,175-87-2864,Premium,Corporate,Active,6/5/1996,4/18/2001,Not Certified,You are going the wrong way,Short note,2/1/1981,9/9/1993
+54,54,547-47-6554,Premium,Residential,Inactive,10/31/2000,8/31/1991,Certified,You are going the wrong way,long note,8/21/2010,8/8/2007
+55,55,209-24-5967,Standard,Hybrid,Active,2/14/1985,10/11/1977,Not Certified,What are you doing,very long note,1/18/1989,8/21/2005
+56,56,684-48-5673,Standard,Commercial,Inactive,12/2/2018,7/7/1980,Certified,What are you doing,long note,7/8/1987,3/5/1988
+57,57,185-80-2421,Excelium,Hybrid,Active,4/16/2001,5/25/2017,Certified,Best elevator in town,medium note,3/10/1998,9/28/1981
+58,58,333-15-4129,Excelium,Residential,Inactive,4/13/1989,12/27/1989,Not Certified,What are you doing,very long note,8/22/1981,7/30/1982
+59,59,813-84-2208,Excelium,Residential,Inactive,5/28/1997,10/16/1994,Not Certified,You are going the wrong way,medium note,12/1/1988,12/15/1984
+60,60,524-88-2971,Excelium,Residential,Inactive,12/9/2009,6/9/2010,Certified,You are going the wrong way,medium note,1/3/1999,5/18/2006
+61,61,706-74-0875,Excelium,Residential,Active,11/30/2015,4/25/1988,Certified,Best elevator in town,long note,4/19/1985,2/19/2019
+62,62,853-43-8151,Premium,Corporate,Inactive,8/4/2015,12/29/1995,Certified,You are going the wrong way,medium note,3/16/2002,1/9/1982
+63,63,723-72-2504,Premium,Corporate,Inactive,9/27/1994,2/4/1976,Not Certified,Best elevator in town,medium note,7/2/1980,2/20/1997
+64,64,590-49-8320,Premium,Commercial,Inactive,2/2/2019,12/15/2002,Not Certified,Best elevator in town,medium note,3/13/1979,9/11/2012
+65,65,428-68-6517,Standard,Commercial,Inactive,12/16/2016,10/23/1983,Not Certified,You are going the wrong way,Short note,6/27/2016,7/11/2015
+66,66,658-80-1533,Premium,Hybrid,Inactive,10/14/2015,7/28/1981,Not Certified,Best elevator in town,long note,2/19/2011,9/6/2017
+67,67,854-70-8807,Excelium,Commercial,Active,8/30/2011,11/11/1990,Not Certified,You are going the wrong way,very long note,7/16/1988,2/7/1977
+68,68,516-93-1911,Premium,Commercial,Active,8/17/2009,10/29/1980,Certified,Best elevator in town,medium note,11/4/1988,9/15/2006
+69,69,194-37-8178,Excelium,Corporate,Active,7/22/2002,6/5/1994,Not Certified,What are you doing,Short note,9/17/1983,2/12/1976
+70,70,107-55-5720,Excelium,Hybrid,Active,11/18/1990,10/23/2009,Not Certified,You are going the wrong way,Short note,3/17/2011,11/14/2002
+71,71,868-33-6957,Standard,Corporate,Inactive,6/6/1984,4/8/1976,Certified,Best elevator in town,medium note,6/7/2009,5/26/1993
+72,72,348-32-4314,Excelium,Commercial,Inactive,6/3/2014,4/17/1983,Certified,Best elevator in town,Short note,2/16/2005,12/7/1981
+73,73,193-88-3580,Premium,Hybrid,Inactive,11/12/1976,12/15/1997,Certified,You are going the wrong way,Short note,9/2/2001,4/22/1988
+74,74,792-78-3116,Premium,Corporate,Active,8/9/1990,5/8/1986,Not Certified,What are you doing,Short note,9/21/1977,1/16/2002
+75,75,138-49-9829,Standard,Residential,Active,12/25/1982,7/1/2005,Not Certified,Best elevator in town,very long note,12/26/2006,8/27/1982
+76,76,527-14-2166,Premium,Hybrid,Inactive,12/17/1978,1/16/1990,Certified,You are going the wrong way,long note,1/14/1999,4/14/1994
+77,77,165-36-7974,Excelium,Commercial,Inactive,9/11/2006,4/22/2007,Certified,What are you doing,long note,6/11/2009,1/14/2014
+78,78,706-93-1934,Premium,Residential,Active,2/5/2016,8/10/1992,Not Certified,What are you doing,medium note,2/1/1980,8/5/1999
+79,79,654-49-5916,Excelium,Hybrid,Active,8/11/1981,9/8/1988,Certified,What are you doing,very long note,3/23/2018,11/30/2006
+80,80,631-29-7276,Standard,Residential,Inactive,11/30/2003,7/29/1995,Not Certified,What are you doing,Short note,6/13/1985,5/28/1982
+81,81,713-99-6864,Premium,Corporate,Inactive,8/23/1991,2/5/1988,Certified,What are you doing,medium note,5/1/2002,11/26/2016
+82,82,200-73-5340,Standard,Residential,Inactive,9/2/1976,5/23/2007,Certified,You are going the wrong way,medium note,7/12/2011,4/12/2013
+83,83,521-43-6324,Excelium,Corporate,Active,3/13/1979,1/22/1996,Not Certified,What are you doing,medium note,12/26/2016,12/15/1987
+84,84,440-78-2000,Standard,Residential,Active,6/10/1992,8/15/1983,Certified,You are going the wrong way,medium note,2/25/2006,12/5/1992
+85,85,847-32-2235,Standard,Corporate,Inactive,5/12/2013,4/14/1981,Not Certified,What are you doing,long note,3/5/1984,3/27/1997
+86,86,331-52-2691,Premium,Hybrid,Inactive,5/18/2000,11/26/2007,Not Certified,What are you doing,very long note,8/27/1983,2/12/1983
+87,87,318-03-3258,Premium,Residential,Active,3/29/1977,12/28/1990,Certified,You are going the wrong way,Short note,1/22/1983,12/7/1988
+88,88,240-69-1628,Standard,Hybrid,Inactive,3/15/2017,2/23/1992,Not Certified,What are you doing,medium note,5/13/2004,8/4/2013
+89,89,456-83-9276,Premium,Corporate,Active,1/30/2002,3/27/2012,Certified,What are you doing,very long note,8/28/2015,2/26/2000
+90,90,117-67-7605,Excelium,Commercial,Active,11/11/2010,10/26/1996,Certified,What are you doing,medium note,11/9/1990,6/30/1997
+91,91,548-64-8863,Standard,Residential,Inactive,10/30/2018,6/14/1989,Not Certified,What are you doing,medium note,5/10/1998,3/7/1992
+92,92,869-81-9183,Excelium,Corporate,Inactive,3/18/2005,7/25/2009,Not Certified,Best elevator in town,Short note,5/21/2000,9/26/1987
+93,93,829-74-8758,Excelium,Hybrid,Active,3/14/1977,12/16/2016,Certified,You are going the wrong way,Short note,1/9/1978,7/9/2006
+94,94,524-50-5088,Standard,Residential,Inactive,8/24/1996,9/29/1979,Certified,You are going the wrong way,Short note,4/4/2010,1/17/1995
+95,95,550-31-5569,Excelium,Residential,Active,12/2/1995,10/7/1993,Certified,Best elevator in town,Short note,8/18/2014,8/1/2001
+96,96,718-80-2433,Premium,Hybrid,Inactive,8/3/2018,12/24/2006,Not Certified,Best elevator in town,very long note,5/20/1983,5/16/1994
+97,97,704-70-9383,Standard,Residential,Inactive,9/20/2000,12/21/2006,Not Certified,What are you doing,Short note,2/27/2001,12/10/2001
+98,98,492-47-7599,Excelium,Commercial,Active,4/20/1981,12/7/1980,Certified,You are going the wrong way,Short note,8/11/1995,12/23/2006
+99,99,179-09-4173,Standard,Hybrid,Inactive,7/8/2013,1/23/1989,Not Certified,Best elevator in town,very long note,3/24/2004,7/4/1987
+100,100,561-47-2517,Excelium,Residential,Inactive,1/27/2011,2/14/1986,Not Certified,You are going the wrong way,long note,11/27/2002,7/31/2013

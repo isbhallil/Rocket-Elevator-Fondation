@@ -1,7 +1,7 @@
 class CreateCustomers < ActiveRecord::Migration[5.2]
   def change
     create_table :customers do |t|
-      t.references :address, foreign_key: {on_delete: :cascade, on_update: :cascade}, null: false
+      t.references :address, foreign_key: {on_delete: :cascade, on_update: :cascade}
       t.references :user, foreign_key: {on_delete: :cascade, on_update: :cascade}
       t.date :date_of_creation
       t.string :company_name, null: false
