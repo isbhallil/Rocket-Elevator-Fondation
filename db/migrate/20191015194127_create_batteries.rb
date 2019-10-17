@@ -7,7 +7,7 @@ class CreateBatteries < ActiveRecord::Migration[5.2]
       t.string :status
       t.date :date_of_installation
       t.date :date_of_inspection
-      t.integer :operation_certificate
+      t.string :inspection_certificate
       t.text :information
       t.text :notes
       t.timestamps
