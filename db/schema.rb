@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_194231) do
     t.string "status"
     t.date "date_of_installation"
     t.date "date_of_inspection"
-    t.integer "operation_certificate"
+    t.string "inspection_certificate"
     t.text "information"
     t.text "notes"
     t.datetime "created_at", null: false
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2019_10_15_194231) do
 
   create_table "elevators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "column_id", null: false
-    t.integer "serial_number", null: false
+    t.string "serial_number", null: false
     t.string "model_type", null: false
     t.string "building_type", null: false
     t.string "status"
