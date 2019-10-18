@@ -164,59 +164,15 @@ navs.each do |nav|
 end
 
 
-
-
-# list d'employee
-
-# employee1 = Employee.create(first_name: 'Nicolas', last_name: 'Genest', title: 'Comm rep', email: 'nicolas.genest@codeboxx.biz')
-# employee2 = Employee.create(first_name: 'David', last_name: 'Boutin', title: 'Engineer', email: 'david.boutin@codeboxx.biz')
-# Employee.create(first_name: 'Remi', last_name: 'Gagnon', title: 'Engineer', email: 'remi.gagnon@codeboxx.biz')
-# Employee.create(first_name: 'Mathieu', last_name: 'Lefrancois', title: 'Engineer', email: 'mathieu.lefrancois@codeboxx.biz')
-# Employee.create(first_name: 'Mathieu',last_name: 'Lortie', title: 'Engineer', email: 'mathieu.lortie@codeboxx.biz')
-# Employee.create(first_name: 'Mathieu', last_name: 'Houde', title: 'Engineer', email: 'mathieu.houde@codeboxx.biz')
-# Employee.create(first_name: 'Serge', last_name: 'Savoie', title: 'Engineer',  email: 'serge.savoie@codeboxx.biz')
-# Employee.create(first_name: 'Nadya', last_name: 'Fortier', title: 'Director', email: 'nadya.fortier@codeboxx.biz')
-# Employee.create(first_name: 'Martin', last_name: 'Chantal', title: 'Engineer', email: 'martin.chantal@codeboxx.biz')
- 
-# employees = [
-#     {first_name: 'Nicolas', last_name: 'Genest', title: 'Comm rep', email: 'nicolas.genest@codeboxx.biz'},
-#     {first_name: 'David', last_name: 'Boutin', title: 'Engineer', email: 'david.boutin@codeboxx.biz'},
-#     {first_name: 'Remi', last_name: 'Gagnon', title: 'Engineer', email: 'remi.gagnon@codeboxx.biz'},
-#     {first_name: 'Mathieu', last_name: 'Lefrancois', title: 'Engineer', email: 'mathieu.lefrancois@codeboxx.biz'},
-#     {first_name: 'Mathieu',last_name: 'Lortie', title: 'Engineer', email: 'mathieu.lortie@codeboxx.biz'},
-#     {first_name: 'Mathieu', last_name: 'Houde', title: 'Engineer', email: 'mathieu.houde@codeboxx.biz'},
-#     {first_name: 'Serge', last_name: 'Savoie', title: 'Engineer',  email: 'serge.savoie@codeboxx.biz'},
-#     {first_name: 'Nadya', last_name: 'Fortier', title: 'Director', email: 'nadya.fortier@codeboxx.biz'},
-#     {first_name: 'Martin', last_name: 'Chantal', title: 'Engineer', email: 'martin.chantal@codeboxx.biz'}
-# ]
-
-# def createEmployee(employee)
-#     @employee = Employee.new(employee)
-
-#     ap " EMPLOYEE ============================================"
-#     ap @employee
-#     ap " EMPLOYEE ============================================"
-#     @employee.user.build({email: employee.email, encrypted_password: BCrypt::Password.create(12345678)})
-    
-#     if @employee.try(:save)
-#       puts 'employee saved'
-#     else
-#       puts 'no saved'
-#     end
-# end
-
-
-# employees.each do |employee|
-#     createEmployee(employee)
-# end
+user_id_array =[*1..999]
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'employee.csv'))
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
     puts '***EMPLOYEES***'
     csv.each do |row|   
         t = Employee.new
-        t.id = row['Id']
-        t.user = User.first
+        # t.id = row['Id']
+        t.user_id = user_id_array.sample
         t.first_name = row['first_name']
         t.last_name = row['last_name']
         t.title = row['title']
@@ -267,12 +223,14 @@ csv.each do |row|
 
 puts "ADDRESS COMPLETED"
 
+
+
 csv_text = File.read(Rails.root.join('lib', 'seed', 'customer.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 puts '***CUSTOMER***'
 csv.each do |row|   
     t = Customer.new
-    t.user_id = row['user_id']
+    t.user_id = user_id_array.sample
     t.address_id = row['address_id']
     t.date_of_creation = row['date_of_creation']
     t.company_name = row['company_name']
