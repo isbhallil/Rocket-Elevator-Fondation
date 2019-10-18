@@ -66,6 +66,7 @@ $(document).on('turbolinks:load', function () {
       .forEach(function (form) {
         form.hide();
       })
+      $('#contact-quote-form').hide()
     }
 
     // CHECK IF ALL INPUTS OF A FORM EL. ARE FILLED
@@ -187,21 +188,25 @@ $(document).on('turbolinks:load', function () {
         case 'residential':
           hideAll();
           showElement(residentialForm);
+          $('#contact-quote-form').show()
           break;
 
         case 'corporate':
           hideAll();
           showElement(corporateForm);
+          $('#contact-quote-form').show()
           break;
 
         case 'commercial':
           hideAll();
           showElement(commercialForm);
+          $('#contact-quote-form').show()
           break;
 
         case 'hybrid':
           hideAll();
           showElement(hybridForm);
+          $('#contact-quote-form').show()
           break;
 
         default:

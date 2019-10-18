@@ -12,6 +12,9 @@ gem 'pg'
 gem "awesome_print", require:"ap"
 gem 'faker'
 gem 'whenever', require: false
+gem 'activestorage-database-service', github: 'TitovDigital/activestorage-database-service'
+
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
