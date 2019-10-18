@@ -4,6 +4,7 @@ class CreateBuildingDetails < ActiveRecord::Migration[5.2]
       t.references :building, foreign_key: {on_delete: :cascade, on_update: :cascade}, null: false
       t.string :info_key
       t.string :value
+      
       t.timestamps
     end
   end

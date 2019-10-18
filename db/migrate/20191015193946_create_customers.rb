@@ -12,6 +12,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :full_name_service_person
       t.string :phone_number_service_person
       t.string :email_service_person
+      
       t.timestamps
     end
   end
