@@ -1,0 +1,16 @@
+default: &default_pg
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: test
+
+development:
+  <<: *default_pg
+  database: pg_dev
+#
+# production:
+#   <<: *default_pg
+#   database: pg_prod
+#   username: Rocket_Elevators_Information_System
+#   password: <%= ENV['ROCKET_ELEVATORS_INFORMATION_SYSTEM_DATABASE_PASSWORD'] %>
