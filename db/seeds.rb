@@ -172,7 +172,7 @@ csv_text = File.read(Rails.root.join('lib', 'seed', 'employee.csv'))
         t.encrypted_password = row['encrypted_password']
         t.created_at = row['created_at']
         t.updated_at = row['updated_at']
-        ap t
+        
         t.save!
                 
     end
@@ -195,7 +195,7 @@ csv_text = File.read(Rails.root.join('lib', 'seed', 'address.csv'))
             t.notes = row['notes']
             t.created_at = row['created_at']
             t.updated_at = row['updated_at']
-            ap t
+            
             t.save!
 
 end
@@ -250,13 +250,14 @@ csv_text = File.read(Rails.root.join('lib', 'seed', 'buildingdetail.csv'))
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
     csv.each do |row| 
+        t = BuildingDetail.new  
         t.building_id = row['building_id']
         t.info_key = row['info_key']
         t.value = row['value']
         t.created_at = row['created_at']
         t.updated_at = row['updated_at']
         t.save!
-        t = BuildingDetail.new  
+        
         
 end 
 
@@ -302,7 +303,7 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
         t.notes = row['notes']
         t.created_at = row['created_at']
         t.updated_at = row['updated_at']
-        ap t
+        
         t.save!     
         
 end
@@ -326,7 +327,7 @@ csv_text = File.read(Rails.root.join('lib', 'seed', 'elevator.csv'))
         t.notes = row['notes']
         t.created_at = row['created_at']
         t.updated_at = row['updated_at']
-        ap t
+        
         t.save!
          
 end
