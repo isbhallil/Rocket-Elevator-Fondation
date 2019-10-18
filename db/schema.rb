@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_174155) do
     t.string "enterprise_name"
     t.string "email"
     t.string "phone_number"
-    t.string "immovable_project_name"
+    t.string "building_project_name"
     t.string "project_description"
     t.string "departement_in_charge_of_elevators"
     t.string "message"

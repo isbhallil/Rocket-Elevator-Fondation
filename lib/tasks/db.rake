@@ -26,7 +26,7 @@ namespace :db do
         enterprise_name: Faker::Company.name,
         email: Faker::Internet.email,
         phone_number: Faker::PhoneNumber.cell_phone,
-        immovable_project_name: Faker::Hipster.word,
+        building_project_name: Faker::Hipster.word,
         project_description: Faker::Hipster.word,
         departement_in_charge_of_elevators: Faker::Commerce.department,
         message: Faker::Hipster.word

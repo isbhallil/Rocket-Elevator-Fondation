@@ -3,7 +3,7 @@ default: &default_pg
   encoding: unicode
   pool: 5
   username: postgres
-  password: test
+  password: 
 
 development:
   <<: *default_pg
