@@ -27,18 +27,6 @@ ActiveRecord::Schema.define(version: 2019_10_14_032710) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "title"
-    t.string "email"
-    t.string "encrypted_password"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_employees_on_user_id"
-  end
-
   create_table "navs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "id_name"
@@ -56,22 +44,34 @@ ActiveRecord::Schema.define(version: 2019_10_14_032710) do
   end
 
   create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "range-type"
-    t.string "building-type"
+    t.string "range_type"
+    t.string "building_type"
     t.integer "units"
     t.integer "stories"
     t.integer "basements"
-    t.integer "parking-spaces"
-    t.integer "max-occupants"
+    t.integer "parking_spaces"
+    t.integer "max_occupants"
     t.integer "hours"
-    t.integer "elevator-shafts"
-    t.float "elevator-unit-cost"
-    t.float "setup-fees"
+    t.integer "elevator_shafts"
+    t.float "elevator_unit_cost"
+    t.float "setup_fees"
     t.float "total"
     t.string "contact"
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "title"
+    t.string "email"
+    t.string "encrypted_password"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
