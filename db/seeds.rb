@@ -1,7 +1,43 @@
 require 'bcrypt'
 
+# EMPLOYEES AND USERS
+employees = [
+    {first_name: 'Nicolas', last_name: 'Genest', title: 'Comm rep', email: 'nicolas.genest@codeboxx.biz'},
+    {first_name: 'David', last_name: 'Boutin', title: 'Engineer', email: 'david.boutin@codeboxx.biz'},
+    {first_name: 'Remi', last_name: 'Gagnon', title: 'Engineer', email: 'remi.gagnon@codeboxx.biz'},
+    {first_name: 'Mathieu', last_name: 'Lefrancois', title: 'Engineer', email: 'mathieu.lefrancois@codeboxx.biz'},
+    {first_name: 'Mathieu',last_name: 'Lortie', title: 'Engineer', email: 'mathieu.lortie@codeboxx.biz'},
+    {first_name: 'Mathieu', last_name: 'Houde', title: 'Engineer', email: 'mathieu.houde@codeboxx.biz'},
+    {first_name: 'Serge', last_name: 'Savoie', title: 'Engineer',  email: 'serge.savoie@codeboxx.biz'},
+    {first_name: 'Nadya', last_name: 'Fortier', title: 'Director', email: 'nadya.fortier@codeboxx.biz'},
+    {first_name: 'Martin', last_name: 'Chantal', title: 'Engineer', email: 'martin.chantal@codeboxx.biz'}
+]
+
+employees.each do |e|
+    @employee = Employee.new(e)
+    @employee.encrypted_password =  BCrypt::Password.create(12345678)
+    @user = User.create!({email: @employee.email, encrypted_password: @employee.encrypted_password})
+    @employee
+    ap @employee
+    # @user.create
+
+    ap @user
+    ap "=================================="
+    ap e
+
+    @employee.build(@user)
+
+    # if User.try(:create!)
+    #     @employee.build_user(@user)
+    # else
+    #   puts 'no saved'
+    # end
+end
+
+
+
 # META WEBSITE PORTFOLIO AND AWARDS
-awards = [
+awards =[
     [
         'corporate',
         'burj khalifa',
@@ -52,7 +88,7 @@ awards = [
         'empire state building',
         'empire-state-building'
     ]
-    
+
 ]
 
 awards.each do |award|
@@ -91,7 +127,7 @@ news =  [
         "https://famousbusinessman.com/2019/09/08/global-residential-elevators-market-2/",
         "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/space-elevator-1567182025.jpg?resize=3840:*",
         "New Patent By RocketElevators",
-        "We can now send good to the ISS. New Elevators that can go in space !"   
+        "We can now send good to the ISS. New Elevators that can go in space !"
     ]
 ]
 
@@ -157,35 +193,4 @@ navs =  [
 
 navs.each do |nav|
     Nav.create({title: nav[0], id_name: nav[1]})
-end
-
-
-
-
-# EMPLOYEES AND USERS
-employees = [
-    {firstname: 'Nicolas', lastname: 'Genest', title: 'Comm rep', email: 'nicolas.genest@codeboxx.biz'},
-    {firstname: 'David', lastname: 'Boutin', title: 'Engineer', email: 'david.boutin@codeboxx.biz'},
-    {firstname: 'Remi', lastname: 'Gagnon', title: 'Engineer', email: 'remi.gagnon@codeboxx.biz'},
-    {firstname: 'Mathieu', lastname: 'Lefrancois', title: 'Engineer', email: 'mathieu.lefrancois@codeboxx.biz'},
-    {firstname: 'Mathieu',lastname: 'Lortie', title: 'Engineer', email: 'mathieu.lortie@codeboxx.biz'},
-    {firstname: 'Mathieu', lastname: 'Houde', title: 'Engineer', email: 'mathieu.houde@codeboxx.biz'},
-    {firstname: 'Serge', lastname: 'Savoie', title: 'Engineer',  email: 'serge.savoie@codeboxx.biz'},
-    {firstname: 'Nadya', lastname: 'Fortier', title: 'Director', email: 'nadya.fortier@codeboxx.biz'},
-    {firstname: 'Martin', lastname: 'Chantal', title: 'Engineer', email: 'martin.chantal@codeboxx.biz'}
-}
-
-employees.each do |employee|
-    createEmployee(employee)
-end
-
-def createEmployee(employee)
-    @employee = Employee.new(employee)
-    @employee.user.build({email: employee.email, BCrypt::Password.create(12345678)})
-    
-    if @mod1.try(:save)
-      puts 'employee saved'
-    else
-      puts 'no saved'
-    end
 end
