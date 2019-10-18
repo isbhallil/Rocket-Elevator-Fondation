@@ -2,14 +2,6 @@ require 'bcrypt'
 require 'devise'
 require 'csv'
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 awards = [
     [
         'corporate',
@@ -164,15 +156,15 @@ navs.each do |nav|
 end
 
 
-user_id_array =[*1..999]
+user_id_customer  =[*60..999]
+user_id_employee =[*1..59]
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'employee.csv'))
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1:utf-8')
-    puts '***EMPLOYEES***'
+    
     csv.each do |row|   
         t = Employee.new
-        # t.id = row['Id']
-        t.user_id = user_id_array.sample
+        t.user_id = user_id_employee.sample
         t.first_name = row['first_name']
         t.last_name = row['last_name']
         t.title = row['title']
@@ -184,21 +176,12 @@ csv_text = File.read(Rails.root.join('lib', 'seed', 'employee.csv'))
         t.save!
                 
     end
-        puts '***EMPLOYEES COMPLETED***'
-
-
-
+    
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'address.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
-    puts "Address #{row['id']}==================================================="
-        
-        #  existing_address = Address.find(row['id'])
-
-        #  unless existing_address
-
+    csv.each do |row|
             t = Address.new
             t.id = row['id']
             t.address_type = row['address_type']
@@ -215,115 +198,100 @@ csv.each do |row|
             ap t
             t.save!
 
-        end
-
-    puts '===================================================  Address'
-        
-#  end  
-
-puts "ADDRESS COMPLETED"
-
+end
 
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'customer.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-puts '***CUSTOMER***'
-csv.each do |row|   
-    t = Customer.new
-    t.user_id = user_id_array.sample
-    t.address_id = row['address_id']
-    t.date_of_creation = row['date_of_creation']
-    t.company_name = row['company_name']
-    t.full_name_contact_person = row['full_name_contact_person']
-    t.phone_number_contact_person = row['phone_number_contact_person']
-    t.email_contact_person = row['email_contact_person']
-    t.company_description = row['company_description']
-    t.full_name_service_person = row['full_name_service_person']
-    t.phone_number_service_person = row['phone_number_service_person']
-    t.email_service_person = row['email_service_person']
-    t.created_at = row['created_at']
-    t.updated_at = row['updated_at']
-    t.save!   
-end   
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
-puts '***CUSTOMER COMPLETED***'
-
-
+    csv.each do |row|
+        t = Customer.new   
+        t.user_id = user_id_customer.sample
+        t.address_id = row['address_id']
+        t.date_of_creation = row['date_of_creation']
+        t.company_name = row['company_name']
+        t.full_name_contact_person = row['full_name_contact_person']
+        t.phone_number_contact_person = row['phone_number_contact_person']
+        t.email_contact_person = row['email_contact_person']
+        t.company_description = row['company_description']
+        t.full_name_service_person = row['full_name_service_person']
+        t.phone_number_service_person = row['phone_number_service_person']
+        t.email_service_person = row['email_service_person']
+        t.created_at = row['created_at']
+        t.updated_at = row['updated_at']
+        t.save!   
+        
+end  
 
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'building.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-puts '***BUILDING***'
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
     csv.each do |row|
-    t = Building.new   
-    t.id = row['id']
-    t.address_id = row['address_id']
-    t.customer_id = row['customer_id']
-    t.full_name_admin_person = row['full_name_admin_person']
-    t.email_admin_person = row['email_admin_person']
-    t.phone_number_admin_person = row['phone_number_admin_person']
-    t.full_name_tech_person = row['full_name_tech_person']
-    t.email_tech_person = row['email_tech_person']
-    t.phone_number_tech_person = row['phone_number_tech_person']
-    t.created_at = row['created_at']
-    t.updated_at = row['updated_at']
-    t.save!
+        t = Building.new  
+        t.id = row['id']
+        t.address_id = row['address_id']
+        t.customer_id = row['customer_id']
+        t.full_name_admin_person = row['full_name_admin_person']
+        t.email_admin_person = row['email_admin_person']
+        t.phone_number_admin_person = row['phone_number_admin_person']
+        t.full_name_tech_person = row['full_name_tech_person']
+        t.email_tech_person = row['email_tech_person']
+        t.phone_number_tech_person = row['phone_number_tech_person']
+        t.created_at = row['created_at']
+        t.updated_at = row['updated_at']
+        t.save!
+         
         
         
 end  
 
-puts '***BUILDING COMPLETED***'
-
-
-
-
 csv_text = File.read(Rails.root.join('lib', 'seed', 'buildingdetail.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-puts '***BUILDING***'
-csv.each do |row| 
-    t = BuildingDetail.new  
-    t.building_id = row['building_id']
-    t.info_key = row['info_key']
-    t.value = row['value']
-    t.created_at = row['created_at']
-    t.updated_at = row['updated_at']
-    t.save!
-        
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
+    csv.each do |row| 
+        t.building_id = row['building_id']
+        t.info_key = row['info_key']
+        t.value = row['value']
+        t.created_at = row['created_at']
+        t.updated_at = row['updated_at']
+        t.save!
+        t = BuildingDetail.new  
         
 end 
-puts '***BUILDING Details***'
+
 
 employee_id_array =[*1..59]
 building_id_array =[*1..100]
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'battery.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-puts '***BATTERY***'
-csv.each do |row|   
-    t = Battery.new
-    t.id = row['Id']
-    t.building_id = building_id_array.sample
-    t.employee_id = employee_id_array.sample
-    t.building_type = row['building_type']
-    t.status = row['status']
-    t.date_of_installation = Date.strptime(row['date_of_installation'], '%m/%d/%Y')
-    t.date_of_inspection = Date.strptime(row['date_of_inspection'], '%m/%d/%Y')
-    t.inspection_certificate = row['inspection_certificate']
-    t.information = row['information']
-    t.notes = row['notes']
-    t.created_at = row['created_at']
-    t.updated_at = row['updated_at']
-    t.save!
-    
-    
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
+    csv.each do |row|
+        t = Battery.new   
+        t.id = row['Id']
+        t.building_id = building_id_array.sample
+        t.employee_id = employee_id_array.sample
+        t.building_type = row['building_type']
+        t.status = row['status']
+        t.date_of_installation = Date.strptime(row['date_of_installation'], '%m/%d/%Y')
+        t.date_of_inspection = Date.strptime(row['date_of_inspection'], '%m/%d/%Y')
+        t.inspection_certificate = row['inspection_certificate']
+        t.information = row['information']
+        t.notes = row['notes']
+        t.created_at = row['created_at']
+        t.updated_at = row['updated_at']
+        t.save!      
+       
 end
-puts '***BATTERY COMPLETED***'
+
 
     battery_id_array =[*1..100]
     floor_number_array =[*1..125]
-    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv_text = File.read(Rails.root.join('lib', 'seed', 'column.csv'))
-    puts '***COLUMN***'
+  
     csv.each do |row| 
         t = Column.new  
         t.battery_id = battery_id_array.sample
@@ -335,36 +303,34 @@ puts '***BATTERY COMPLETED***'
         t.created_at = row['created_at']
         t.updated_at = row['updated_at']
         ap t
-        t.save!
-        
+        t.save!     
         
 end
-puts '***COLUMN COMPLETED***'
-
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'elevator.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-puts '***ELEVATOR***'
-csv.each do |row|   
-    t = Elevator.new
-    t.id = row['Id']
-    t.column_id = row['column_id']
-    t.serial_number = row['serial_number']
-    t.model_type = row['model_type']
-    t.building_type = row['building_type']
-    t.status = row['status']
-    t.date_of_installation = Date.strptime(row['date_of_installation'], '%m/%d/%Y')
-    t.date_of_inspection = Date.strptime(row['date_of_inspection'], '%m/%d/%Y')
-    t.inspection_certificate = row['inspection_certificate']
-    t.information = row['information']
-    t.notes = row['notes']
-    t.created_at = row['created_at']
-    t.updated_at = row['updated_at']
-    ap t
-    t.save!
-            
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
+
+    csv.each do |row|
+        t = Elevator.new   
+        t.id = row['Id']
+        t.column_id = row['column_id']
+        t.serial_number = row['serial_number']
+        t.model_type = row['model_type']
+        t.building_type = row['building_type']
+        t.status = row['status']
+        t.date_of_installation = Date.strptime(row['date_of_installation'], '%m/%d/%Y')
+        t.date_of_inspection = Date.strptime(row['date_of_inspection'], '%m/%d/%Y')
+        t.inspection_certificate = row['inspection_certificate']
+        t.information = row['information']
+        t.notes = row['notes']
+        t.created_at = row['created_at']
+        t.updated_at = row['updated_at']
+        ap t
+        t.save!
+         
 end
-    puts '***ELEVATOR COMPLETED***'
+
 
   
 

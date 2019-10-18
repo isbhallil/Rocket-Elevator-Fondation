@@ -11,6 +11,7 @@ class CreateElevators < ActiveRecord::Migration[5.2]
       t.string :inspection_certificate
       t.text :information
       t.text :notes
+      
       t.timestamps
     end
   end

@@ -1,10 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :init_global_variables
-
-
-
-
-    
+   
     private 
     def init_global_variables
         @navs = Nav.all
