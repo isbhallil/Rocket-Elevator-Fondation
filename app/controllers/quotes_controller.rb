@@ -6,6 +6,8 @@ class QuotesController < ApplicationController
     q = Quote.new
     q.range_type= params['range-type-select']
     q.building_type= params['building-type-select']
+    q.compagny = params['contact-quote-compagny']
+    q.email = params['contact-quote-email']
 
     if params['building-type-select'] == 'residential'
       q.units= params['residential-appartments']

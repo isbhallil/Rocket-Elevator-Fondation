@@ -16,8 +16,8 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.float    :setup_fees
       t.float    :total
 
-      t.string   :contact
-      t.string   :phone
+      t.string   :compagny
+      t.string   :email
 
       t.timestamps
     end

@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'quote' => 'quotes#new'
   post 'quote' => 'quotes#create'
   get 'print'=> 'quotes#print'
+  resources :lead
+  post '/lead' => 'root#index'
 end

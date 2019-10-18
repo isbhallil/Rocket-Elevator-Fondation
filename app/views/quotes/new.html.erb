@@ -116,6 +116,17 @@
                     <%= f.number_field('hybrid-hours', {class: 'form-control hybrid-form'}) %>
                 </div>
             </div>
+            
+            <div id="contact-quote-form">
+               <div class="fancy-form">
+                   <%= f.label('Compagny Name') %>
+                   <%= f.text_field('contact-quote-compagny', {class: 'form-control residential-form'}) %>
+               </div>
+               <div class="fancy-form">
+                   <%= f.label('Email') %>
+                   <%= f.text_field('contact-quote-email', {class: 'form-control residential-form'}) %>
+               </div>
+           </div>
 
             <%= f.submit('Get A Quote Now!', class:'btn btn-success', id:'submit-quote') %>
         <% end %>
