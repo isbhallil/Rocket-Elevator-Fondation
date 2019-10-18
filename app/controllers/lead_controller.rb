@@ -7,7 +7,7 @@ def create
  @lead = Lead.new
      
     @lead.full_name = params["contact"]["name"]
-    @lead.enterprise_name = params["contact"]["subject"]
+    @lead.business_name = params["contact"]["subject"]
     @lead.email = params["contact"]["email"]
     @lead.phone_number = params["contact"]["phone"]
     @lead.building_project_name = params["contact"]["project"]

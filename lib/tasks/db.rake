@@ -23,7 +23,7 @@ namespace :db do
     50.times do
       Lead.create!(
         full_name: Faker::Name.name,
-        enterprise_name: Faker::Company.name,
+        business_name: Faker::Company.name,
         email: Faker::Internet.email,
         phone_number: Faker::PhoneNumber.cell_phone,
         building_project_name: Faker::Hipster.word,

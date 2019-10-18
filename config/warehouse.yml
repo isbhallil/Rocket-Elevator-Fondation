@@ -1,9 +1,10 @@
 default: &default_pg
   adapter: postgresql
   encoding: unicode
+  host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com 
   pool: 5
-  username: 
-  password: 
+  username: codeboxx
+  password: Codeboxx1!
 
 
 development:
