@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def is_admin?
     self.employee
   end
+        #  :recoverable, :rememberable
+  def name
+  id
+  end
 end
