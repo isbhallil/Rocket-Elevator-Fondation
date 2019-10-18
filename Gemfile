@@ -11,7 +11,7 @@ gem 'rails_admin', '~> 2.0'
 gem 'pg'
 gem "awesome_print", require:"ap"
 gem 'faker'
-
+gem 'whenever', require: false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
