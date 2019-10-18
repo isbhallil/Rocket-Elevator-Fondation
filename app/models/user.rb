@@ -4,13 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :employee
-
   def is_admin?
     self.employee
   end
         #  :recoverable, :rememberable
   def name
-  id
+    id
   end
 end
