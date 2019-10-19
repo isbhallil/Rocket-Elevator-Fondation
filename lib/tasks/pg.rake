@@ -50,4 +50,5 @@ namespace :pg do |ns|
     Rails.application.config.paths['db/seeds'] = ["pg/seeds.rb"]
     Rails.application.config.paths['config/database'] = ["config/warehouse.yml"]
   end
+
 end

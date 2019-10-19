@@ -3,7 +3,7 @@ require "pg"
 namespace :pg do
 
     # INITIALIZE CONNECTION FOR ALL TASKS
-    warehouse = PG::Connection.open(host: "localhost", port: 5432, dbname: "pg_dev", user: "postgres", password: "test")
+    warehouse = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", port: 5432, dbname: "pg_dev", user: "codeboxx", password: "Codeboxx1!")
 
     desc "export to pg"
     task etl: :environment do
@@ -98,7 +98,7 @@ namespace :pg do
             ap "END ========================================================"
 
             result = warehouse.exec("SELECT * FROM dim_customers WHERE customer_id = '#{customer.id}'");
-            ap "VALUES ('#{customer.id}, #{customer.created_at}', '#{customer.company_name}', #{customer.full_name_contact_person.to_s}, '#{customer.email_contact_person}', '#{elevators}', '#{customer.address.city}')"
+            ap "VALUES ('#{customer.id}', '#{customer.created_at}', '#{customer.company_name}', #{customer.full_name_contact_person.to_s}, '#{customer.email_contact_person}', '#{elevators}', '#{customer.address.city}')"
             if result.values.length == 0
                 ap "INSERT"
                 warehouse.exec("
