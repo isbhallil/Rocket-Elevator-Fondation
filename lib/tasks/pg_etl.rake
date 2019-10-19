@@ -84,7 +84,7 @@ namespace :pg do
             ap "END ========================================================"
 
             result = warehouse.exec("SELECT * FROM dim_customers WHERE customer_id = '#{customer.id}'");
-            ap "VALUES ('#{customer.id}, #{customer.created_at}', '#{customer.company_name}', #{customer.full_name_contact_person.to_s}, '#{customer.email_contact_person}', '#{elevators}', '#{customer.address.city}')"
+            ap "VALUES ('#{customer.id}', '#{customer.created_at}', '#{customer.company_name}', #{customer.full_name_contact_person.to_s}, '#{customer.email_contact_person}', '#{elevators}', '#{customer.address.city}')"
             if result.values.length == 0
                 ap "INSERT"
                 warehouse.exec("
