@@ -82,4 +82,26 @@ namespace :pg do |ns|
     ENV['SCHEMA'] = @original_config[:env_schema]
     Rails.application.config = @original_config[:config]
   end
+  desc 'Force a pg:reset2 of database'
+  task hard_reset2: :environment do
+    if Rails.env.development?
+      conn = ActiveRecord::Base.connection
+      # Terminate all connections except our current one
+      conn.execute("SELECT
+                      pg_terminate_backend (pid)
+                    FROM
+                      pg_stat_activity
+                    WHERE
+                      pid <> pg_backend_pid ()
+                    AND datname = 'converger_development';")
+      # Close the connection behind us
+      ActiveRecord::Base.connection.close
+# Invoke a task now all connections are gone
+      Rake::Task['pg:reset2'].invoke
+      Rake::Task['pg:migrate'].invoke
+p "Forced a pg:reset2 for environment #{Rails.env}"
+    else
+      p "Sorry I cannot pg:reset2 pg on this environment: #{Rails.env}"
+    end
+  end
 end
