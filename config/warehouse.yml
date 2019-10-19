@@ -1,6 +1,6 @@
-default: &default_pg
+development:
   adapter: postgresql
-  encoding: unicode
+  encoding: utf8
 
 
   host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com 
@@ -11,8 +11,8 @@ default: &default_pg
 
 
 
-development:
-  <<: *default_pg
+# development:
+#   <<: *default_pg
   database: pg_dev
 # production:
 #   <<: *default_pg
