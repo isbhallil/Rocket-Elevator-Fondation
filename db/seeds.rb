@@ -318,14 +318,20 @@ end
     battery_id_array =[*1..Battery.count]
     floor_number_array =[*1..125]
 
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-    t.floor_number = floor_number_array.delete(floor_number_array.sample)
-    t.status = row['status']
-    t.information = row['information']
-    t.created_at = row['created_at']
-    t.updated_at = row['updated_at']
-    t.save!
-end
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+    csv_text = File.read(Rails.root.join('lib', 'seed', 'column.csv'))
+    csv.each do |row|
+        t = Column.new
+        t.battery_id = battery_id_array.delete(battery_id_array.sample)
+        t.building_type = row['building_type']
+        t.floor_number = floor_number_array.delete(floor_number_array.sample)
+        t.status = row['status']
+        t.information = row['information']
+        t.notes = row['notes']
+        t.created_at = row['created_at']
+        t.updated_at = row['updated_at']
+        t.save!
+    end
 
 column_id_array =[*1..Column.count]
 
