@@ -10,7 +10,6 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.integer  :max_occupants
       t.integer  :hours
 
-
       t.integer  :elevator_shafts
       t.float    :elevator_unit_cost
       t.float    :setup_fees

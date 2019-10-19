@@ -23,13 +23,14 @@ namespace :db do
     50.times do
       Lead.create!(
         full_name: Faker::Name.name,
-        business_name: Faker::Company.name,
+        business_name: Faker::Company.suffix,
         email: Faker::Internet.email,
         phone_number: Faker::PhoneNumber.cell_phone,
         building_project_name: Faker::Hipster.word,
         project_description: Faker::Hipster.word,
         departement_in_charge_of_elevators: Faker::Commerce.department,
-        message: Faker::Hipster.word
+        message: Faker::Hipster.word,
+        created_at: Faker::Date.between(from: 3.years.ago, to: Date.today)
       )
     end
   end
@@ -53,7 +54,8 @@ namespace :db do
         setup_fees: Faker::Number.within(range: 1..10000),
         total: Faker::Number.within(range: 1..60000),
         compagny: Faker::Company.name,
-        email: Faker::Internet.email
+        email: Faker::Internet.email,
+        created_at: Faker::Date.between(from: 3.years.ago, to: Date.today)
       )
     end
   end
