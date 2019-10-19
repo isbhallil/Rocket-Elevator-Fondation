@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # PagesController
   root 'pages#root'
-  get 'residential' => 'pages#resideantial'
+  get 'residential' => 'pages#residential'
   get 'corporate' => 'pages#corporate'
 
   # QuotesController

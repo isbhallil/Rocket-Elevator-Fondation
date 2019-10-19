@@ -35,12 +35,14 @@ namespace :db do
     end
   end
 
+  building_type_array=["Residential", "Commercial", "Corporate", "Hybrid"]
+  range_type_array =["Standard", "Premium", "Excellium"]
 
   task quotes: :environment do
     50.times do
       Quote.create!(
-        building_type: Faker::Construction.material,
-        range_type: Faker::Vehicle.make,
+        building_type: building_type_array.sample,
+        range_type: range_type_array.sample,
         stories: Faker::Number.within(range: 1..50),
         units: Faker::Number.within(range: 1..50),
         basements: Faker::Number.within(range: 1..10),
