@@ -3,7 +3,7 @@ require "pg"
 namespace :pg do
 
     # INITIALIZE CONNECTION FOR ALL TASKS
-    warehouse = PG::Connection.open(host: "localhost", port: 5432, dbname: "GabrielBibeau", user: "postgres", password: "test")
+    warehouse = PG::Connection.open(host: "localhost", port: 5432, dbname: "pg_dev", user: "postgres", password: "test")
 
     desc "export to pg"
     task etl: :environment do

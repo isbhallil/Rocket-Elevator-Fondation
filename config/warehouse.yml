@@ -13,7 +13,7 @@ default: &default_pg
 
 development:
   <<: *default_pg
-  database: GabrielBibeau
+  database: pg_dev
 # production:
 #   <<: *default_pg
 #   database: GabrielBibeau
