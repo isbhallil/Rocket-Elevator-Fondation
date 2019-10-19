@@ -1,17 +1,18 @@
 default: &default_pg
   adapter: postgresql
   encoding: unicode
-  pool: 15
-  username: postgres
-  password: test
+  host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
+  pool: 5
+  username: codeboxx
+  password: Codeboxx1!
 
 development:
   <<: *default_pg
-  database: pg_dev
-#
+  database: GabrielBibeau
+
 # production:
 #   <<: *default_pg
-#   database: pg_prod
+#   database: GabrielBibeau
 #   username: Rocket_Elevators_Information_System
 #   password: <%= ENV['ROCKET_ELEVATORS_INFORMATION_SYSTEM_DATABASE_PASSWORD'] %>
 
