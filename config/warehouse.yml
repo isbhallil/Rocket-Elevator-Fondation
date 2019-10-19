@@ -14,7 +14,6 @@ default: &default_pg
 development:
   <<: *default_pg
   database: GabrielBibeau
-
 # production:
 #   <<: *default_pg
 #   database: GabrielBibeau
