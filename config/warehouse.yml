@@ -7,7 +7,7 @@ default: &default_pg
   pool: 5
   username: codeboxx
   password: Codeboxx1!
-
+  port: 5432 
 
 
 
