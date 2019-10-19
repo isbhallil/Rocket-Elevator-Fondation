@@ -21,7 +21,10 @@ namespace :pg do
                 VALUES ('#{quote.id}', '#{quote.created_at}',  '#{quote.elevator_shafts}') ;")
             else
                 ap `UPDATE`
-                warehouse.exec("UPDATE fact_quotes SET elevators_count = '#{quote.elevator_shafts}' WHERE quote_id = '#{quote.id}' ;")
+                warehouse.exec("UPDATE fact_quotes SET
+                    elevators_count = '#{quote.elevator_shafts}'
+                    WHERE quote_id = '#{quote.id}'
+                ;")
             end
 
         end
@@ -44,7 +47,12 @@ namespace :pg do
                                     VALUES ( #{lead.id}, '#{lead.created_at}',  '#{lead.business_name}', '#{lead.email}', '#{lead.building_project_name}')")
                 else
                     ap "UPDATE"
-                    warehouse.exec("UPDATE fact_contacts SET company_name = '#{lead.business_name}', email = '#{lead.email}', project_name = '#{lead.building_project_name}';")
+                    warehouse.exec("UPDATE fact_contacts SET
+                        company_name = '#{lead.business_name}',
+                        email = '#{lead.email}',
+                        project_name = '#{lead.building_project_name}'
+                        WHERE contact_id = '#{contact.id}'
+                    ;")
                 end
         end
 
@@ -59,7 +67,13 @@ namespace :pg do
                                 VALUES ( '#{elevator.id}', '#{elevator.serial_number}',  '#{elevator.date_of_installation}', '#{building.id}',  '#{building.customer.id}'  ,'#{building.address.city}')")
             else
                 ap "UPDATE"
-                warehouse.exec("UPDATE fact_elevators SET commissioning = '#{elevator.date_of_installation}' ,building_id = '#{building.id}', customer_id = '#{building.customer.id}' , city = '#{building.address.city}'  ;")
+                warehouse.exec("UPDATE fact_elevators SET
+                    commissioning = '#{elevator.date_of_installation}' ,
+                    building_id = '#{building.id}',
+                    customer_id = '#{building.customer.id}' ,
+                    city = '#{building.address.city}'
+                    WHERE elevator_id = '#{elevator.id}'
+                ;")
             end
 
         end
@@ -99,6 +113,7 @@ namespace :pg do
                      email = '#{customer.email_contact_person}',
                      elevators = '#{elevators}',
                      city = '#{customer.address.city}'
+                     WHERE customer_id = '#{customer.id}'
                 ;");
             end
 
