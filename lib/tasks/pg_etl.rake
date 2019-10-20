@@ -120,27 +120,3 @@ namespace :pg do
         end
     end
 end
-
-  # batteries.each do |battery|
-            #     columns.push(Column.where(:battery_id => battery.id))
-            # end
-
-            # ap buildings
-
-            # customerElevatorsLists = Elevator.select(:id).where(:column_id => Column.where(:battery_id => Battery.where(:building_id => Building.where(:customer_id => customer.id ))))
-
-            # customerElevatorsLists.each do |customerElevatorsList|
-            #     result = warehouse.exec("SELECT * FROM dim_customers WHERE customer_id = `#{customer.id}`")
-            #     ap customer.id
-            #     ap result.values
-            #     ap "======================================================"
-
-
-                # if result.values.length == 0
-                #     ap "INSERT"
-                #     warehouse.exec("INSERT INTO ")
-                # end
-                # if customerElevatorsLists.values.lenght == 0
-
-            # end
-            #
