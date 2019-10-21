@@ -20,7 +20,10 @@ SELECT company_name, elevators_count FROM dim_customers
 GROUP BY company_name, elevators_count
 ORDER BY elevators_count;
 
-
+_____________________________________________________________________________________________________________
 In order to generate the mysql db the command to use id rake db:repopulate
 
 In order to generate the postgres db the command to use is rake pg:reset and then afterwards rake pg:etl
+_____________________________________________________________________________________________________________
+
+To log in the back office, you can use the following email address : mathieu.houde@codeboxx.biz with the really secured password of 12345678
