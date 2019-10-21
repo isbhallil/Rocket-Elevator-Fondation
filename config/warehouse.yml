@@ -1,13 +1,11 @@
 development:
   adapter: postgresql
-  encoding: utf8
 
-
-  host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com 
-  pool: 5
+  encoding: unicode
+  host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
   username: codeboxx
   password: Codeboxx1!
-  port: 5432 
+  pool: 5
 
 
 

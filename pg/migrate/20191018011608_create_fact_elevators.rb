@@ -6,7 +6,7 @@ class CreateFactElevators < ActiveRecord::Migration[5.2]
       t.string :commissioning
       t.string :building_id
       t.string :customer_id
-      t.string :city # of the building
+      t.string :city
     end
   end
 end
