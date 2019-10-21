@@ -72,9 +72,11 @@ namespace :pg do |ns|
     Rails.application.config.paths['config/database'] = ["config/warehouse.yml"]
   end
 
+
 	task :revert_to_original_config do
     # reset config variables to original values
     ENV['SCHEMA'] = @original_config[:env_schema]
     Rails.application.config = @original_config[:config]
   end
+
 end

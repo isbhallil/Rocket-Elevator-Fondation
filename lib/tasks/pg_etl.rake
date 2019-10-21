@@ -2,6 +2,7 @@ require "pg"
 
 namespace :pg do
 
+
     desc "extract-transform-load to pg"
     task etl: :environment do
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS START ================================="
@@ -21,7 +22,7 @@ namespace :pg do
                 warehouse.exec("INSERT INTO fact_quotes (quote_id, submited_at, elevators_count)
                 VALUES (#{quote.id}, '#{quote.created_at}',  #{quote.elevator_shafts}) ;")
             else
-                ap `UPDATE ETL with ` + quote.inspect
+               # ap `UPDATE ETL with ` + quote.inspect
                 warehouse.exec("UPDATE fact_quotes SET
                     elevators_count = '#{quote.elevator_shafts}'
                     WHERE quote_id = #{quote.id}
@@ -42,15 +43,15 @@ namespace :pg do
                     ap "INSERT ETL with " + lead.inspect
                     warehouse.exec("INSERT INTO fact_contacts (contact_id, creation_date, company_name, email, project_name)
                                     VALUES ( #{lead.id}, '#{lead.created_at}',  '#{lead.business_name}', '#{lead.email}', '#{lead.building_project_name}')")
-                else
-                    ap "UPDATE ETL with " + lead.inspect
-                    warehouse.exec("UPDATE fact_contacts SET
-                        company_name = '#{lead.business_name}',
-                        email = '#{lead.email}',
-                        project_name = '#{lead.building_project_name}'
-                        WHERE contact_id = '#{contact.id}'
-                    ;")
-                end
+#                 else
+#                     ap "UPDATE ETL with " + lead.inspect
+#                     warehouse.exec("UPDATE fact_contacts SET
+#                         company_name = '#{lead.business_name}',
+#                         email = '#{lead.email}',
+#                         project_name = '#{lead.building_project_name}'
+#                         WHERE contact_id = '#{contact.id}'
+#                     ;")
+#                 end
         end
         ap "========================================================= ETL :> FACTQUOTES "
         5.times do ap "" end
@@ -89,6 +90,8 @@ namespace :pg do
             customerElevatorsLists = Elevator.where(:column_id => Column.where(:battery_id => Battery.where(:building_id => Building.where(:customer_id => customer.id ))))
             result = warehouse.exec("SELECT * FROM dim_customers WHERE customer_id = '#{customer.id}'");
 
+
+
             if result.values.length == 0
                 ap "INSERT ETL with " + customer.inspect
                 warehouse.exec("
@@ -116,6 +119,7 @@ namespace :pg do
                 ;");
             end
         end
+
         ap "========================================================= ETL :> DIMCUSTOMERS "
         5.times do ap "" end
 
@@ -125,3 +129,4 @@ namespace :pg do
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS COMPLETE ================================="
     end
 end
+

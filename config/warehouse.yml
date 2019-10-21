@@ -1,15 +1,17 @@
-default: &default_pg
+development:
   adapter: postgresql
+
   encoding: unicode
   host: codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com
   username: codeboxx
   password: Codeboxx1!
   pool: 5
 
-development:
-  <<: *default_pg
-  database: GabrielBibeau
 
+
+# development:
+#   <<: *default_pg
+  database: pg_dev
 # production:
 #   <<: *default_pg
 #   database: GabrielBibeau
