@@ -51,7 +51,7 @@ namespace :pg do
 #                         project_name = '#{lead.building_project_name}'
 #                         WHERE contact_id = '#{contact.id}'
 #                     ;")
-#                 end
+                end
         end
         ap "========================================================= ETL :> FACTQUOTES "
         5.times do ap "" end
@@ -129,4 +129,4 @@ namespace :pg do
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS COMPLETE ================================="
     end
 end
-end
+
