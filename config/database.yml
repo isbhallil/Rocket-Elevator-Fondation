@@ -13,9 +13,3 @@ development:
 test:
   <<: *default
   database: database_test
-
-production:
-  <<: *default
-  database: database__production
-  username: Rocket_Elevators_Information_System
-  password: <%= ENV['ROCKET_ELEVATORS_INFORMATION_SYSTEM_DATABASE_PASSWORD'] %>
