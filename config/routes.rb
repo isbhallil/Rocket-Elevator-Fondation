@@ -13,4 +13,9 @@ Rails.application.routes.draw do
   get 'print'=> 'quotes#print'
   resources :lead
   post '/lead' => 'root#index'
+
+  # DropboxAPIs
+  get 'dropbox/auth' => 'dropbox#auth'
+  get 'dropbox/auth_callback' => 'dropbox#auth_callback'
+
 end
