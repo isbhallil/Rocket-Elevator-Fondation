@@ -14,6 +14,8 @@ gem 'faker'
 gem 'whenever', require: false
 gem 'activestorage-database-service', github: 'TitovDigital/activestorage-database-service'
 gem 'rails_admin_charts'
+gem 'twilio-ruby'
+gem 'dotenv'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

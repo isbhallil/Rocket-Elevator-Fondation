@@ -8,8 +8,8 @@ namespace :pg do
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS START ================================="
 
         # INITIALIZE CONNECTION FOR ALL TASKS
-        warehouse = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", port: 5432, dbname: "GabrielBibeau", user: "codeboxx", password: "Codeboxx1!")
-        # warehouse = PG::Connection.open(host: "localhost", port: 5432, dbname: "pg_dev", user: "postgres", password: "test")
+       # warehouse = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", port: 5432, dbname: "GabrielBibeau", user: "codeboxx", password: "Codeboxx1!")
+         warehouse = PG::Connection.open(host: "localhost", port: 3000, dbname: "pg_dev", user: "postgres", password: "test")
 
 
         # FACT_QUOTES
