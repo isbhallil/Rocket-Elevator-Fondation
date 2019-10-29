@@ -1,12 +1,13 @@
-class LeadNotifierMailer < ApplicationMailer
+class UserNotifierMailer < ApplicationMailer
 
-  default :from => 'etienne.bosse@hotmail.fr'
+  default :from => 'rocketelevators@codeboxx.biz'
 
-  # send a lead email to the lead, pass in the lead object that contains the lead's email address
   def send_lead_email(lead)
     @lead = lead
-    mail( :to => @lead.email,
-    :subject => 'Thanks for signing up for our amazing app' )
+    mail( 
+      :to => @lead.email,
+      :subject => 'Greetings ' + @lead.full_name
+    )
   end
       
 end

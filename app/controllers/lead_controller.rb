@@ -19,7 +19,7 @@ def create
         @lead.file.attach(file)
         @lead.save!
 
-        LeadNotifierMailer.send_lead_email(@lead).deliver
+        UserNotifierMailer.send_lead_email(@lead).deliver
         redirect_to root_path
     end
 end
