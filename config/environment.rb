@@ -7,7 +7,7 @@ Rails.application.initialize!
 #SendGrid
 ActionMailer::Base.smtp_settings = {
     :user_name => 'apikey',
-    :password => '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',
+    :password => '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',
     :domain => 'rocketgb.best',
     :address => 'smtp.sendgrid.net',
     :port => 587, #was 587 initially
