@@ -19,7 +19,10 @@ def create
         @lead.file.attach(file)
         @lead.save!
 
+        #To send automatic emails with SendGrid
         UserNotifierMailer.send_lead_email(@lead).deliver
+
+        #Redirect to Index
         redirect_to root_path
     end
 end
