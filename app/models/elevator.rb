@@ -6,7 +6,7 @@ class Elevator < ApplicationRecord
     require 'twilio-ruby'
 
     
-    after_update do |elevator|
+    after_update do |status|
 
 
     paramTwilio = {
@@ -14,11 +14,8 @@ class Elevator < ApplicationRecord
         body: 'An elevator has changed status',
         to: '+33766846471'
     }
-    
-    account_sid = 'ACa53e6d98eb4354b13829d86c40f07c11'
-    auth_token = 'd1d7f170d8adb95047075dd55dc3f30e'
 
-    @client = Twilio::REST::Client.new(account_sid, auth_token)
+    @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
     message = @client.messages.create(paramTwilio)                         
     
       puts message.sid
