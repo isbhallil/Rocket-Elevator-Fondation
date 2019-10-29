@@ -1,13 +1,12 @@
+require 'twilio-ruby'
 
 class Elevator < ApplicationRecord
     include RailsAdminCharts
+    include ActiveModel::Dirty
+
     belongs_to :column
-
-    require 'twilio-ruby'
-
     
-    after_update do |status|
-
+    after_update do |elevator|
 
     paramTwilio = {
         from: '+15712976606',

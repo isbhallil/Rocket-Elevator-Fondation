@@ -110,11 +110,13 @@ class QuotesController < ApplicationController
 
     if q.try(:save)
       redirect_to print_path(quote_summary)
+      @quote.quote_ticket
     else
       redirect_to root_path()
     end
-  end
 
+  end
+  
   def print
     @quote = params
   end

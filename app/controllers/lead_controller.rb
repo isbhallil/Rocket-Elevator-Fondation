@@ -1,5 +1,8 @@
+require 'zendesk_api'
+
 class LeadController < ApplicationController
     skip_before_action :verify_authenticity_token
+
 def create
 
  puts params
@@ -18,6 +21,13 @@ def create
     file = params["contact"]["attachment"]
     @lead.file.attach(file )
     @lead.save!
+    @lead.contact_ticket
+
     redirect_to root_path
 end
+
+
+
+
+    
 end
