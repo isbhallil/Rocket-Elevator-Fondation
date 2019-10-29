@@ -1,6 +1,6 @@
 class UserNotifierMailer < ApplicationMailer
 
-  default :from => 'rocketelevators@codeboxx.biz'
+  default :from => 'rocketelevators@rocketgb.best'
 
   def send_lead_email(lead)
     @lead = lead
