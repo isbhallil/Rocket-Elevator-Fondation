@@ -6,9 +6,12 @@ class Elevator < ApplicationRecord
 
     belongs_to :column
     
-    after_update do |elevator|
 
-    paramTwilio = {
+    after_update :sendTicket, if :status_changed?
+
+    def sendTicket
+
+      paramTwilio = {
         from: '+15712976606',
         body: 'An elevator has changed status',
         to: '+33766846471'
@@ -20,7 +23,7 @@ class Elevator < ApplicationRecord
       puts message.sid
 
     end
-
+  end
     puts "Elevator status changed"
     
 end
