@@ -30,4 +30,4 @@
 /config/database.yml
 /config/warehouse.yml
 /config/application.yml
-twilio.env
+/twilio.env
