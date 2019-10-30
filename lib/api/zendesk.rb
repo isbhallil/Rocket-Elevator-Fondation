@@ -7,7 +7,7 @@ class Zendesk
         @client = ZendeskAPI::Client.new do |config|
             config.url = "https://rocketelevatorshelp.zendesk.com/api/v2"
             config.username = ENV["ZENDESK_ACCOUNT_SID"]
-            config.token = ENV["TWILIO_AUTH_TOKEN"]
+            config.token = ENV["ZENDESK_AUTH_TOKEN"]
             config.retry = true
         end
     end
