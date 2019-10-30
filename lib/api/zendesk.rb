@@ -7,7 +7,7 @@ class Zendesk
         @client = ZendeskAPI::Client.new do |config|
             config.url = "https://rocketelevatorshelp.zendesk.com/api/v2"
             config.username = "sarah_bechik@hotmail.com"
-            config.token = ENV['ZENDESK_TOKEN']
+            config.token = ENV["ZENDESK_TOKEN"]
             config.retry = true
         end
     end
