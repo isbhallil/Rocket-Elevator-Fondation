@@ -14,7 +14,11 @@ gem 'faker'
 gem 'whenever', require: false
 gem 'activestorage-database-service', github: 'TitovDigital/activestorage-database-service'
 gem 'rails_admin_charts'
-
+gem 'dropbox_api'
+gem 'figaro'
+gem 'dotenv'
+gem 'paperclip'
+gem 'activestorage-dropbox'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
