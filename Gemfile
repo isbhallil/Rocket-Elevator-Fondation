@@ -14,7 +14,8 @@ gem 'faker'
 gem 'whenever', require: false
 gem 'activestorage-database-service', github: 'TitovDigital/activestorage-database-service'
 gem 'rails_admin_charts'
-
+gem 'gmaps4rails'
+gem 'geocoder'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
