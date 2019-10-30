@@ -186,22 +186,21 @@ end
 
 user_id_array  =[*(Employee.count+1)..User.count]
 
-csv_text = File.read(Rails.root.join('lib', 'seed', 'address.csv'))
+csv_text = File.read(Rails.root.join('lib', 'seed', 'address.json'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
         t = Address.new
-        t.id = row['id']
         t.address_type = row['address_type']
         t.status = row['status']
         t.entity = row['entity']
         t.number_street = row['number_street']
-        t.apt_number = row['apt_number']
+        t.apt_number = Faker::Number.between(from: 1, to: 50)
         t.city = row['city']
-        t.postal_code = row['postal_code']
-        t.country = row['country']
+        t.postal_code = row['postalCode']
+        t.country = "US"
         t.notes = row['notes']
-        t.created_at = row['created_at']
-        t.updated_at = row['updated_at']
+        t.latitude = row['lat']
+        t.longitude = row['lng']
 
         t.save!
 end
