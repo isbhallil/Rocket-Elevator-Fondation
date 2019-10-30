@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_174155) do
     t.string "phone_number"
     t.string "building_project_name"
     t.string "project_description"
-    t.string "departement_in_charge_of_elevators"
+    t.string "building_type"
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

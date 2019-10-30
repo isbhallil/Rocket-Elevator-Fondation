@@ -1,23 +1,31 @@
 class LeadController < ApplicationController
     skip_before_action :verify_authenticity_token
-def create
+    def create
 
- puts params
+        lead = Lead.new({
+            full_name: params["lead_full_name"],
+            business_name: params["lead_business_name"],
+            email: params["lead_email"],
+            phone_number: params["lead_phone_number"],
+            building_project_name: params["lead_project_name"],
+            project_description: params["lead_project_desc"],
+            message: params["lead_message"],
+            building_type: cleaned_building_type(params["lead_building_type"]),
+            file: params["lead_file"]
+        })
 
- @lead = Lead.new
+        if lead.try(:save!)
+            redirect_to root_path
+        end
+    end
 
-    @lead.full_name = params["contact"]["name"]
-    @lead.business_name = params["contact"]["subject"]
-    @lead.email = params["contact"]["email"]
-    @lead.phone_number = params["contact"]["phone"]
-    @lead.building_project_name = params["contact"]["project"]
-    @lead.project_description = params["contact"]["project_desc"]
-    @lead.message = params["contact"]["message"]
-    @lead.departement_in_charge_of_elevators = params["contact"]["department"]
+    private
+    def cleaned_building_type(param)
+        if param == "--- select a building type  ---"
+            return nil
+        end
 
-    file = params["contact"]["attachment"]
-    @lead.file.attach(file )
-    @lead.save!
-    redirect_to root_path
-end
+        return param
+    end
+
 end
