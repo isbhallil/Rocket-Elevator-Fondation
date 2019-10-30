@@ -21,7 +21,7 @@ def create
     file = params["contact"]["attachment"]
     @lead.file.attach(file )
     @lead.save!
-    @lead.contact_us
+    @lead.send_ticket
 
     redirect_to root_path
 end

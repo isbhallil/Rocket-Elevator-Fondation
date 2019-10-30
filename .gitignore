@@ -31,3 +31,4 @@
 /config/warehouse.yml
 /config/application.yml
 twilio.env
+zendesk.env
