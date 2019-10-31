@@ -4,8 +4,8 @@ class LeadController < ApplicationController
     skip_before_action :verify_authenticity_token
 def create
 
-    puts "CREATE"
-    puts params
+    # puts "CREATE"
+    # puts params
 
     @lead = Lead.new
 
@@ -48,6 +48,6 @@ def create
 
     # client.upload("/#{self.company_name}/#{File.basename(lead.original_file_name)}_#{File.extname(lead.original_file_name)}", lead.file_attachment)
 
+        end
     end
-end
 end
