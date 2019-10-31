@@ -20,9 +20,11 @@ def create
         @lead.save!
 
         #To send automatic emails with SendGrid
-        UserNotifierMailer.send_lead_email(@lead).deliver
+        LeadMailer.send_lead_email(@lead).deliver
+        @lead.save!
 
         #Redirect to Index
         redirect_to root_path
+
     end
 end
