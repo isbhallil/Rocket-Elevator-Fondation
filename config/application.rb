@@ -1,6 +1,6 @@
 require_relative 'boot'
-
 require 'rails/all'
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,7 +22,7 @@ module RocketElevatorsInformationSystem
     ActionMailer::Base.smtp_settings = {
     :user_name => 'apikey',
     :password => ENV['SendGrid_Key'],
-    :domain => 'rocketgb.best',
+    :domain => 'rocketelevatorscanada.com',
     :address => 'smtp.sendgrid.net',
     :port => 587, #was 587 initially
     :authentication => :plain,

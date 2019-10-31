@@ -36,7 +36,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # devise default url
-  config.action_mailer.default_url_options = { host: 'rocketgb.best'}
+  config.action_mailer.default_url_options = { host: 'rocketelevatorscanada.com'}
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -65,6 +65,6 @@ Rails.application.configure do
   #SendGrid Config Action Mailer
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'rocketgb.best'}
+  config.action_mailer.default_url_options = { host: 'rocketelevatorscanada.com'}
   config.action_mailer.perform_deliveries = true
 end
