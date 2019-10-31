@@ -184,6 +184,27 @@ navs.each do |nav|
     Nav.create({title: nav[0], id_name: nav[1]})
 end
 
+
+
+csv_text = File.read(Rails.root.join('lib', 'seed', 'leads.csv'))
+csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+csv.each do |row|
+        t = Lead.new
+        t.id = row['id']
+        t.full_name = row['full_name']
+        t.business_name = row['business_name']
+        t.email = row['email']
+        t.phone_number = row['phone_number']
+        t.building_project_name = row['building_project_name']
+        t.project_description = row['project_description']
+        t.message = row['message']
+        t.departement_in_charge_of_elevators = row['department_in_charge_of_elevators']
+
+        t.save!
+end
+
+
+
 user_id_array  =[*(Employee.count+1)..User.count]
 
 csv_text = File.read(Rails.root.join('lib', 'seed', 'address.csv'))

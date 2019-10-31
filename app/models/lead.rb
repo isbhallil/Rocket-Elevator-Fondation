@@ -6,6 +6,7 @@ class Lead < ApplicationRecord
     include ActiveModel::Dirty
 
     has_one_attached :file
+    # has_one :quote
 
     after_create :send_ticket
 

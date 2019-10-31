@@ -1,13 +1,13 @@
-require 'zendesk_api'
 require './lib/api/zendesk.rb'
 class Quote < ApplicationRecord
     include RailsAdminCharts
-    include ActiveModel::Dirty
+    #include ActiveModel::Dirty
 
-    after_create :quote_ticket
+    belongs_to :lead
 
-    def quote_ticket
-        
-        Zendesk.new.quote_ticket(self.full_name, self.business_name, self.email, self.phone_number, self.building_project_name, self.project_description, self.message, self.departement_in_charge_of_elevators)
+    after_create do |q|
+            
+            Zendesk.new.quote_ticket(self.full_name, self.business_name, self.email, self.phone_number, self.building_project_name, self.project_description, self.message, self.departement_in_charge_of_elevators)
+
     end
 end

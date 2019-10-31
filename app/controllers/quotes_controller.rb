@@ -6,11 +6,9 @@ class QuotesController < ApplicationController
     q = Quote.new
     q.range_type= params['range-type-select']
     q.building_type= params['building-type-select']
-    q.compagny = params['contact-quote-compagny']
-    q.email = params['contact-quote-email']
-    
     q.full_name = params["contact"]["name"]
     q.business_name = params["contact"]["subject"]
+    q.email = params["contact"]["email"]
     q.phone_number = params["contact"]["phone"]
     q.building_project_name = params["contact"]["project"]
     q.project_description = params["contact"]["project_desc"]
@@ -116,15 +114,14 @@ class QuotesController < ApplicationController
       total: q.total
     }
 
+    
     if q.try(:save)
-      redirect_to print_path(quote_summary)
-      @quote.quote_ticket
+    redirect_to print_path(quote_summary)
     else
       redirect_to root_path()
     end
-
   end
-  
+
   def print
     @quote = params
   end
