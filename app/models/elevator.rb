@@ -1,5 +1,5 @@
 require 'twilio-ruby'
-require 'dotenv/load'
+require 'dotenv'
 
 class Elevator < ApplicationRecord
     include RailsAdminCharts
@@ -16,8 +16,8 @@ class Elevator < ApplicationRecord
             body: 'An elevator has changed status',
             to: '+33766846471'
         }
-
-        @client = Twilio::REST::Client.new(ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"])
+      
+        @client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
         message = @client.messages.create(paramTwilio)                         
         
           puts message.sid

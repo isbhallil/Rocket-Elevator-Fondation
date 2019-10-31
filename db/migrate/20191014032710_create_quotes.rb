@@ -3,6 +3,15 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
     create_table :quotes do |t|
       t.string   :range_type
       t.string   :building_type
+      t.string   :full_name
+      t.string   :business_name
+      t.string   :email
+      t.string   :phone_number
+      t.string   :building_project_name
+      t.string   :project_description
+      t.string   :message
+      t.string   :departement_in_charge_of_elevators
+
       t.integer  :units
       t.integer  :stories
       t.integer  :basements
@@ -15,14 +24,8 @@ class CreateQuotes < ActiveRecord::Migration[5.2]
       t.float    :setup_fees
       t.float    :total
 
-      t.string :full_name
-      t.string :business_name
-      t.string :email
-      t.string :phone_number
-      t.string :building_project_name
-      t.string :project_description
-      t.string :departement_in_charge_of_elevators
-      t.string :message
+      
+      
 
       t.timestamps
     end

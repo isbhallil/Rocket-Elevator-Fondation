@@ -200,6 +200,14 @@ ActiveRecord::Schema.define(version: 2019_10_18_174155) do
   create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "range_type"
     t.string "building_type"
+    t.string "full_name"
+    t.string "business_name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "building_project_name"
+    t.string "project_description"
+    t.string "message"
+    t.string "departement_in_charge_of_elevators"
     t.integer "units"
     t.integer "stories"
     t.integer "basements"
@@ -210,14 +218,6 @@ ActiveRecord::Schema.define(version: 2019_10_18_174155) do
     t.float "elevator_unit_cost"
     t.float "setup_fees"
     t.float "total"
-    t.string "full_name"
-    t.string "business_name"
-    t.string "email"
-    t.string "phone_number"
-    t.string "building_project_name"
-    t.string "project_description"
-    t.string "departement_in_charge_of_elevators"
-    t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
