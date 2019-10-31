@@ -19,6 +19,8 @@ gem 'figaro'
 gem 'dotenv'
 gem 'paperclip'
 gem 'activestorage-dropbox'
+gem 'ibm_watson'
+gem 'cancan'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
