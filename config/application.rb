@@ -1,6 +1,8 @@
 require_relative 'boot'
 require 'dotenv/load'
 require 'rails/all'
+require 'font_awesome'
+require 'awesome_print'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
