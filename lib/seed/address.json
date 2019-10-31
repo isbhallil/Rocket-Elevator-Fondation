@@ -425,15 +425,6 @@
             }
         },
         {
-            "number_street": "388 East Main Street",
-            "state": "VT",
-            "postalCode": "05753",
-            "coordinates": {
-                "lat": 43.9727945,
-                "lng": -73.1023187
-            }
-        },
-        {
             "number_street": "450 Kinhawk Drive",
             "city": "Nashville",
             "state": "TN",
@@ -785,15 +776,6 @@
             "coordinates": {
                 "lat": 36.02419100000001,
                 "lng": -86.718305
-            }
-        },
-        {
-            "number_street": "270 Chrissy's Court",
-            "state": "VT",
-            "postalCode": "05443",
-            "coordinates": {
-                "lat": 44.1710043,
-                "lng": -73.1065617
             }
         },
         {

@@ -17,6 +17,7 @@ gem 'rails_admin_charts'
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'figaro'
+gem 'json'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

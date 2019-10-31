@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_10_30_031621) do
   end
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "address_type", null: false
     t.string "status"
     t.string "entity", null: false
     t.string "number_street", null: false
@@ -51,10 +50,10 @@ ActiveRecord::Schema.define(version: 2019_10_30_031621) do
     t.string "postal_code", null: false
     t.string "country", null: false
     t.text "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "awards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
