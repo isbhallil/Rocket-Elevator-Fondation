@@ -11,7 +11,7 @@ class Elevator < ApplicationRecord
 	
       def sendTicket
         
-        Twilio.send_ticket(status)
+        Twilio.send_ticket(status).message
   
       end
         
