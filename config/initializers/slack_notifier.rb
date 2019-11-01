@@ -1,0 +1,2 @@
+module SlackNotifier
+end
