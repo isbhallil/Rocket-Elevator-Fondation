@@ -15,11 +15,11 @@ gem 'whenever', require: false
 gem 'activestorage-database-service', github: 'TitovDigital/activestorage-database-service'
 gem 'rails_admin_charts'
 gem 'twilio-ruby'
-gem 'dotenv'
 gem 'zendesk_api'
 gem 'font_awesome'
 gem 'geocoder'
 gem 'darksky_weather-api'
+gem 'figaro'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

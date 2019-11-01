@@ -1,27 +1,20 @@
 require 'zendesk_api'
-require 'dotenv'
-class Zendesk
+module Zendesk
      
-    def initialize
-        ap "initializing" 
-        @client = ZendeskAPI::Client.new do |config|
-            config.url = 'https://rocketelevatorshelp.zendesk.com/api/v2'
-            config.username = ENV['ZENDESK_ACCOUNT_SID']
-            config.token = ENV['ZENDESK_AUTH_TOKEN']
-            config.retry = true
-        end
+    @client = ZendeskAPI::Client.new do |config|
+        config.url = 'https://rocketelevatorshelp.zendesk.com/api/v2'
+         config.username = ENV['ZENDESK_ACCOUNT_SID']
+         config.token = ENV['ZENDESK_AUTH_TOKEN']
+         config.retry = true
     end
 
     
-    def contact_ticket(full_name, business_name, email, phone_number, building_project_name, project_description, message, departement_in_charge_of_elevators)
-        ap "ZENDESK CONTACT TICKET"
-        ap @client
-        ap "CLIENT TEST"
-        ZendeskAPI::Ticket.create(@client, :subject => "#{full_name} from #{business_name}", :descrpition => "Create Ticket", :comment => { :value => "The contact #{full_name} can be reached at email #{email} and at phone number #{phone_number}. #{departement_in_charge_of_elevators} has a project named #{project_description} which would require contribution from Rocket Elevators.\n#{project_description}\nAttached Message: #{message} The Contact uploaded an attachment."}, :submitter_id => @client.current_user.id, :type => "question", :priority => "urgent")
+    def self.contact_ticket(lead)
+        ZendeskAPI::Ticket.create(@client, :subject => "#{lead.full_name} from #{lead.business_name}", :descrpition => "Create Ticket", :comment => { :value => "The contact #{lead.full_name} can be reached at email #{lead.email} and at phone number #{lead.phone_number}. #{lead.departement_in_charge_of_elevators} has a project named #{lead.project_description} which would require contribution from Rocket Elevators.\n#{lead.project_description}\nAttached Message: #{lead.message} The Contact uploaded an attachment."}, :submitter_id => @client.current_user.id, :type => "question", :priority => "urgent")
     end
 
-    def quote_ticket(full_name, business_name, email, phone_number, building_project_name, project_description, message, departement_in_charge_of_elevators)
-        ZendeskAPI::Ticket.create(@client, :subject => "#{full_name} from #{business_name}", :descrpition => "Create Ticket", :comment => { :value => "The contact #{full_name} can be reached at email #{email} and at phone number #{phone_number}. #{departement_in_charge_of_elevators} has a project named #{project_description} which would require contribution from Rocket Elevators.\n#{project_description}\nAttached Message: #{message} The Contact uploaded an attachment."}, :submitter_id => @client.current_user.id, :type => "task", :priority => "urgent")
+    def self.quote_ticket(quote)
+        ZendeskAPI::Ticket.create(@client, :subject => "#{quote.full_name} from #{quote.business_name}", :descrpition => "Create Ticket", :comment => { :value => "The contact #{quote.full_name} can be reached at email #{quote.email} and at phone number #{quote.phone_number}. #{quote.departement_in_charge_of_elevators} has a project named #{quote.project_description} which would require contribution from Rocket Elevators.\n#{quote.project_description}\nAttached Message: #{quote.message} The Contact uploaded an attachment."}, :submitter_id => @client.current_user.id, :type => "task", :priority => "urgent")
     end   
 
 end
