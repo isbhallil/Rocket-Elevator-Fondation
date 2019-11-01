@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
      def dropbox
         self.lead.all.each do |lead|
           if lead.attachment != nil
-            client = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
+            client = DropboxApi::Client.new(ENV["DROPBOX_OAUTH_BEARER"])
             client.create_folder("/#{lead.full_name}")
             client.upload("/#{lead.full_name}/#{File.basename(lead.original_filename)}", lead.attachment)
             

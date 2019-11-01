@@ -5,6 +5,6 @@ class Building < ApplicationRecord
     has_many :batteries
 
     def weather_summary
-        Weather.get_weather(self.address.latitude, self.address.longitude)
+        Weather.get_weather(45.5017, -73.5673)
     end   
 end

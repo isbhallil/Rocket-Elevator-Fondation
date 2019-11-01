@@ -20,7 +20,7 @@ gem 'font_awesome'
 gem 'geocoder'
 gem 'darksky_weather-api'
 gem 'figaro'
-
+gem 'dropbox_api'
 ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -127,3 +127,4 @@ namespace :pg do
         warehouse.finish
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS COMPLETE ================================="
     end
+end
