@@ -3,12 +3,8 @@ require './lib/api/zendesk.rb'
 class LeadController < ApplicationController
     skip_before_action :verify_authenticity_token
 
-def create
-
- puts params
-
- @lead = Lead.new
-
+  def create
+    @lead = Lead.new
     @lead.full_name = params["contact"]["name"]
     @lead.business_name = params["contact"]["subject"]
     @lead.email = params["contact"]["email"]
@@ -19,14 +15,11 @@ def create
     @lead.departement_in_charge_of_elevators = params["contact"]["department"]
 
     file = params["contact"]["attachment"]
-    @lead.file.attach(file )
-    @lead.save!
-    @lead.send_ticket
+    @lead.file.attach(file)
 
-    redirect_to root_path
-end
-
-
-
-    
+    if @lead.save 
+        LeadsMailer.leads_email(@lead).deliver
+        redirect_to root_path
+    end 
+  end
 end

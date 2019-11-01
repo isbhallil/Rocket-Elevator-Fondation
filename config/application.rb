@@ -18,5 +18,16 @@ module RocketElevatorsInformationSystem
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    
+    ActionMailer::Base.smtp_settings = {
+      :user_name => 'apikey',
+      :password => ENV['SendGrid_Key'],
+      :domain => 'rocketgb.best',
+      :address => 'smtp.sendgrid.net',
+      :port => 587, #was 587 initially
+      :authentication => :plain,
+      :enable_starttls_auto => true
+      }
   end
 end
