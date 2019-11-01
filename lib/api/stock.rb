@@ -1,6 +1,7 @@
 require 'uri'
 require 'net/http'
 require 'openssl'
+require 'awesome_print'
 
 module Stock
     url = URI("https://bravenewcoin-v1.p.rapidapi.com/ticker?show=usd&coin=btc")
@@ -12,7 +13,12 @@ module Stock
     request["x-rapidapi-key"] = ENV['STOCK_AUTH_TOKEN']
     
     response = http.request(request)
-    puts response.read_body
-    
+    puts response.read_body 
 end
+
+def self.display_bitcoin
+    testing = request.display_bitcoin.properties
+    return {source: testing.source, price: testing.last_price}
+end
+
 
