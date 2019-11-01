@@ -1,5 +1,5 @@
 class LeadsMailer < ApplicationMailer
-    default from: 'no-reply@rocketelevatorscanada.com' #ABC@domain.name
+    default from: 'no-reply@rocketgb.best' #ABC@domain.name
 
     def leads_email(lead)
         @lead = lead
