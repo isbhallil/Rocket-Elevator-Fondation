@@ -17,14 +17,18 @@ def create
 
         file = params["contact"]["attachment"]
         @lead.file.attach(file)
-        @lead.save!
+       
 
         #To send automatic emails with SendGrid
-        LeadMailer.send_lead_email(@lead).deliver
-        @lead.save!
+       
 
         #Redirect to Index
-        redirect_to root_path
+
+        if @lead.save 
+            LeadsMailer.leads_email(@lead).deliver
+            redirect_to root_path
+        end 
 
     end
+    
 end
