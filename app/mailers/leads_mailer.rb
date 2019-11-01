@@ -5,6 +5,6 @@ class LeadsMailer < ApplicationMailer
         @lead = lead
  
         mail(:to => lead.email,
-             subject: "GGG: #{@lead.email}")
+             subject: "Greetings #{@lead.full_name}")
         end
 end
