@@ -1,18 +1,25 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
+  <a class="logo float-left">
+    <%= image_tag 'rocket-elevators-logo.png' %>
+  </a>
   <body>
-    <h1>Welcome to example.comp ></h1>
+    <h1>Greetings <%= @lead.full_name %></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is.<br>
+      We thank you for contacting Rocket Elevators to discuss the opportunity to contribute 
+      to your project <%= @lead.building_project_name %>.
+      <br>
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      A representative from our team will be in touch with you very soon. We look forward to 
+      demonstrate the value of our solutions and help you choose the appropriate product given 
+      your requirements.
+      <br>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>We’ll Talk soon</p>
+    <p>The Rocket Team</p>
   </body>
 </html>
