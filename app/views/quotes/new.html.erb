@@ -119,16 +119,40 @@
             
             <div id="contact-quote-form">
                <div class="fancy-form">
-                   <%= f.label('Compagny Name') %>
-                   <%= f.text_field('contact-quote-compagny', {class: 'form-control residential-form'}) %>
+                   <%= f.label('Full Name') %>
+                   <%= f.text_field('full_name', {class: 'form-control residential-form'}) %>
+               </div>
+               <div class="fancy-form">
+                   <%= f.label('Company Name') %>
+                   <%= f.text_field('business_name', {class: 'form-control residential-form'}) %>
                </div>
                <div class="fancy-form">
                    <%= f.label('Email') %>
-                   <%= f.text_field('contact-quote-email', {class: 'form-control residential-form'}) %>
+                   <%= f.text_field('email', {class: 'form-control residential-form'}) %>
+               </div>
+               <div class="fancy-form">
+                   <%= f.label('Phone Number') %>
+                   <%= f.text_field('phone_number', {class: 'form-control residential-form'}) %>
+               </div>
+               <div class="fancy-form">
+                   <%= f.label('Project Name') %>
+                   <%= f.text_field('building_project_name', {class: 'form-control residential-form'}) %>
+               </div>
+               <div class="fancy-form">
+                   <%= f.label('Project Description') %>
+                   <%= f.text_field('project_description', {class: 'form-control residential-form'}) %>
+               </div>
+               <div class="fancy-form">
+                   <%= f.label('Message') %>
+                   <%= f.text_field('message', {class: 'form-control residential-form'}) %>
+               </div>
+               <div class="fancy-form">
+                   <%= f.label('Department in Charge') %>
+                   <%= f.text_field('departement_in_charge_of_elevators', {class: 'form-control residential-form'}) %>
                </div>
            </div>
 
-            <%= f.submit('Get A Quote Now!', class:'btn btn-success', id:'submit-quote') %>
+            <%= f.submit('Get A Quote Now!', {class:'btn btn-success', id:'submit-quote'}) %>
         <% end %>
     </div>
 </section>

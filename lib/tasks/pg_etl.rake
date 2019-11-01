@@ -8,9 +8,8 @@ namespace :pg do
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS START ================================="
 
         # INITIALIZE CONNECTION FOR ALL TASKS
-        warehouse = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", port: 5432, dbname: "GabrielBibeau", user: "codeboxx", password: "Codeboxx1!")
-        # warehouse = PG::Connection.open(host: "localhost", port: 5432, dbname: "pg_dev", user: "postgres", password: "test")
-
+        # warehouse = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", port: 5432, dbname: "GabrielBibeau", user: "codeboxx", password: "Codeboxx1!")
+        warehouse = PG::Connection.open(host: "localhost", port: 5432, dbname: "pg_dev", user: "postgres", password: "test")
 
         # FACT_QUOTES
         ap "ETL :> FACTQUOTES ========================================================="
@@ -43,14 +42,14 @@ namespace :pg do
                     ap "INSERT ETL with " + lead.inspect
                     warehouse.exec("INSERT INTO fact_contacts (contact_id, creation_date, company_name, email, project_name)
                                     VALUES ( #{lead.id}, '#{lead.created_at}',  '#{lead.business_name}', '#{lead.email}', '#{lead.building_project_name}')")
-#                 else
-#                     ap "UPDATE ETL with " + lead.inspect
-#                     warehouse.exec("UPDATE fact_contacts SET
-#                         company_name = '#{lead.business_name}',
-#                         email = '#{lead.email}',
-#                         project_name = '#{lead.building_project_name}'
-#                         WHERE contact_id = '#{contact.id}'
-#                     ;")
+                 else
+                     ap "UPDATE ETL with " + lead.inspect
+                     warehouse.exec("UPDATE fact_contacts SET
+                         company_name = '#{lead.business_name}',
+                         email = '#{lead.email}',
+                         project_name = '#{lead.building_project_name}'
+                         WHERE contact_id = '#{contact.id}'
+                     ;")
                 end
         end
         ap "========================================================= ETL :> FACTQUOTES "
@@ -128,5 +127,3 @@ namespace :pg do
         warehouse.finish
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS COMPLETE ================================="
     end
-end
-
