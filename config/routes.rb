@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   get 'dropbox/auth_callback' => 'dropbox#auth_callback'
 
   # Watson
-  get 'speaker/watson' 
+  get 'watson_speak/watson' 
 
 end
