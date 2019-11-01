@@ -14,5 +14,4 @@ module Weather
     def self.get_sky_description(lat, lng)
         @client.get_weather(lat: lat, lng: lng).currently.summary
     end
-
 end
