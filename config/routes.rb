@@ -13,4 +13,12 @@ Rails.application.routes.draw do
   get 'print'=> 'quotes#print'
   resources :lead
   post '/lead' => 'root#index'
+
+  # DropboxController
+  get 'dropbox/auth' => 'dropbox#auth'
+  get 'dropbox/auth_callback' => 'dropbox#auth_callback'
+
+  # Watson
+  get 'watson_speak/watson' 
+
 end

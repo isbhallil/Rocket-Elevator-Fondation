@@ -7,5 +7,4 @@ class Building < ApplicationRecord
     def weather_summary
         Weather.get_weather(self.address.latitude, self.address.longitude)
     end   
-
 end

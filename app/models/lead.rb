@@ -1,7 +1,8 @@
 class Lead < ApplicationRecord
     include RailsAdminCharts
     include ActiveModel::Dirty
-
+    belongs_to :customer, optional:true
+    has_one_attached :attachmentrake 
     has_one_attached :file
   # has_one :quote
 
