@@ -15,10 +15,7 @@ def create
     @lead.message = params["contact"]["message"]
     @lead.departement_in_charge_of_elevators = params["contact"]["department"]
     params_attach = params["contact"]["attachment"] 
-    # puts "****************************************************************************************"
-    # puts params_attach.size()
-    # puts "****************************************************************************************"
-
+    
     if params_attach
         @lead.attachment = params_attach.read
         @lead.original_filename = params_attach.original_filename

@@ -15,6 +15,12 @@
       </tr>
     </thead>
     <tbody>
+
+      <audio controls>
+        <source src='/speaker/watson' type="audio/wav">
+        <source src='output.wav' type='audio/wav'>
+      </audio>
+
       <% @abstract_models.each do |abstract_model| %>
         <% if authorized? :index, abstract_model %>
           <% index_path = index_path(model_name: abstract_model.to_param) %>
@@ -51,12 +57,6 @@
       <% end %>
     </tbody>
   </table>
-
-
-  <audio controls>
-        <source src="/speaker/watson" type="audio/wav">
-        <source src='output.wav' type='audio/wav'>
-      </audio>
  
   <div>
 <% end %>
@@ -70,11 +70,3 @@
     </div>
   </div>
 <% end %>
-Collapse
-
-
-
-
-
-
-

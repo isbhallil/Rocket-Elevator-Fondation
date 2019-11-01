@@ -2,6 +2,7 @@ class SpeakerController < ApplicationController
 require "ibm_watson"
 require "ibm_watson/authenticators"
 require "ibm_watson/text_to_speech_v1"
+require "json"
 
 def watson
 authenticator = IBMWatson::Authenticators::IamAuthenticator.new(
@@ -25,7 +26,9 @@ File::open("public/output.wav", "wb") do |audio_file|
     ).result
     audio_file << response
     render 'index'
+
     end
-end
+  end
+
 end
 
