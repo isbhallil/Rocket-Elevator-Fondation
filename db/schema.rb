@@ -113,8 +113,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_031621) do
 
   create_table "columns", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "battery_id", null: false
-    t.string "building_type", null: false
-    t.integer "floor_number"
+    t.integer "floors"
     t.string "status"
     t.text "information"
     t.text "notes"

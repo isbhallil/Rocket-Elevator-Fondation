@@ -7,8 +7,12 @@ class Address < ApplicationRecord
     has_one :customer
     has_one :building
 
+    def get_coords
+        Geocode.get_lat_lng(formated_address);
+    end
+
     private
     def formated_address
-        [number_street, city, postal_code, country].compact.join(', ')
+        [street, city, postal_code, country].compact.join(', ')
     end
 end
