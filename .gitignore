@@ -29,9 +29,6 @@
 # Ignore database configuration
 /config/database.yml
 /config/warehouse.yml
-sendgrid.env
 
-# Ignore master key for decrypting credentials and more.
-/config/application.yml
 # Ignore application configuration
 /config/application.yml

@@ -6,8 +6,14 @@ class QuotesController < ApplicationController
     q = Quote.new
     q.range_type= params['range-type-select']
     q.building_type= params['building-type-select']
-    q.compagny = params['contact-quote-compagny']
-    q.email = params['contact-quote-email']
+    q.full_name = params["full_name"]
+    q.business_name = params["business_name"]
+    q.email = params["email"]
+    q.phone_number = params["phone_number"]
+    q.building_project_name = params["building_project_name"]
+    q.project_description = params["project_description"]
+    q.message = params["message"]
+    q.departement_in_charge_of_elevators = params["department_in_charge_of_elevators"]
 
     if params['building-type-select'] == 'residential'
       q.units= params['residential-appartments']
@@ -108,8 +114,9 @@ class QuotesController < ApplicationController
       total: q.total
     }
 
+    
     if q.try(:save)
-      redirect_to print_path(quote_summary)
+    redirect_to print_path(quote_summary)
     else
       redirect_to root_path()
     end
