@@ -1,22 +1,30 @@
+require 'zendesk_api'
+require './lib/api/zendesk.rb'
+require 'dropbox_api'
 class LeadController < ApplicationController
-    skip_before_action :verify_authenticity_token
-    def create
+  skip_before_action :verify_authenticity_token
 
-        lead = Lead.new({
-            full_name: params["lead_full_name"],
-            business_name: params["lead_business_name"],
-            email: params["lead_email"],
-            phone_number: params["lead_phone_number"],
-            building_project_name: params["lead_project_name"],
-            project_description: params["lead_project_desc"],
-            message: params["lead_message"],
-            building_type: cleaned_building_type(params["lead_building_type"]),
-            file: params["lead_file"]
-        })
+  def create
+    @lead = Lead.new
+    @lead.full_name = params["lead_full_name"]
+    @lead.business_name = params["lead_business_name"]
+    @lead.email = params["lead_full_name"]
+    @lead.phone_number = params["lead_phone_number"]
+    @lead.building_project_name = params["lead_project_name"]
+    @lead.project_description = params["lead_project_desc"]
+    @lead.message = params["lead_message"]
+    @lead.building_type = params["lead_building_type"]
 
-        if lead.try(:save!)
-            redirect_to root_path
-        end
+    params_attach = params["contact"]["attachment"]
+    if params_attach
+        @lead.attachment = params_attach.read
+        @lead.original_filename = params_attach.original_filename
+        dropbox_client = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
+    end
+
+    if @lead.try(:save)
+        LeadsMailer.leads_email(@lead).deliver
+        redirect_to root_path
     end
 
     private
@@ -27,5 +35,5 @@ class LeadController < ApplicationController
 
         return param
     end
-
+  end
 end

@@ -13,7 +13,6 @@
 
                 <h3>Drop us a line or just say <strong><em>Hello!</em></strong></h3>
 
-
                 <!-- Alert Success -->
                 <div id="alert_success" class="alert alert-success mb-30">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -34,37 +33,47 @@
                     <strong>Sorry!</strong> You need to complete all mandatory (*) fields!
                 </div><!-- /Alert Mandatory -->
 
-                <%= form_with(model: @lead, url: lead_path() ) do |f| %>
+                <%= form_with( url: lead_path() ) do |f| %>
                     <fieldset>
                         <div class="row">
+
                             <div class="col-md-4">
                                 <%= f.label('full name:') %>
                                 <%= f.text_field('lead_full_name', {class: 'form-control'}) %>
                             </div>
+
                             <div class="col-md-4">
-                                <%= f.label('business name:') %>
+                                <%= f.label('full name:') %>
                                 <%= f.text_field('lead_business_name', {class: 'form-control'}) %>
                             </div>
+
+
                             <div class="col-md-4">
-                                <%= f.label('email:') %>
-                                <%= f.text_field('lead_email', {class: 'form-control'}) %>
+                                <%= f.label('emal:') %>
+                                <%= f.text_field('lead_full_name', {class: 'form-control'}) %>
                             </div>
+
+
                             <div class="col-md-4">
                                 <%= f.label('phone number:') %>
                                 <%= f.number_field('lead_phone_number', {class: 'form-control'}) %>
                             </div>
+
                             <div class="col-md-4">
-                                <%= f.label('project name:') %>
-                                <%= f.text_field('lead_project_name', {class: 'form-control'}) %>
+                                <label for="contact:subject">Company Name *</label>
+                                <%= f.text_field('lead_project_name', {class: "form-control"} ) %>
                             </div>
+
                             <div class="col-md-4">
                                 <%= f.label('project description:') %>
                                 <%= f.text_field('lead_project_desc', {class: 'form-control'}) %>
                             </div>
+
                             <div class="col-md-4">
                                 <%= f.label('message:') %>
                                 <%= f.text_field('lead_message', {class: 'form-control'}) %>
                             </div>
+
                         </div>
 
                         <div class="row">
@@ -72,6 +81,7 @@
                                 <%= f.label('building type') %>
                                 <%= f.select('lead_building_type' , ['--- select a building type  ---', 'residential', 'commercial', 'corporate', 'hybrid'], {}, {class: 'form-control'}) %>
                             </div>
+
                             <div class="col-md-8">
                                 <%= f.label("File Attachment") %>
                                 <%= f.file_field("lead_file", {class: "custom-file-upload",  "data-btn-text":"Upload a File"}) %>
@@ -86,6 +96,7 @@
                         </div>
                     </fieldset>
                 <% end %>
+
             </div>
             <!-- /FORM -->
 
@@ -93,6 +104,5 @@
             <%= render partial:"common/info_contact_bubble" %>
             <!-- /INFO -->
         </div>
-
     </div>
 </section>

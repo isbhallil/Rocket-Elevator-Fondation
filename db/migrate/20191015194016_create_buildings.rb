@@ -9,7 +9,9 @@ class CreateBuildings < ActiveRecord::Migration[5.2]
       t.string :full_name_tech_person
       t.string :email_tech_person
       t.string :phone_number_tech_person
-      
+      t.integer :floors
+      t.string :building_type
+
       t.timestamps
     end
   end

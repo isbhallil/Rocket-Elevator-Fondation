@@ -31,5 +31,6 @@
 # Ignore database configuration
 /config/database.yml
 /config/warehouse.yml
+
 # Ignore application configuration
 /config/application.yml

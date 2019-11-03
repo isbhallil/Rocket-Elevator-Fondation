@@ -1,3 +1,25 @@
-WATSON_SECRET: "-eQqJP9Z5naoMXH5BYCHO7tmOurlZoC93bQgxtfFeavg"
 GOOGLE_GEOCODE_API_KEY: "AIzaSyDcTeBB7Eof3M9UBHeeBqhOJB5owUj7bR4"
 GOOGLE_MAPS_API_KEY: "AIzaSyAwPBPaR4de-HrDs3fqx6UEUr5e3PmGoAk"
+
+TWILIO_ACCOUNT_SID: "ACa53e6d98eb4354b13829d86c40f07c11"
+TWILIO_AUTH_TOKEN: "d1d7f170d8adb95047075dd55dc3f30e"
+TWILIO_PHONE_NUMBER: "+15712976606"
+
+ZENDESK_ACCOUNT_SID: "sarah_bechik@hotmail.com"
+ZENDESK_AUTH_TOKEN: "gai5kZoBWM3pLF6ZD1545Mnpd5udfFnZFypy9VKT"
+
+DARKSKY_AUTH_TOKEN: "4710ea56df3a6849f5617c7e73d8912c"
+
+STOCK_ACCOUNT_SID: "bravenewcoin-v1.p.rapidapi.com"
+STOCK_AUTH_TOKEN: "b9bfde98c7msh265c1d083e3522dp1bee44jsne432d0ff94bd"
+
+SendGrid_Key: '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'
+SendGrid_Username: 'apikey'
+
+Slack_Webhook: 'https://hooks.slack.com/services/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'
+Slack_Channel: '#elevator_operations'
+Slack_Username: 'Team Bhallil'
+
+DROPBOX_OAUTH_BEARER: "nzQbhHE4RKAAAAAAAAAADYrYebcwfQoKlSSeaTrHzv9KZW5dycehjmDKQHDoSR5Y"
+
+text_to_speak: "dQNfeXusEGBOahVUrzVHF7qZcit9P07laM49HuSb_teS"
