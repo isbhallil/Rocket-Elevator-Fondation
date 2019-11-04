@@ -15,7 +15,7 @@ class LeadController < ApplicationController
     @lead.message = params["lead_message"]
     @lead.building_type = params["lead_building_type"]
 
-    params_attach = params["contact"]["attachment"]
+    params_attach = params["lead_file"]
     if params_attach
         @lead.attachment = params_attach.read
         @lead.original_filename = params_attach.original_filename
