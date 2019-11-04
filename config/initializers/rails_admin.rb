@@ -7,8 +7,8 @@ RailsAdmin.config do |config|
       redirect_to main_app.root_path
     end
   end
-  
-  
+
+
   # RailsAdmin.config do |config|
     # config.authorize_with do
     #   redirect_to main_app.root_path unless current_user.is_admin?
@@ -51,11 +51,5 @@ RailsAdmin.config do |config|
     charts
 
     config.excluded_models = ["Award", "Client", "Nav", "New"]
-    
-    ## With an audit adapter, you can add:
-    # history_index
-    # history_show
   end
-
-  
 end

@@ -10,8 +10,7 @@ class DropboxController < ApplicationController
     # Example call:
     # GET /dropbox/auth_callback?code=VofXAX8DO1sAAAAAAAACUKBwkDZyMg1zKT0f_FNONeA
     def auth_callback
-      auth_bearer = authenticator.get_token(params[:code],
-                                            :redirect_uri => redirect_uri)
+      auth_bearer = authenticator.get_token(params[:code],:redirect_uri => redirect_uri)
       token = auth_bearer.token # This line is step 5 in the diagram.
   
       # At this stage you may want to persist the reusable token we've acquired.
@@ -25,8 +24,8 @@ class DropboxController < ApplicationController
     private
   
     def authenticator
-      client_id = "v80axa2qpu73goa"
-      client_secret = "4bnl48wvjpj37ak"
+      client_id = "asipa36h8mzl39x"
+      client_secret = "pft2zk6pvgskzne"
   
       DropboxApi::Authenticator.new(client_id, client_secret)
     end

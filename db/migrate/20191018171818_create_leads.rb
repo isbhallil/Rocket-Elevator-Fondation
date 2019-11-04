@@ -8,7 +8,7 @@ class CreateLeads < ActiveRecord::Migration[5.2]
       t.string :phone_number
       t.string :building_project_name
       t.string :project_description
-      t.string :departement_in_charge_of_elevators
+      t.string :building_type
       t.string :message
       t.longblob :attachment
       t.string :original_filename

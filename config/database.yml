@@ -4,11 +4,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: test
-  socket: /var/run/mysqld/mysqld.sock
+  # socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: database_development
+  # database: database_development
+  url: <%= ENV['DATABASE_URL'] %>
 
 test:
   <<: *default
@@ -16,6 +17,7 @@ test:
 
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: database__production
   username: Rocket_Elevators_Information_System
   password: <%= ENV['ROCKET_ELEVATORS_INFORMATION_SYSTEM_DATABASE_PASSWORD'] %>

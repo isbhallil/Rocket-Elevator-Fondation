@@ -11,14 +11,20 @@ Rails.application.routes.draw do
   get 'quote' => 'quotes#new'
   post 'quote' => 'quotes#create'
   get 'print'=> 'quotes#print'
-  resources :lead
-  post '/lead' => 'root#index'
+
+  # LeadController
+  # resources :lead
+  post 'lead' => 'lead#create'
+
+
+  # AdminMapController
+  get 'map' => 'map#index'
+  get 'test' => 'map#test'
 
   # DropboxController
   get 'dropbox/auth' => 'dropbox#auth'
   get 'dropbox/auth_callback' => 'dropbox#auth_callback'
 
   # Watson
-  get 'watson_speak/watson' 
-
+  get 'watson_speak/watson'
 end
