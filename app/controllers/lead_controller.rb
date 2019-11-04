@@ -8,12 +8,12 @@ class LeadController < ApplicationController
     @lead = Lead.new
     @lead.full_name = params["lead_full_name"]
     @lead.business_name = params["lead_business_name"]
-    @lead.email = params["lead_full_name"]
+    @lead.email = params["lead_email"]
     @lead.phone_number = params["lead_phone_number"]
     @lead.building_project_name = params["lead_project_name"]
     @lead.project_description = params["lead_project_desc"]
     @lead.message = params["lead_message"]
-    @lead.building_type = cleaned_building_type(params["lead_building_type"])
+    @lead.building_type = (params["lead_building_type"])
 
     params_attach = params["lead_file"]
     if params_attach

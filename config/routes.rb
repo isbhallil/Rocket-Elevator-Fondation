@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   # LeadController
   # resources :lead
+  get 'lead' => 'lead#create'
   post 'lead' => 'lead#create'
-
 
   # AdminMapController
   get 'map' => 'map#index'
