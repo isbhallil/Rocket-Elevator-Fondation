@@ -25,8 +25,8 @@ class DropboxController < ApplicationController
     private
   
     def authenticator
-      client_id = "v80axa2qpu73goa"
-      client_secret = "4bnl48wvjpj37ak"
+      client_id = "asipa36h8mzl39x"
+      client_secret = "pft2zk6pvgskzne"
   
       DropboxApi::Authenticator.new(client_id, client_secret)
     end
