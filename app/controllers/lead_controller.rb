@@ -18,14 +18,14 @@ class LeadController < ApplicationController
     @lead.building_type = (params["lead_building_type"])
 
     params_attach = params["lead_file"]
-    if params_attach
+    puts params_attach
         @lead.file.attach(params["lead_file"])
         @lead.original_filename = params_attach.original_filename
-    end
+    
 
     if @lead.try(:save)
         LeadsMailer.leads_email(@lead).deliver
-        @lead.file.purge
+        # @lead.file.purge
         redirect_to root_path
     else
         ap "NOT WORKING"
