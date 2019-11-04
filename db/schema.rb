@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 2019_10_30_031621) do
     t.string "postal_code", null: false
     t.string "country", null: false
     t.text "notes"
-    t.float "latitude"
-    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "awards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -93,12 +93,12 @@ ActiveRecord::Schema.define(version: 2019_10_30_031621) do
     t.bigint "customer_id", null: false
     t.string "full_name_admin_person"
     t.string "email_admin_person"
-    t.string "building_type"
     t.string "phone_number_admin_person"
     t.string "full_name_tech_person"
     t.string "email_tech_person"
-    t.integer "floors"
     t.string "phone_number_tech_person"
+    t.integer "floors"
+    t.string "building_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_buildings_on_address_id"
