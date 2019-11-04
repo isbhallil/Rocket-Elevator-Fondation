@@ -178,7 +178,6 @@ ActiveRecord::Schema.define(version: 2019_10_30_031621) do
     t.string "project_description"
     t.string "building_type"
     t.string "message"
-    t.binary "attachment", limit: 4294967295
     t.string "original_filename"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

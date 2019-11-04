@@ -4,6 +4,8 @@ require 'dropbox_api'
 class LeadController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+
+
   def create
     @lead = Lead.new
     @lead.full_name = params["lead_full_name"]
@@ -17,13 +19,13 @@ class LeadController < ApplicationController
 
     params_attach = params["lead_file"]
     if params_attach
-        @lead.attachment = params_attach.read
+        @lead.file.attach(params["lead_file"])
         @lead.original_filename = params_attach.original_filename
-        dropbox_client = DropboxApi::Client.new(ENV['DROPBOX_OAUTH_BEARER'])
     end
 
     if @lead.try(:save)
-        LeadsMailer.leads_email(@lead).deliver
+        # LeadsMailer.leads_email(@lead).deliver
+        @lead.file.purge
         redirect_to root_path
     else
         ap "NOT WORKING"

@@ -8,11 +8,11 @@ class Customer < ApplicationRecord
 
   def dropbox
     self.lead.all.each do |lead|
-      if lead.attachment != nil
+      if lead.file.attached? == true
         client = DropboxApi::Client.new(ENV["DROPBOX_OAUTH_BEARER"])
-        client.create_folder("/#{lead.full_name}")
-        client.upload("/#{lead.full_name}/#{File.basename(lead.original_filename)}", lead.attachment)
-        #PURGE LEAD
+        client.upload("/#{lead.full_name}/#{File.basename(lead.file.filename.to_s)}", lead.file.download)
+
+        lead.purge_attachement
       end
     end
   end
