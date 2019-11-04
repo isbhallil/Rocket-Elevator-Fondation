@@ -1,4 +1,6 @@
 class MapController < ApplicationController
+    before_action :is_user_admin?
+
     def index
         load_markers
     end
@@ -8,12 +10,12 @@ class MapController < ApplicationController
     end
 
     private
+    def is_user_admin?
+        ap current_user
+    end
+
     def load_markers
         @buildings = Gmaps4rails.build_markers(get_buildings) do |building, marker|
-            ap "BUILDING =============================="
-            ap building
-            ap "============================== BUILDING"
-
             marker.lat building['latitude']
             marker.lng building["longitude"]
 
