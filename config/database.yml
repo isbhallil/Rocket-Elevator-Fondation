@@ -8,8 +8,7 @@ default: &default
 
 development:
   <<: *default
-  # database: database_development
-  url: <%= ENV['DATABASE_URL'] %>
+  database: database_development
 
 test:
   <<: *default
