@@ -14,13 +14,15 @@ gem 'faker'
 gem 'whenever', require: false
 gem 'activestorage-database-service', github: 'TitovDigital/activestorage-database-service'
 gem 'rails_admin_charts'
-gem 'dropbox_api'
+gem 'gmaps4rails'
+gem 'geocoder'
 gem 'figaro'
-gem 'dotenv'
-gem 'paperclip'
-gem 'activestorage-dropbox'
-gem 'ibm_watson'
-gem 'cancan'
+gem 'json'
+gem 'twilio-ruby'
+gem 'zendesk_api'
+gem 'font_awesome'
+gem 'darksky_weather-api'
+gem 'dropbox_api'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
@@ -72,15 +74,22 @@ group :development do
   gem 'capistrano-bundler', '>= 1.1.0'
   gem 'rvm1-capistrano3', require: false
   gem 'capistrano3-puma'
+ 
 end
 
-group :test do
+# group :test
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
-end
+  # gem 'capybara', '>= 2.15'
+  # gem 'selenium-webdriver'
+  # # Easy installation and use of chromedriver to run system tests with Chrome
+  # gem 'chromedriver-helper'
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# SendGrid
+gem 'sendgrid-ruby'
+
+# Slack
+gem 'slack-notifier'

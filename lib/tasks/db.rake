@@ -19,6 +19,7 @@ namespace :db do
     end
   end
 
+  building_types = ['residential', 'corporate', 'commercial', 'hybrid']
   task leads: :environment do
     50.times do
       Lead.create!(
@@ -28,7 +29,7 @@ namespace :db do
         phone_number: Faker::PhoneNumber.cell_phone,
         building_project_name: Faker::Hipster.word,
         project_description: Faker::Hipster.word,
-        departement_in_charge_of_elevators: Faker::Commerce.department,
+        building_type: building_types[Faker::Number.within(range: 0..3)],
         message: Faker::Hipster.word,
         created_at: Faker::Date.between(from: 3.years.ago, to: Date.today)
       )
@@ -59,5 +60,5 @@ namespace :db do
       )
     end
   end
-  
+
 end

@@ -1,4 +1,10 @@
-<% if @abstract_models %>
+  <audio controls>
+    <source src='/watson_speak/watson' type="audio/wav">
+    <source src='output.wav' type='audio/wav'>
+  </audio><% if @abstract_models %>
+
+  <a href="/map" type="button" class="btn btn-lg btn-block btn-success">See Map </a>
+
   <table class="table table-condensed table-striped">
     <thead>
       <tr>
@@ -15,12 +21,6 @@
       </tr>
     </thead>
     <tbody>
-
-      <audio controls>
-        <source src='/watson_speak/watson' type="audio/wav">
-        <source src='output.wav' type='audio/wav'>
-      </audio>
-
       <% @abstract_models.each do |abstract_model| %>
         <% if authorized? :index, abstract_model %>
           <% index_path = index_path(model_name: abstract_model.to_param) %>
@@ -57,7 +57,7 @@
       <% end %>
     </tbody>
   </table>
- 
+
   <div>
 <% end %>
 <% if @auditing_adapter && authorized?(:history_index) %>

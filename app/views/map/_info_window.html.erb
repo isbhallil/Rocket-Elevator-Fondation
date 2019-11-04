@@ -1,0 +1,31 @@
+<% weather = Weather.get_weather(building["latitude"], building["longitude"]) %>
+<div class="card mb-4 shadow-sm">
+    <div class="card-header">
+        <h4 class="my-0 font-weight-normal">building: <%= building["id"]%>, <%= building["building_type"] %></h4>
+    </div>
+    <div class="card-body">
+    <ul class="list-unstyled mt-3 mb-4">
+        <li><strong>position :</strong> <strong><%= building["latitude"]%>, <%=building["longitude"]%></strong></li>
+        <li><strong>customer name</strong>: <strong><%= building["customer_name"]%></strong></li>
+        <li><strong>tech name</strong>: <strong><%= building["tech_name"]%></strong></li>
+        <li><strong>number of batteries</strong>: <strong><%= building["batteries"]%></strong></li>
+        <li><strong>number of columns</strong>: <strong><%= building["columns"]%></strong></li>
+        <li><strong>number of floors</strong>: <strong><%= building["floors"]%></strong></li>
+        <li><strong>the temperature is <%= weather[:temperature] %> F</strong></li>
+        <li><strong>the sky is <%= weather[:sky_desc] %></strong></li>
+        <hr>
+        <% if building["interventions_to_do"].length > 0 %>
+            <h6 style="margin-bottom: 10px;">These items needs your attentions : </h6>
+            <p>
+                <% building["interventions_to_do"].each do |intervention| %>
+                    <strong> <%= intervention[:thing]%>: <%= intervention[:id]%> </strong> <br>
+                <% end %>
+            </p>
+        <% end %>
+    </ul>
+
+
+    <a href="/admin/building/<%= building["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-success">Edit building</a>
+    <a href= "mailto: <%= building["tech_email"] %>" type="button" class="btn btn-sm btn-block btn-warning">Contact Support</a>
+    </div>
+</div>
