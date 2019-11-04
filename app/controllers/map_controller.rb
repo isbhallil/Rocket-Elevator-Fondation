@@ -11,7 +11,9 @@ class MapController < ApplicationController
 
     private
     def is_user_admin?
-        ap current_user
+        unless current_user != nil and current_user.is_admin?
+            redirect_to root_path
+        end
     end
 
     def load_markers

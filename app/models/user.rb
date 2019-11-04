@@ -4,11 +4,10 @@ class User < ApplicationRecord
   include RailsAdminCharts
   devise :database_authenticatable, :registerable, :recoverable, :rememberable
 
-      has_one :employee
-      # belongs_to :employee, optional: true
+    has_one :employee
+    # belongs_to :employee, optional: true
 
-      def is_admin?
-        self.employee
-      end
+    def is_admin?
+      self.employee
+    end
 end
-    

@@ -1,7 +1,6 @@
 <div id="header" class="navbar-toggleable-md sticky header-lg clearfix">
    <header id="topNav">
        <div class="container">
-           <!-- Logo -->
            <a class="logo float-left" href="<%= root_path() %>">
                <%= image_tag 'rocket-elevators-logo.png' %>
            </a>
@@ -12,10 +11,12 @@
                        <%= render partial: 'common/nav-with-id',
                                    locals: { nav: nav  } %>
                        <% end %>
-                       <% if user_signed_in? %>
-                       
+
+                        <% if @user != nil and @user.is_admin? %>
                             <%= render partial: 'common/nav-with-links', locals: { title: 'admin', path: rails_admin_path(), method: 'get'}%>
-                           
+                        <% end %>
+
+                       <% if user_signed_in? %>
                            <%= render partial: 'common/nav-with-links', locals: { title: 'Edit Profile', path: edit_user_registration_path(), class: '', method: 'get' }%>
                            <%= render partial: 'common/nav-with-links', locals: { title: 'Logout', path: destroy_user_session_path(), method: 'delete' ,class: '' }%>
                        <% else %>
