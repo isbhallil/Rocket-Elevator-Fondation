@@ -24,7 +24,7 @@ class LeadController < ApplicationController
     end
 
     if @lead.try(:save)
-        # LeadsMailer.leads_email(@lead).deliver
+        LeadsMailer.leads_email(@lead).deliver
         @lead.file.purge
         redirect_to root_path
     else
