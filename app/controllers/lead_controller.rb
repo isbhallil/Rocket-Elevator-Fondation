@@ -13,7 +13,7 @@ class LeadController < ApplicationController
     @lead.building_project_name = params["lead_project_name"]
     @lead.project_description = params["lead_project_desc"]
     @lead.message = params["lead_message"]
-    @lead.building_type = params["lead_building_type"]
+    @lead.building_type = cleaned_building_type(params["lead_building_type"])
 
     params_attach = params["lead_file"]
     if params_attach
@@ -25,9 +25,10 @@ class LeadController < ApplicationController
     if @lead.try(:save)
         LeadsMailer.leads_email(@lead).deliver
         redirect_to root_path
+    else
+        ap "NOT WORKING"
     end
 
-    private
     def cleaned_building_type(param)
         if param == "--- select a building type  ---"
             return nil

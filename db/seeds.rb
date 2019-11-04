@@ -21,7 +21,7 @@ building_types = ['residential', 'corporate', 'commercial', 'hybrid']
 JSON.parse(File.read('lib/seed/leads.js')).each do |l|
     ap "LEAD"
     Lead.create({
-        "full_name": l["fulle_name"],
+        "full_name": l["full_name"],
         "business_name": l["business_name"],
         "email": l["email"],
         "phone_number": l["phone_number"],
