@@ -6,13 +6,13 @@ class Elevator < ApplicationRecord
 
   belongs_to :column
   after_update :sendTicket, :status_changed if :status_changed?
-	
+
   def sendTicket
     building = self.column.battery.building
     updated_at = self.updated_at
     serial_number = self.serial_number
     body = ("Hello #{building.full_name_tech_person}, elevator #{serial_number} has changed status on #{updated_at}")
-    to = '+15819831152'
+    to = '+14184546439'
     from =ENV['TWILIO_PHONE_NUMBER']
 
     Notifier.send_ticket(from, to, body)
