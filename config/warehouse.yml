@@ -3,6 +3,6 @@ development:
   encoding: unicode
   host: localhost
   username: postgres
-  password: test!
+  password: test
   pool: 5
   database: pg_dev

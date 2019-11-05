@@ -1,8 +1,6 @@
 require "pg"
 
 namespace :pg do
-
-
     desc "extract-transform-load to pg"
     task etl: :environment do
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS START ================================="
