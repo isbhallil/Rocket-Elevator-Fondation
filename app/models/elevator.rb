@@ -12,7 +12,7 @@ class Elevator < ApplicationRecord
     updated_at = self.updated_at
     serial_number = self.serial_number
     body = ("Hello #{building.full_name_tech_person}, elevator #{serial_number} has changed status on #{updated_at}")
-    to = '+14184546439'
+    to = '+15819831152'
     from =ENV['TWILIO_PHONE_NUMBER']
 
     Notifier.send_ticket(from, to, body)
