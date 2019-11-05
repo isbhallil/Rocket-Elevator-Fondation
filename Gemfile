@@ -23,6 +23,7 @@ gem 'zendesk_api'
 gem 'font_awesome'
 gem 'darksky_weather-api'
 gem 'dropbox_api'
+gem 'graphql'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
