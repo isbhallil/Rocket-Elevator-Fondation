@@ -13,4 +13,4 @@ class CreateFactIntervention < ActiveRecord::Migration[5.2]
       t.string :status
     end
   end
-endg
+end
