@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_18_011919) do
+ActiveRecord::Schema.define(version: 2019_11_05_153003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dim_customers", force: :cascade do |t|
-    t.integer "customer_id"
+    t.string "customer_id"
     t.datetime "creation_date"
     t.string "company_name"
     t.string "full_name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_10_18_011919) do
   end
 
   create_table "fact_contacts", force: :cascade do |t|
-    t.integer "contact_id"
+    t.string "contact_id"
     t.datetime "creation_date"
     t.string "company_name"
     t.string "email"
@@ -34,12 +34,25 @@ ActiveRecord::Schema.define(version: 2019_10_18_011919) do
   end
 
   create_table "fact_elevators", force: :cascade do |t|
-    t.integer "elevator_id"
+    t.string "elevator_id"
     t.string "serial_number"
     t.string "commissioning"
-    t.integer "building_id"
-    t.integer "customer_id"
+    t.string "building_id"
+    t.string "customer_id"
     t.string "city"
+  end
+
+  create_table "fact_interventions", force: :cascade do |t|
+    t.integer "EmployeeID"
+    t.integer "BuildingID"
+    t.integer "BatteryID"
+    t.integer "ColumnID"
+    t.integer "ElevatorID"
+    t.string "intervention_begins_at"
+    t.string "intervention_finished_at"
+    t.string "result"
+    t.string "report"
+    t.string "status"
   end
 
   create_table "fact_quotes", force: :cascade do |t|

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'pages#root'
   get 'residential' => 'pages#residential'
   get 'corporate' => 'pages#corporate'
+  get 'test' => 'pages#test'
 
   # QuotesController
   get 'quote' => 'quotes#new'

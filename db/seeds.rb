@@ -138,7 +138,7 @@ def seed_building(customer_id)
             "customer_id": customer_id,
             "address_id": building_address_ids.delete_at(Faker::Number.within(range: 1..building_address_ids.length)),
             "full_name_admin_person": "#{employee.first_name} #{employee.last_name}" ,
-            "email_admin_person": Faker::Internet.email,
+            "email_admin_person": employee.email,
             "building_type": building_types[Faker::Number.within(range: 0..3)],
             "phone_number_admin_person": Faker::PhoneNumber.phone_number,
             "full_name_tech_person": Faker::Name.first_name + " " + Faker::Name.last_name,
