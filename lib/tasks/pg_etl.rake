@@ -225,11 +225,11 @@ namespace :pg do
                     status
                 )
                 VALUES (
-                    '#{intervention[:employeeId]}',
-                    '#{intervention[:buildingId]}',
-                    '#{intervention[:battery]}',
-                    '#{intervention[:column]}',
-                    '#{intervention[:elevator]}',
+                    '#{intervention[:employeeId].to_i}',
+                    '#{intervention[:buildingId].to_i}',
+                    '#{intervention[:battery].to_i}',
+                    '#{intervention[:column].to_i}',
+                    '#{intervention[:elevator].to_i}',
                     '#{intervention[:intervention_begins_at]}',
                     '#{intervention[:intervention_finished_at]}',
                     '#{intervention[:result]}',
