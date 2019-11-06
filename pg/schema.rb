@@ -43,11 +43,11 @@ ActiveRecord::Schema.define(version: 2019_11_05_153003) do
   end
 
   create_table "fact_interventions", force: :cascade do |t|
-    t.integer "EmployeeID"
-    t.integer "BuildingID"
-    t.integer "BatteryID"
-    t.integer "ColumnID"
-    t.integer "ElevatorID"
+    t.integer "employee_id"
+    t.integer "building_id"
+    t.integer "battery_id"
+    t.integer "column_id"
+    t.integer "elevator_id"
     t.string "intervention_begins_at"
     t.string "intervention_finished_at"
     t.string "result"

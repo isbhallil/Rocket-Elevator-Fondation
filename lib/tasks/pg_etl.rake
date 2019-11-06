@@ -1,6 +1,10 @@
 require "pg"
 
 namespace :pg do
+    def formated(string)
+        string.gsub("'","''")
+    end
+
     desc "extract-transform-load to pg"
     task etl: :environment do
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS START ================================="
@@ -39,14 +43,14 @@ namespace :pg do
                 if result.values.length == 0
                     ap "INSERT ETL with " + lead.inspect
                     warehouse.exec("INSERT INTO fact_contacts (contact_id, creation_date, company_name, email, project_name)
-                                    VALUES ( #{lead.id}, '#{lead.created_at}',  '#{lead.business_name}', '#{lead.email}', '#{lead.building_project_name}')")
+                                    VALUES ( #{lead.id}, '#{lead.created_at}',  '#{formated(lead.business_name)}', '#{lead.email}', '#{formated(lead.building_project_name)}')")
                  else
                      ap "UPDATE ETL with " + lead.inspect
                      warehouse.exec("UPDATE fact_contacts SET
-                         company_name = '#{lead.business_name}',
+                         company_name = '#{formated(lead.business_name)}',
                          email = '#{lead.email}',
-                         project_name = '#{lead.building_project_name}'
-                         WHERE contact_id = '#{contact.id}'
+                         project_name = '#{formated(lead.building_project_name)}'
+                         WHERE contact_id = '#{lead.id}'
                      ;")
                 end
         end
@@ -64,22 +68,20 @@ namespace :pg do
             if result.values.length == 0
                 ap "INSERT ETL with " + elevator.inspect
                 warehouse.exec("INSERT INTO fact_elevators (elevator_id, serial_number, commissioning, building_id, customer_id, city)
-                                VALUES ( #{elevator.id}, '#{elevator.serial_number}',  '#{elevator.date_of_installation}', #{building.id},  #{building.customer.id}, '#{building.address.city}')")
+                                VALUES ( #{elevator.id}, '#{elevator.serial_number}',  '#{elevator.date_of_installation}', #{building.id},  #{building.customer.id}, '#{formated(building.address.city)}')")
             else
                 ap "UPDATE ETL with " + elevator.inspect
                 warehouse.exec("UPDATE fact_elevators SET
                     commissioning = '#{elevator.date_of_installation}' ,
                     building_id = #{building.id},
                     customer_id = #{building.customer.id} ,
-                    city = '#{building.address.city}'
+                    city = '#{formated(building.address.city)}'
                     WHERE elevator_id = #{elevator.id}
                 ;")
             end
         end
         ap "========================================================= ETL :> FACTELEVATORS "
         5.times do ap "" end
-
-
 
         # DIM CUSTOMERS
         ap "ETL :> DIM CUSTOMERS ========================================================= "
@@ -97,21 +99,21 @@ namespace :pg do
                     VALUES (
                         #{customer.id},
                         '#{customer.created_at}',
-                        '#{customer.company_name}',
-                        #{customer.full_name_contact_person},
+                        '\"#{formated(customer.company_name)}\"',
                         '#{customer.email_contact_person}',
+                        '\"#{formated(customer.full_name_contact_person)}\"',
                         #{customerElevatorsLists.count},
-                        '#{customer.address.city}'
+                        '#{formated(customer.address["city"])}'
                     )
                 ;")
             else
                 ap "UPDATE ETL with " + customer.inspect
                 warehouse.exec("UPDATE dim_customers SET
-                     company_name = '#{customer.company_name}',
-                     full_name = #{customer.full_name_contact_person},
+                     company_name = '\"#{formated(customer.company_name)}\"',
+                     full_name = '\"#{formated(customer.full_name_contact_person)}\"',
                      email = '#{customer.email_contact_person}',
                      elevators_count = #{customerElevatorsLists.count},
-                     city = '#{customer.address.city}'
+                     city = '#{formated(customer.address.city)}'
                      WHERE customer_id = #{customer.id}
                 ;");
             end
@@ -124,5 +126,119 @@ namespace :pg do
 
         warehouse.finish
         ap "EXTRACT :> TRANSFORM :> LOAD PROCESS COMPLETE ================================="
+    end
+
+    desc "seed data on pg-dev.fact_interventions"
+    task interventions: :environment do
+        # INITIALIZE CONNECTION FOR ALL TASKS
+        # warehouse = PG::Connection.open(host: "codeboxx-postgresql.cq6zrczewpu2.us-east-1.rds.amazonaws.com", port: 5432, dbname: "GabrielBibeau", user: "codeboxx", password: "Codeboxx1!")
+        warehouse = PG::Connection.open(host: "localhost", port: 5432, dbname: "pg_dev", user: "postgres", password: "test")
+
+        buildings_list = Building.select(
+            :id,
+            "count(batteries.id) as batteries",
+            "count(columns.id) as columns",
+            "count(elevators.id) as elevators"
+        )
+        .joins(:batteries, :columns, :elevators, :customer, :address)
+        .group("buildings.id")
+
+        def get_intervention(building)
+            ap "GET_INTERVENTION ==================="
+            intervention = {
+                employeeId: Employee.all.sample.id,
+                buildingId: building["id"],
+                result: get_random_from("success", "failure", "incomplete"),
+                report: Faker::Lorem.paragraph,
+                status: get_random_from("Pending" ,"InProgress" ,"Interrupted" ,"Resumed" ,"Complete")
+            }
+
+            get_intervention_type(building).each do |type, value|
+                intervention[type] = value
+            end
+
+            get_intervention_timestamps.each do |key, value|
+                intervention[key] = value
+            end
+
+            intervention
+        end
+
+        def get_random_from(*args)
+            ap "GET_RANDOM_FROM ==================="
+            [*args].sample
+        end
+
+        def get_intervention_timestamps
+            ap "GET_INTERVENTION_TIMESTAMPS ==================="
+            days_of_intervention = [1,2,3,4,5]
+
+            intervention_begins_at = Faker::Time.between(from: 70.year.ago - 1, to: DateTime.now)
+            intervention_finished_at = Faker::Time.between(from: intervention_begins_at, to: intervention_begins_at + days_of_intervention.sample.days)
+
+            intervention_time_stamps = {
+                intervention_begins_at: intervention_begins_at,
+                intervention_finished_at: intervention_finished_at
+            }
+
+            intervention_time_stamps
+        end
+
+        def get_intervention_type(building)
+            ap "GET_INTERVENTION_TYPE ==================="
+            intervention_type = {
+                battery: nil,
+                column: nil,
+                elevator: nil
+            }
+
+            type_of_intervention = get_random_from('battery', 'column', 'elevator')
+
+            if type_of_intervention == 'battery'
+                intervention_type[:battery] = JSON.parse(building.to_json)["batteries"].sample["id"]
+            elsif type_of_intervention == 'column'
+                intervention_type[:column] = JSON.parse(building.to_json)["columns"].sample["id"]
+            else
+                intervention_type[:elevator] = JSON.parse(building.to_json)["elevators"].sample["id"]
+            end
+
+            intervention_type
+        end
+
+        buildings_list.each do |building|
+            intervention = get_intervention(building)
+            ap "TEST 1"
+            ap intervention
+            ap intervention[:employeeId]
+            warehouse.exec("
+                INSERT INTO fact_interventions
+                (
+                    employee_id,
+                    building_id,
+                    battery_id,
+                    column_id,
+                    elevator_id,
+                    intervention_begins_at,
+                    intervention_finished_at,
+                    result,
+                    report,
+                    status
+                )
+                VALUES (
+                    '#{intervention[:employeeId]}',
+                    '#{intervention[:buildingId]}',
+                    '#{intervention[:battery]}',
+                    '#{intervention[:column]}',
+                    '#{intervention[:elevator]}',
+                    '#{intervention[:intervention_begins_at]}',
+                    '#{intervention[:intervention_finished_at]}',
+                    '#{intervention[:result]}',
+                    '#{intervention[:report]}',
+                    '#{intervention[:status]}'
+                )
+            ")
+        end
+
+        warehouse.finish
     end
 end

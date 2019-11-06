@@ -2,6 +2,11 @@ require 'bcrypt'
 require 'devise'
 require 'csv'
 
+def formated(string)
+    string.gsub("'","''")
+end
+
+
 # # # EMPLOYEES
 JSON.parse(File.read('lib/seed/employee.js')).each do |e|
     ap "EMPLOYEE"
@@ -124,11 +129,6 @@ def seed_building(customer_id)
         building_address_ids << x + 1
     end
 
-    admin_address_ids = []
-    Employee.count.times do |x|
-        admin_address_ids << x + 1
-    end
-
     Faker::Number.within(range: 1..2).times do |b|
         employee_id = rand(Employee.count) + 1
         employee = Employee.find(employee_id)
@@ -136,12 +136,12 @@ def seed_building(customer_id)
         building_types = ['residential', 'corporate', 'commercial', 'hybrid']
         building_id = Building.create({
             "customer_id": customer_id,
-            "address_id": building_address_ids.delete_at(Faker::Number.within(range: 1..building_address_ids.length)),
-            "full_name_admin_person": "#{employee.first_name} #{employee.last_name}" ,
-            "email_admin_person": employee.email,
+            "address_id": building_address_ids.sample,
+            "full_name_admin_person": "#{formated(employee.first_name)} #{formated(employee.last_name)}" ,
+            "email_admin_person": Faker::Internet.email,
             "building_type": building_types[Faker::Number.within(range: 0..3)],
             "phone_number_admin_person": Faker::PhoneNumber.phone_number,
-            "full_name_tech_person": Faker::Name.first_name + " " + Faker::Name.last_name,
+            "full_name_tech_person": formated(Faker::Name.first_name + " " + Faker::Name.last_name),
             "email_tech_person": Faker::Internet.email,
             "floors": Faker::Number.within(range: 15..60),
             "phone_number_tech_person": Faker::PhoneNumber.phone_number,
@@ -161,21 +161,21 @@ def seed_customers(customers)
     end
 
     customers.each do |customer|
-        ap "customer"
+
         customer_email = Faker::Internet.email
-        identifiant = list.delete_at(Faker::Number.within(range: 1..list.length))
+        address_id = list.sample
         user_id = User.create({"email": customer_email, "password": "12345678", "password_confirmation": "12345678" }).id
 
         customer_id = Customer.create({
-            "address_id": identifiant,
+            "address_id": address_id,
             "user_id": user_id,
             "date_of_creation": Faker::Date.between(from: 70.years.ago, to: Date.today),
-            "company_name": Faker::Company.name,
-            "full_name_contact_person": Faker::Name.first_name + " " + Faker::Name.last_name,
+            "company_name": formated(Faker::Company.name),
+            "full_name_contact_person": formated(Faker::Name.first_name + " " + Faker::Name.last_name),
             "phone_number_contact_person": Faker::PhoneNumber.phone_number,
             "email_contact_person": customer_email,
             "company_description": Faker::Company.industry,
-            "full_name_service_person": Faker::Name.first_name + " " + Faker::Name.last_name,
+            "full_name_service_person": formated(Faker::Name.first_name + " " + Faker::Name.last_name),
             "phone_number_service_person": Faker::PhoneNumber.phone_number,
             "email_service_person": Faker::Internet.email,
             "created_at": "2017-10-20",
