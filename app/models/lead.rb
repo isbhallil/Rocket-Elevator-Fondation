@@ -14,6 +14,6 @@ class Lead < ApplicationRecord
     private
 
     def send_contact
-        Zendesk.contact_ticket(self)
+        # Zendesk.contact_ticket(self)
     end
 end
