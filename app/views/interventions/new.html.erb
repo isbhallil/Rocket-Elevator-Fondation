@@ -25,16 +25,18 @@
 
     function updateFormData(url, paramSelector, selectorToFill, children){
         hideAndReset(children)
+        let model = url.split("/:")[1]
         let requestUrl = url.split("/:")[0]
         let id = $(`#${paramSelector}_selector`).val()
         apiRequestAndFillForm(`${requestUrl}/${id}`, selectorToFill)
     }
 
+    function hideAll(){
+        $('.selector-wrapper').hide()
+    }
+
     $(document).ready(function(){
-        $('#building-wrapper').hide()
-        $('#battery-wrapper').hide()
-        $('#column-wrapper').hide()
-        $('#elevator-wrapper').hide()
+        hideAll()
 
         $("#customer_selector").on("change", function() {
             updateFormData(`/buildings/customers/:customer_id`, 'customer', 'building', ['building', 'battery', 'column', 'elevator'])
@@ -75,17 +77,17 @@
                   <select name="building_id" id="building_selector"></select>
               </div>
 
-              <div id="battery-wrapper" class="selector-wrapper>
+              <div id="battery-wrapper" class="selector-wrapper">
                   <label for="battery_id">Batteries</label>
                   <select name="battery_id" id="battery_selector"></select>
               </div>
 
-              <div id="column-wrapper" class="selector-wrapper>
+              <div id="column-wrapper" class="selector-wrapper">
                   <label for="column_id">Column</label>
                   <select name="column_id" id="column_selector"></select>
               </div>
 
-              <div id="elevator-wrapper" class="selector-wrapper>
+              <div id="elevator-wrapper" class="selector-wrapper">
                   <label for="elevator_id">Elevators</label>
                   <select name="elevator_id" id="elevator_selector"></select>
               </div>
