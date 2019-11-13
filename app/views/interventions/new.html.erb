@@ -1,0 +1,100 @@
+<script>
+    function apiRequestAndFillForm(url, selector) {
+        $.get(url, function(response){
+            fillSelector(selector, response)
+        })
+    }
+
+    function fillSelector(selector, data){
+        var row = `<option value=""> <-- select a ${selector} --> </option>`;
+        $(row).appendTo(`#${selector}_selector`)
+
+        $.each(data, function(index, item) {
+            row = "<option value=\"" + item.id + "\">" + item.id + "</option>";
+            $(row).appendTo(`#${selector}_selector`)
+        });
+        $(`#${selector}-wrapper`).show()
+    }
+
+    function hideAndReset(list){
+        $.each(list, function(item){
+            $(`${item}-wrapper`).hide()
+            $(`${item}-selector`).empty()
+        })
+    }
+
+    function updateFormData(url, paramSelector, selectorToFill, children){
+        hideAndReset(children)
+        let requestUrl = url.split("/:")[0]
+        let id = $(`#${paramSelector}_selector`).val()
+        apiRequestAndFillForm(`${requestUrl}/${id}`, selectorToFill)
+    }
+
+    $(document).ready(function(){
+        $('#building-wrapper').hide()
+        $('#battery-wrapper').hide()
+        $('#column-wrapper').hide()
+        $('#elevator-wrapper').hide()
+
+        $("#customer_selector").on("change", function() {
+            updateFormData(`/buildings/customers/:customer_id`, 'customer', 'building', ['building', 'battery', 'column', 'elevator'])
+        });
+
+        $("#building_selector").on("change", function() {
+            updateFormData('/batteries/building/:building_id', 'building', 'battery', ['battery', 'column', 'elevator'])
+        });
+
+        $("#battery_selector").on("change", function() {
+            updateFormData('/columns/battery/:battery_id', 'battery', 'column', ['column', 'elevator'])
+        });
+
+        $("#column_selector").on("change", function() {
+            updateFormData('/elevators/column/:column_id', 'column', 'elevator', ['elevator'])
+        });
+    })
+</script>
+
+
+<section id="work" style="padding-top: 50px" >
+    <div class="container-fluid" style="width: auto" >
+        <div class="heading-title heading-dotted text-center">
+            <h2>Interventions</h2>
+        </div>
+
+        <div class="row-fluid text-center">
+          <span class="border">
+          <%= form_with( url: intervention_path() ) do |f| %>
+            <div class="col-md-12">
+              <div>
+                  <%= f.label :customer_id %>
+                  <%= f.collection_select :customer_selector, Customer.all.order(:company_name), :id, :company_name, { prompt: 'Please select' } %>
+              </div>
+
+              <div id="building-wrapper" class="selector-wrapper">
+                  <label for="building_id">Building</label>
+                  <select name="building_id" id="building_selector"></select>
+              </div>
+
+              <div id="battery-wrapper" class="selector-wrapper>
+                  <label for="battery_id">Batteries</label>
+                  <select name="battery_id" id="battery_selector"></select>
+              </div>
+
+              <div id="column-wrapper" class="selector-wrapper>
+                  <label for="column_id">Column</label>
+                  <select name="column_id" id="column_selector"></select>
+              </div>
+
+              <div id="elevator-wrapper" class="selector-wrapper>
+                  <label for="elevator_id">Elevators</label>
+                  <select name="elevator_id" id="elevator_selector"></select>
+              </div>
+
+              <div class="actions">
+                  <%= f.submit %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+    </div>
+</section>

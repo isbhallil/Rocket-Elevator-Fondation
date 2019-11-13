@@ -178,9 +178,9 @@ ActiveRecord::Schema.define(version: 2019_11_11_183412) do
     t.bigint "employee_id", null: false
     t.string "intervention_begins_at"
     t.string "intervention_finished_at"
-    t.string "result"
+    t.string "result", default: 'Incomplete'
     t.string "report"
-    t.string "status"
+    t.string "status", default: 'Pending'
     t.index ["author_id"], name: "index_interventions_on_author_id"
     t.index ["battery_id"], name: "index_interventions_on_battery_id"
     t.index ["building_id"], name: "index_interventions_on_building_id"

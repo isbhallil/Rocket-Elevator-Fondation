@@ -18,13 +18,37 @@ Rails.application.routes.draw do
   get 'lead' => 'lead#create'
   post 'lead' => 'lead#create'
 
+
+  #InterventionController
+  get 'intervention' => 'interventions#new'
+
+
+  #BuildingsController
+  get 'buildings/customers/:customer_id' => 'buildings#customer_buildings'
+
+
+  #BatteriesController
+  get 'batteries/building/:building_id' => 'batteries#building_batteries'
+
+  #ColumnsController
+  get 'columns/battery/:battery_id' => 'columns#battery_columns'
+
+  #ElevatorController
+  get 'elevators/column/:column_id' => 'elevators#column_elevators'
+
   # AdminMapController
   get 'map' => 'map#index'
   get 'test' => 'map#test'
 
+
+  # InterventionsController
+  get 'intervention' => 'interventions#new'
+  post 'intervention' => 'intervention#create'
+
   # DropboxController
   get 'dropbox/auth' => 'dropbox#auth'
   get 'dropbox/auth_callback' => 'dropbox#auth_callback'
+
 
   # Watson
   get 'watson_speak/watson'

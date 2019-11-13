@@ -1,10 +1,10 @@
-<div id="header" class="navbar-toggleable-md sticky header-lg clearfix">
+<div id="header" class="navbar-toggleable-md sticky header-sm">
    <header id="topNav">
        <div class="container">
-           <a class="logo float-left" href="<%= root_path() %>">
-               <%= image_tag 'rocket-elevators-logo.png' %>
+           <a class="logo float-left" style="display: flex; justify-content: center; align-items: center; padding: 5px;" href="<%= root_path() %>">
+                <%= image_tag 'rocket-elevators-logo.png' %>
            </a>
-           <div class="navbar-collapse collapse float-right nav-main-collapse submenu-dark">
+           <div class="navbar-collapse collapse float-right nav-main-collapse">
                <nav class="nav-main">
                    <ul id="topMain" class="nav nav-pills nav-main nav-onepage">
                        <% @navs.each do |nav| %>
@@ -28,4 +28,3 @@
        </div>
    </header>
 </div>
-
