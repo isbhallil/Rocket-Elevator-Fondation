@@ -12,7 +12,7 @@
                                    locals: { nav: nav  } %>
                        <% end %>
 
-                        <% if user_signed_in? and current_user.is_admin? %>
+                        <% if user_signed_in? and current_user.employee? %>
                             <%= render partial: 'common/nav-with-links', locals: { title: 'admin', path: rails_admin_path(), method: 'get'}%>
                         <% end %>
 

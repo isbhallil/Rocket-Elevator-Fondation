@@ -1,17 +1,13 @@
 RailsAdmin.config do |config|
   ### Popular gems integration
   config.authorize_with do |controller|
-    if current_user.nil?
-      redirect_to main_app.root_path
-    elsif !current_user.is_admin?
-      redirect_to main_app.root_path
-    end
+    redirect_to main_app.root_path unless current_user && current_user.employee?
   end
 
 
   # RailsAdmin.config do |config|
     # config.authorize_with do
-    #   redirect_to main_app.root_path unless current_user.is_admin?
+    #   redirect_to main_app.root_path unless current_user.employee?
     # end
 
   ### Popular gems integration

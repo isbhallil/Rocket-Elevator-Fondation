@@ -7,8 +7,7 @@ class User < ApplicationRecord
       has_one :employee
       # belongs_to :employee, optional: true
 
-      def is_admin?
+      def employee?
         self.employee
       end
 end
-    
