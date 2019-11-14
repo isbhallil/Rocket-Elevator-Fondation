@@ -8,13 +8,12 @@ class Intervention < ApplicationRecord
     belongs_to :elevator, optional: true
     belongs_to :employee, optional: true
 
-    before_create: :sanitize
+    before_save :sanitize
 
 
     private
     def sanitize
-        battery_id = battery_id if columnId == ""
-        column_id = column_id if elevatorId == ""
-        elevator_id = elevator_id
+        ap "INTERVENTION ========="
+        ap self
     end
 end

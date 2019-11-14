@@ -16,19 +16,16 @@
         })
     }
 
-    function hideAndReset(list){
-        $.each(list, function(item){
-            $(`${item}-wrapper`).hide()
-            $(`${item}-selector`).empty()
-
-        })
+    function hideAndReset(model){
+        $(`#${model}-wrapper`).nextAll('.selector-wrapper').hide()
+        $(`#${model}-wrapper`).nextAll('.selector-wrapper').find('select').empty()
     }
 
     function updateFormData(url, selectorToFill){
         let model = url.split("/:")[1].split('_')[0]
         let requestUrl = url.split("/:")[0]
         let id = $(`#${model}_selector`).val()
-        $(`#${model}-wrapper`).nextAll('.selector-wrapper').hide()
+        hideAndReset(model)
         apiRequestAndFillForm(`${requestUrl}/${id}`, selectorToFill)
     }
 
@@ -66,7 +63,6 @@
         </div>
 
         <div class="row-fluid text-center">
-          <span class="border">
           <%= form_with( url: interventions_create_path() ) do |f| %>
             <div class="col-md-12">
               <div id="customer-wrapper" class="selector-wrapper">
