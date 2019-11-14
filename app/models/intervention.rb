@@ -17,13 +17,18 @@ class Intervention < ApplicationRecord
 
     def notification_message
         intervention = Intervention
-            .select('interventions.*', :street, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
+            .select('buildings.id as building_id', :street, :city, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
             .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
             .where(`interventions.id = #{id}`)[0]
 
-        intervention = self.without_noise
+        summary = "Intervention needed at #{intervention.street}, #{intervention.city} on building #{intervention.building_id} \n"
+        summary << "#{'element: battery: ' + battery_id.to_s + "\n" if battery_id}"
+        summary << "#{'column: ' + column_id.to_s + "\n" if column_id}"
+        summary << "#{'elevator: ' + elevator_id.to_s + "\n" if elevator_id}"
+        summary << "customer: #{company_name}, #{email_contact_person}, #{phone_number_contact_person} \n"
+        summary << "tech: #{intervention.full_name_tech_person}, #{intervention.email_tech_person}, #{intervention.phone_number_tech_person}"
 
-        "Intervention needed on #{}"
+        summary
     end
     private
     def sanitize
@@ -35,6 +40,6 @@ class Intervention < ApplicationRecord
 
 
     def notify_problem
-        # Zendesk.notify_problem(self.without_noise)
+        # Zendesk.notify_problem(self.notification_message)
     end
 end
