@@ -1,11 +1,11 @@
 <script>
     function fillSelector(selector, data){
         var row = `<option value=""> <-- select a ${selector} --> </option>`;
-        $(row).appendTo(`#${selector}_selector`)
+        $(row).appendTo(`#${selector}_id`)
 
         $.each(data, function(index, item) {
             row = "<option value=\"" + item.id + "\">" + item.id + "</option>";
-            $(row).appendTo(`#${selector}_selector`)
+            $(row).appendTo(`#${selector}_id`)
         });
         $(`#${selector}-wrapper`).show()
     }
@@ -24,32 +24,40 @@
     function updateFormData(url, selectorToFill){
         let model = url.split("/:")[1].split('_')[0]
         let requestUrl = url.split("/:")[0]
-        let id = $(`#${model}_selector`).val()
+        let id = $(`#${model}_id`).val()
         hideAndReset(model)
         apiRequestAndFillForm(`${requestUrl}/${id}`, selectorToFill)
     }
 
     function hideAll(){
         $('.selector-wrapper').hide()
-        $('#customer-wrapper').show()
+        $('#customer-wrapper, .show').show()
+    }
+
+    function showSaveButton(){
+        employee = $('#employee_id').val()
+        customer = $('#employee_id').val()
+        building = $('#employee_id').val()
+
+        if (employee && customer && building) $
     }
 
     $(document).ready(function(){
         hideAll()
 
-        $("#customer_selector").on("change", function() {
+        $("#customer_id").on("change", function() {
             updateFormData(`/buildings/customers/:customer_id`, 'building' )
         });
 
-        $("#building_selector").on("change", function() {
+        $("#building_id").on("change", function() {
             updateFormData('/batteries/building/:building_id', 'battery')
         });
 
-        $("#battery_selector").on("change", function() {
+        $("#battery_id").on("change", function() {
             updateFormData('/columns/battery/:battery_id', 'column')
         });
 
-        $("#column_selector").on("change", function() {
+        $("#column_id").on("change", function() {
             updateFormData('/elevators/column/:column_id', 'elevator')
         });
     })
@@ -63,35 +71,48 @@
         </div>
 
         <div class="row-fluid text-center">
-          <%= form_with( url: interventions_create_path() ) do |f| %>
+          <%= form_with( url: interventions_create_path(current_user) ) do |f| %>
             <div class="col-md-12">
+
+              <div id="employee-wrapper" class="selector-wrapper show">
+                  <%= f.label :employee_id %>
+                  <%= f.collection_select :employee_id, Employee.all.order(:last_name), :id, :badge, { prompt: 'Please select' } %>
+              </div>
+
               <div id="customer-wrapper" class="selector-wrapper">
                   <%= f.label :customer_id %>
-                  <%= f.collection_select :customer_selector, Customer.all.order(:company_name), :id, :company_name, { prompt: 'Please select' } %>
+                  <%= f.collection_select :customer_id, Customer.all.order(:company_name), :id, :company_name, { prompt: 'Please select' } %>
               </div>
 
               <div id="building-wrapper" class="selector-wrapper">
                   <label for="building_id">Building</label>
-                  <select name="building_id" id="building_selector"></select>
+                  <select name="building_id" id="building_id"></select>
               </div>
 
               <div id="battery-wrapper" class="selector-wrapper">
                   <label for="battery_id">Batteries</label>
-                  <select name="battery_id" id="battery_selector"></select>
+                  <select name="battery_id" id="battery_id"></select>
               </div>
 
               <div id="column-wrapper" class="selector-wrapper">
                   <label for="column_id">Column</label>
-                  <select name="column_id" id="column_selector"></select>
+                  <select name="column_id" id="column_id"></select>
               </div>
 
               <div id="elevator-wrapper" class="selector-wrapper">
                   <label for="elevator_id">Elevators</label>
-                  <select name="elevator_id" id="elevator_selector"></select>
+                  <select name="elevator_id" id="elevator_id"></select>
               </div>
 
-              <div class="actions">
-                  <%= f.submit %>
+              <div id="report-wrapper">
+                  <%= f.label :report %>
+                  <%= f.text_area(:report, size: "30x5") %>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-12">
+                      <%= f.submit("REQUEST INTERVENTION", {class: "btn btn-warning col-md-12"})%>
+                  </div>
               </div>
             </div>
           <% end %>
