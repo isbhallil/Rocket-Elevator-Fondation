@@ -4,7 +4,6 @@ RailsAdmin.config do |config|
     redirect_to main_app.root_path unless current_user && current_user.employee?
   end
 
-
   # RailsAdmin.config do |config|
     # config.authorize_with do
     #   redirect_to main_app.root_path unless current_user.employee?

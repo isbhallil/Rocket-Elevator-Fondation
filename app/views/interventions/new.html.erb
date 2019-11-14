@@ -1,10 +1,4 @@
 <script>
-    function apiRequestAndFillForm(url, selector) {
-        $.get(url, function(response){
-            fillSelector(selector, response)
-        })
-    }
-
     function fillSelector(selector, data){
         var row = `<option value=""> <-- select a ${selector} --> </option>`;
         $(row).appendTo(`#${selector}_selector`)
@@ -16,42 +10,50 @@
         $(`#${selector}-wrapper`).show()
     }
 
+    function apiRequestAndFillForm(url, selector) {
+        $.get(url, function(response){
+            fillSelector(selector, response)
+        })
+    }
+
     function hideAndReset(list){
         $.each(list, function(item){
             $(`${item}-wrapper`).hide()
             $(`${item}-selector`).empty()
+
         })
     }
 
-    function updateFormData(url, paramSelector, selectorToFill, children){
-        hideAndReset(children)
-        let model = url.split("/:")[1]
+    function updateFormData(url, selectorToFill){
+        let model = url.split("/:")[1].split('_')[0]
         let requestUrl = url.split("/:")[0]
-        let id = $(`#${paramSelector}_selector`).val()
+        let id = $(`#${model}_selector`).val()
+        $(`#${model}-wrapper`).nextAll('.selector-wrapper').hide()
         apiRequestAndFillForm(`${requestUrl}/${id}`, selectorToFill)
     }
 
     function hideAll(){
         $('.selector-wrapper').hide()
+        $('#customer-wrapper').show()
     }
 
     $(document).ready(function(){
         hideAll()
 
         $("#customer_selector").on("change", function() {
-            updateFormData(`/buildings/customers/:customer_id`, 'customer', 'building', ['building', 'battery', 'column', 'elevator'])
+            updateFormData(`/buildings/customers/:customer_id`, 'building' )
         });
 
         $("#building_selector").on("change", function() {
-            updateFormData('/batteries/building/:building_id', 'building', 'battery', ['battery', 'column', 'elevator'])
+            updateFormData('/batteries/building/:building_id', 'battery')
         });
 
         $("#battery_selector").on("change", function() {
-            updateFormData('/columns/battery/:battery_id', 'battery', 'column', ['column', 'elevator'])
+            updateFormData('/columns/battery/:battery_id', 'column')
         });
 
         $("#column_selector").on("change", function() {
-            updateFormData('/elevators/column/:column_id', 'column', 'elevator', ['elevator'])
+            updateFormData('/elevators/column/:column_id', 'elevator')
         });
     })
 </script>
@@ -65,9 +67,9 @@
 
         <div class="row-fluid text-center">
           <span class="border">
-          <%= form_with( url: intervention_path() ) do |f| %>
+          <%= form_with( url: interventions_create_path() ) do |f| %>
             <div class="col-md-12">
-              <div>
+              <div id="customer-wrapper" class="selector-wrapper">
                   <%= f.label :customer_id %>
                   <%= f.collection_select :customer_selector, Customer.all.order(:company_name), :id, :company_name, { prompt: 'Please select' } %>
               </div>

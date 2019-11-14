@@ -18,14 +18,8 @@ Rails.application.routes.draw do
   get 'lead' => 'lead#create'
   post 'lead' => 'lead#create'
 
-
-  #InterventionController
-  get 'intervention' => 'interventions#new'
-
-
   #BuildingsController
   get 'buildings/customers/:customer_id' => 'buildings#customer_buildings'
-
 
   #BatteriesController
   get 'batteries/building/:building_id' => 'batteries#building_batteries'
@@ -42,8 +36,8 @@ Rails.application.routes.draw do
 
 
   # InterventionsController
-  get 'intervention' => 'interventions#new'
-  post 'intervention' => 'intervention#create'
+  get 'interventions/new' => 'interventions#new'
+  post 'interventions/create' => 'interventions#create'
 
   # DropboxController
   get 'dropbox/auth' => 'dropbox#auth'
