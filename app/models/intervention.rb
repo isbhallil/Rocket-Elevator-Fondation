@@ -17,11 +17,19 @@ class Intervention < ApplicationRecord
 
     private
     def sanitize
+        ap self
         self.battery_id = "" if self.column_id
         self.column_id = "" if self.elevator_id
+        ap self
+    end
+
+    def notification_message
+        intervention = self.without_noise
+            
+        "Intervention needed on #{}"
     end
 
     def notify_problem
-        Zendesk.notify_problem(self.without_noise)
+        # Zendesk.notify_problem(self.without_noise)
     end
 end

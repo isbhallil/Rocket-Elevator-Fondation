@@ -1,5 +1,16 @@
 class InterventionsController < ApplicationController
 
+  def test
+    intervention = Intervention
+    .select('interventions.*', :street, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
+    .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
+    .where('interventions.id = 3')[0]
+
+    ap intervention
+
+    render :json => "Intervention Needed at #{intervention.street} on "
+  end
+
   def create
     intervention = Intervention.new do |i|
       i.author_id = current_user.employee.id

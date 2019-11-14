@@ -55,6 +55,9 @@ JSON.parse(File.read('lib/seed/address.js')).each do |a|
     })
 end
 
+def seed_Interventions(building_id)
+    Intervention.create(employee_id: 2, customer_id: 5, building_id: 2, author_id: 6, battery_id: 7, column_id: 3, elevator_id: 5)
+end
 
 # # # ELEVATORS
 def seed_elevator(column_id)
@@ -182,7 +185,9 @@ def seed_customers(customers)
             "updated_at": "1987-06-02"
         }).id
 
-        seed_building(customer_id)
+        rand(1..5).times do
+            seed_building(customer_id)
+        end
     end
 end
 

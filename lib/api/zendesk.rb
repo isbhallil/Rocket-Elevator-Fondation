@@ -19,14 +19,15 @@ module Zendesk
     end
 
     def self.notify_problem(intervention)
-        ZendeskAPI::Ticket.create(@@client,
-            :subject => "#{lead.full_name} from #{lead.business_name}",
-            :descrpition => "Create Ticket",
-            :comment => { :value => "#{intervention}"},
-            :submitter_id => @@client.current_user.id,
-            :type => "question",
-            :priority => "urgent"
-        )
+        ap "ZENDESK ===> NOTIFY_PROBLEM"
+        # ZendeskAPI::Ticket.create(@@client,
+        #     :subject => "intervention needed in building #{intervention.building_id}",
+        #     :descrpition => "Create Ticket",
+        #     :comment => { :value => "#{intervention}"},
+        #     :submitter_id => @@client.current_user.id,
+        #     :type => "question",
+        #     :priority => "urgent"
+        # )
     end
 
     def self.quote_ticket(quote)
