@@ -21,15 +21,16 @@ class Intervention < ApplicationRecord
             .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
             .where(`interventions.id = #{id}`)[0]
 
-        summary = "Intervention needed at #{intervention.street}, #{intervention.city} on building #{intervention.building_id} \n"
-        summary << "#{'element: battery: ' + battery_id.to_s + "\n" if battery_id}"
-        summary << "#{'column: ' + column_id.to_s + "\n" if column_id}"
-        summary << "#{'elevator: ' + elevator_id.to_s + "\n" if elevator_id}"
-        summary << "customer: #{company_name}, #{email_contact_person}, #{phone_number_contact_person} \n"
-        summary << "tech: #{intervention.full_name_tech_person}, #{intervention.email_tech_person}, #{intervention.phone_number_tech_person}"
+        subject = "Intervention needed at #{intervention.street}, #{intervention.city} on building #{intervention.building_id} \n"
+        comment = "#{'element: battery: ' + battery_id.to_s + "\n" if battery_id}"
+        comment << "#{'column: ' + column_id.to_s + "\n" if column_id}"
+        comment << "#{'elevator: ' + elevator_id.to_s + "\n" if elevator_id}"
+        comment << "customer: #{intervention.company_name}, #{intervention.email_contact_person}, #{intervention.phone_number_contact_person} \n"
+        comment << "tech: #{intervention.full_name_tech_person}, #{intervention.email_tech_person}, #{intervention.phone_number_tech_person}"
 
-        summary
+        [subject, comment]
     end
+    
     private
     def sanitize
         ap self
@@ -40,6 +41,7 @@ class Intervention < ApplicationRecord
 
 
     def notify_problem
-        # Zendesk.notify_problem(self.notification_message)
+        message = notification_message
+        Zendesk.notify_problem(message[0], message[1])
     end
 end

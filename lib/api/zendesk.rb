@@ -1,10 +1,10 @@
 require 'zendesk_api'
 module Zendesk
     @@client = ZendeskAPI::Client.new do |config|
-        config.url = 'https://rocketelevatorshelp.zendesk.com/api/v2'
-         config.username = ENV['ZENDESK_ACCOUNT_SID']
-         config.token = ENV['ZENDESK_AUTH_TOKEN']
-         config.retry = true
+        config.url = ENV['ZENDESK_URL']
+        config.username = ENV['ZENDESK_EMAIL']
+        config.token = ENV['ZENDESK_TOKEN']
+        config.retry = true
     end
 
     def self.contact_ticket(lead)
@@ -18,16 +18,16 @@ module Zendesk
         )
     end
 
-    def self.notify_problem(intervention)
+    def self.notify_problem(subject, comment)
         ap "ZENDESK ===> NOTIFY_PROBLEM"
-        # ZendeskAPI::Ticket.create(@@client,
-        #     :subject => "intervention needed in building #{intervention.building_id}",
-        #     :descrpition => "Create Ticket",
-        #     :comment => { :value => "#{intervention}"},
-        #     :submitter_id => @@client.current_user.id,
-        #     :type => "question",
-        #     :priority => "urgent"
-        # )
+        ZendeskAPI::Ticket.create(@@client,
+            :subject => subject,
+            :descrpition => "Create Ticket",
+            :comment => { :value => comment},
+            :submitter_id => @@client.current_user.id,
+            :type => "Problem",
+            :priority => "urgent"
+        )
     end
 
     def self.quote_ticket(quote)
