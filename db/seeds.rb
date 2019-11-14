@@ -45,7 +45,7 @@ JSON.parse(File.read('lib/seed/address.js')).each do |a|
         "status": "Active",
         "entity": "Building",
         "street": a["number_street"],
-        "apt_number": Faker::Number.between(from: 1, to: 50),
+        "apt_number": rand(1..50),
         "city": a["city"],
         "postal_code": a["postalCode"],
         "country": "US",
@@ -53,10 +53,6 @@ JSON.parse(File.read('lib/seed/address.js')).each do |a|
         "longitude": a["coordinates"]["lng"],
         "latitude": a["coordinates"]["lat"]
     })
-end
-
-def seed_Interventions(building_id)
-    Intervention.create(employee_id: 2, customer_id: 5, building_id: 2, author_id: 6, battery_id: 7, column_id: 3, elevator_id: 5)
 end
 
 # # # ELEVATORS
@@ -67,8 +63,8 @@ def seed_elevator(column_id)
     Elevator.create({
         "column_id": column_id,
         "serial_number": Faker::Alphanumeric.alpha(number: 15),
-        "model_type": model_types[Faker::Number.within(range: 0..2)],
-        "status": statuses[Faker::Number.within(range: 0..2)],
+        "model_type": model_types[rand(0..2)],
+        "status": statuses[rand(0..2)],
         "date_of_installation": "3/23/2017",
         "date_of_inspection": "9/17/2018",
         "inspection_certificate": Faker::Alphanumeric.alpha(number: 25),
@@ -85,14 +81,14 @@ def seed_column(battery_id)
     ap "COLUMN"
     column_id = Column.create({
         "battery_id": battery_id,
-        "status": statuses[Faker::Number.within(range: 0..2)],
+        "status": statuses[rand(0..2)],
         "information": Faker::Lorem.sentence(),
         "notes": Faker::Lorem.sentence(),
         "created_at": "2017-12-26",
         "updated_at": "2017-10-07"
     }).id
 
-    Faker::Number.within(range: 1..3).times do
+    rand(1..5).times do
         seed_elevator(column_id)
     end
 end
@@ -101,7 +97,7 @@ end
 def seed_battery(building_id)
     date_of_installation = Faker::Date.between(from: 70.years.ago, to: Date.today)
     date_of_inspection = Faker::Date.backward(days: 14)
-    employee_id = Faker::Number.within(range: 1..Employee.count)
+    employee_id = rand(1..Employee.count)
     ap "BATTERY"
 
     battery_id = Battery.create({
@@ -119,7 +115,7 @@ def seed_battery(building_id)
 
     ap "FINISH"
 
-    Faker::Number.within(range: 1..3).times do
+    rand(1..5).times do
         seed_column(battery_id)
     end
 end
@@ -127,46 +123,36 @@ end
 
 # # # BUILDING
 def seed_building(customer_id)
-    building_address_ids = []
-    Address.count.times do |x|
-        building_address_ids << x + 1
-    end
+    employee_id = rand(1..Employee.count)
+    employee = Employee.find(employee_id)
 
-    Faker::Number.within(range: 1..2).times do |b|
-        employee_id = rand(Employee.count) + 1
-        employee = Employee.find(employee_id)
+    building_types = ['residential', 'corporate', 'commercial', 'hybrid']
+    building_id = Building.create({
+        "customer_id": customer_id,
+        "address_id": rand(1..Address.count),
+        "full_name_admin_person": "#{formated(employee.first_name)} #{formated(employee.last_name)}" ,
+        "email_admin_person": Faker::Internet.email,
+        "building_type": building_types[Faker::Number.within(range: 0..3)],
+        "phone_number_admin_person": Faker::PhoneNumber.phone_number,
+        "full_name_tech_person": formated(Faker::Name.first_name + " " + Faker::Name.last_name),
+        "email_tech_person": Faker::Internet.email,
+        "floors": Faker::Number.within(range: 15..60),
+        "phone_number_tech_person": Faker::PhoneNumber.phone_number,
+        "created_at": "2012-09-10",
+        "updated_at": "1987-06-15"
+    }).id
 
-        building_types = ['residential', 'corporate', 'commercial', 'hybrid']
-        building_id = Building.create({
-            "customer_id": customer_id,
-            "address_id": building_address_ids.sample,
-            "full_name_admin_person": "#{formated(employee.first_name)} #{formated(employee.last_name)}" ,
-            "email_admin_person": Faker::Internet.email,
-            "building_type": building_types[Faker::Number.within(range: 0..3)],
-            "phone_number_admin_person": Faker::PhoneNumber.phone_number,
-            "full_name_tech_person": formated(Faker::Name.first_name + " " + Faker::Name.last_name),
-            "email_tech_person": Faker::Internet.email,
-            "floors": Faker::Number.within(range: 15..60),
-            "phone_number_tech_person": Faker::PhoneNumber.phone_number,
-            "created_at": "2012-09-10",
-            "updated_at": "1987-06-15"
-        }).id
-
+    rand(1..5).times do
         seed_battery(building_id)
     end
 end
 
-
+# # # CUSTOMERS
 def seed_customers(customers)
-    list = []
-    Address.count.times do |x|
-        list << x + 1
-    end
-
     customers.each do |customer|
-
+        ap "CUSTOMERS"
         customer_email = Faker::Internet.email
-        address_id = list.sample
+        address_id = rand(1..Address.count)
         user_id = User.create({"email": customer_email, "password": "12345678", "password_confirmation": "12345678" }).id
 
         customer_id = Customer.create({
@@ -191,9 +177,45 @@ def seed_customers(customers)
     end
 end
 
+# # # INTERVENTIONS
+def seed_Interventions(customer_id)
+    ap "INTERVENTION"
+    customer = Customer.find(customer_id)
+    building = customer.buildings.sample
+    intervention_element_id_type = ["battery_id", "column_id", "elevator_id"].sample
+    intervention_element_id = nil
+
+    if intervention_element_id_type == "battery_id"
+        intervention_element_id = building.batteries.sample.id
+    elsif intervention_element_id_type == "column_id"
+        intervention_element_id = building.columns.sample.id
+    else
+        intervention_element_id = building.elevators.sample.id
+    end
+
+    intervention = Intervention.new do |i|
+        i["author_id"] = rand(1..Employee.count)
+        i["employee_id"] = rand(1..Employee.count)
+        i["customer_id"] = customer.id
+        i["building_id"] = building.id
+        i["report"] = Faker::Lorem.sentence()
+        i[intervention_element_id_type] = intervention_element_id
+    end
+
+    intervention.save!
+end
+
+
 # CUSTOMERS
 customers = JSON.parse(File.read('lib/seed/customer.js'))
 seed_customers(customers)
+
+# INTERVENTION
+50.times do
+    customer_id = rand(1..Customer.count)
+    seed_Interventions(customer_id)
+end
+
 
 # META WEBSITE PORTFOLIO AND AWARDS
 JSON.parse(File.read('lib/seed/awards.js'))
