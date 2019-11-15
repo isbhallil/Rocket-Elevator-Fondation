@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   #TEST
-  get 'test' => 'interventions#test'
+  get 'test/:id' => 'interventions#test'
 
   # PagesController
   root 'pages#root'

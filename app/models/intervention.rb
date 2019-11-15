@@ -17,11 +17,13 @@ class Intervention < ApplicationRecord
 
     def notification_message
         intervention = Intervention
-            .select('buildings.id as building_id', :street, :city, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
-            .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
-            .where(`interventions.id = #{id}`)[0]
+        .select('interventions.id as id', 'buildings.id as building_id', :street, :city, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
+        .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
+        .where('interventions.id = ' + params[:id])[0]
 
         subject = "Intervention needed at #{intervention.street}, #{intervention.city} on building #{intervention.building_id} \n"
+
+        comment = subject
         comment = "#{'element: battery: ' + battery_id.to_s + "\n" if battery_id}"
         comment << "#{'column: ' + column_id.to_s + "\n" if column_id}"
         comment << "#{'elevator: ' + elevator_id.to_s + "\n" if elevator_id}"
@@ -30,7 +32,7 @@ class Intervention < ApplicationRecord
 
         [subject, comment]
     end
-    
+
     private
     def sanitize
         ap self

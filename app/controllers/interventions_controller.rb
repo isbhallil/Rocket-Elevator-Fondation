@@ -1,22 +1,12 @@
 class InterventionsController < ApplicationController
 
   def test
-    render :json => Building.select(
-      :id,
-      :building_type,
-      "full_name_contact_person as customer_name",
-      "full_name_tech_person as tech_name",
-      "email_tech_person as tech_email",
-      "count(batteries.id) as batteries",
-      "count(columns.id) as columns",
-      "count(interventions.id) as interventions",
-      :floors,
-      :latitude,
-      :longitude,
-      "count(elevators.id) as elevators"
-  )
-  .joins(:batteries, :columns, :elevators, :customer, :address, :interventions)
-  .group("buildings.id")
+    ap "PARAMS #{params[:id]}"
+    render :json => Intervention
+    .select('interventions.id as id', 'buildings.id as building_id', :street, :city, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
+    .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
+    .where('interventions.id = ' + params[:id])
+
   end
 
   def create
