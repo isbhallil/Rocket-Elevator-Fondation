@@ -19,13 +19,15 @@
             <h6 style="margin-bottom: 10px;">These items needs your attentions : </h6>
             <p>
                 <% building["interventions_to_do"].each do |intervention| %>
-                    <strong> <%= intervention[:thing]%>: <%= intervention[:id]%> </strong> <br>
+                    <strong> <%= intervention[:thing] %>: <%= intervention[:id]%> </strong> <br>
                 <% end %>
             </p>
         <% end %>
     </ul>
 
-
+    <% building["intervetnions".each do |intervention|]%>
+        <a href="/admin/intervetion/<%= intervetnion["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-danger">Edit intervetnion <%= intervention["id" ]%></a>
+    <% end %>
     <a href="/admin/building/<%= building["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-success">Edit building</a>
     <a href= "mailto: <%= building["tech_email"] %>" type="button" class="btn btn-sm btn-block btn-warning">Contact Support</a>
     </div>

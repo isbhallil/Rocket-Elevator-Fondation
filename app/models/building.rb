@@ -5,6 +5,7 @@ class Building < ApplicationRecord
     has_many :batteries
     has_many :columns, through: :batteries
     has_many :elevators, through: :columns
+    has_many :interventions
 
     def weather_summary
         Weather.get_weather(45.5017, -73.5673)

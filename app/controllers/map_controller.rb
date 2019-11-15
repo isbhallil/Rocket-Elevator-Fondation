@@ -5,10 +5,6 @@ class MapController < ApplicationController
         load_markers
     end
 
-    def test
-        render :json => get_buildings
-    end
-
     private
     def is_user_admin?
         unless current_user != nil and current_user.employee?
@@ -21,16 +17,7 @@ class MapController < ApplicationController
             marker.lat building['latitude']
             marker.lng building["longitude"]
 
-            @battery = rand(10..90)
-            @ip = "192.168."+rand(0..255).to_s+"."+rand(15..250).to_s
-            @connected = rand(50..100)
-
-            if building["interventions_to_do"].length > 0
-                marker_picture_url = "/map_pins/red.png"
-            else
-                marker_picture_url = "/map_pins/blue.png"
-            end
-
+            marker_picture_url = "/map_pins/red.png" ? building["interventions_to_do"].length > 0 : "/map_pins/blue.png"
             marker.picture({
                 "url" => marker_picture_url,
                 "width" => 35,
@@ -53,17 +40,24 @@ class MapController < ApplicationController
             "email_tech_person as tech_email",
             "count(batteries.id) as batteries",
             "count(columns.id) as columns",
+            "count(interventions.id) as interventions",
             :floors,
             :latitude,
             :longitude,
             "count(elevators.id) as elevators"
         )
-        .joins(:batteries, :columns, :elevators, :customer, :address)
+        .joins(:batteries, :columns, :elevators, :customer, :address, :interventions)
         .group("buildings.id")
 
         buildings = JSON.parse(buildings.to_json)
         buildings.map do |building|
             interventions_to_do = []
+
+            building["interventions"].each do |intervention|
+                if intervetnion["status"] == "Pending"
+                    interventions_to_do << {thing: "intervetnion", id: intervetnion["id"]}
+                end
+            end
 
             building["batteries"].each do |battery|
                 if battery["status"] == "Intervention"
