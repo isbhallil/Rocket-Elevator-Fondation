@@ -20,7 +20,11 @@ class User < ApplicationRecord
         self.customer
       end
 
-      def can_access_dashboard?
+      def can_acces_intervention?
         self.admin || self.customer
+      end
+
+      def can_access_dashboard?
+        self.admin?
       end
 end

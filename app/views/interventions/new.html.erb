@@ -1,18 +1,19 @@
 <script>
-    function fillSelector(selector, data){
+    function fillSelector(selector, data, elementToDisplay){
         var row = `<option value=""> <-- select a ${selector} --> </option>`;
         $(row).appendTo(`#${selector}_id`)
 
         $.each(data, function(index, item) {
-            row = "<option value=\"" + item.id + "\">" + item.id + "</option>";
+            row = "<option value=\"" + item.id + "\">" + item[elementToDisplay] + "</option>";
             $(row).appendTo(`#${selector}_id`)
         });
         $(`#${selector}-wrapper`).show()
     }
 
-    function apiRequestAndFillForm(url, selector) {
+    function apiRequestAndFillForm(url, selector, elementToDisplay) {
         $.get(url, function(response){
-            fillSelector(selector, response)
+            console.log(response)
+            fillSelector(selector, response, elementToDisplay)
         })
     }
 
@@ -21,12 +22,12 @@
         $(`#${model}-wrapper`).nextAll('.selector-wrapper').find('select').empty()
     }
 
-    function updateFormData(url, selectorToFill){
+    function updateFormData(url, selectorToFill, elementToDisplay){
         let model = url.split("/:")[1].split('_')[0]
         let requestUrl = url.split("/:")[0]
         let id = $(`#${model}_id`).val()
         hideAndReset(model)
-        apiRequestAndFillForm(`${requestUrl}/${id}`, selectorToFill)
+        apiRequestAndFillForm(`${requestUrl}/${id}`, selectorToFill, elementToDisplay)
     }
 
     function hideAll(){
@@ -46,19 +47,19 @@
         hideAll()
 
         $("#customer_id").on("change", function() {
-            updateFormData(`/buildings/customers/:customer_id`, 'building' )
+            updateFormData(`/buildings/customers/:customer_id`, 'building', 'street' )
         });
 
         $("#building_id").on("change", function() {
-            updateFormData('/batteries/building/:building_id', 'battery')
+            updateFormData('/batteries/building/:building_id', 'battery', 'id')
         });
 
         $("#battery_id").on("change", function() {
-            updateFormData('/columns/battery/:battery_id', 'column')
+            updateFormData('/columns/battery/:battery_id', 'column', 'id')
         });
 
         $("#column_id").on("change", function() {
-            updateFormData('/elevators/column/:column_id', 'elevator')
+            updateFormData('/elevators/column/:column_id', 'elevator', 'id')
         });
     })
 </script>
