@@ -1,8 +1,6 @@
 class Elevator < ApplicationRecord
   include RailsAdminCharts
   include ActiveModel::Dirty
-  include Notifier
-  include Zendesk
 
   belongs_to :column
   after_update :sendTicket, :status_changed if :status_changed?
