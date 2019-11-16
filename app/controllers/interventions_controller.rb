@@ -1,5 +1,14 @@
 class InterventionsController < ApplicationController
 
+  def new
+    user = User.find(params[:format])
+    if user.admin?
+      @customers = Customer.all.order(:company_name)
+    else
+      @customers = Customer.where(user_id: user.id)
+    end
+  end
+
   def create
     intervention = Intervention.new do |i|
       i.author_id = current_user.employee.id
@@ -12,7 +21,7 @@ class InterventionsController < ApplicationController
       i.report = params["report"]
     end
 
-    redirect_to rails_admin_path() if intervention.try(:save!)
+    redirect_to root_path() if intervention.try(:save!)
   end
 
 end

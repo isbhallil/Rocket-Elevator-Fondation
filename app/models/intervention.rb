@@ -44,6 +44,6 @@ class Intervention < ApplicationRecord
 
     def notify_problem
         message = notification_message
-        # Zendesk.notify_problem(message[0], message[1])
+        Zendesk.notify_problem(message[0], message[1])
     end
 end

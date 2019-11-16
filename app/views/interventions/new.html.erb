@@ -81,7 +81,7 @@
 
               <div id="customer-wrapper" class="selector-wrapper">
                   <%= f.label :customer_id %>
-                  <%= f.collection_select :customer_id, Customer.all.order(:company_name), :id, :company_name, { prompt: 'Please select' } %>
+                  <%= f.collection_select :customer_id, @customers, :id, :company_name, { prompt: 'Please select' } %>
               </div>
 
               <div id="building-wrapper" class="selector-wrapper">
