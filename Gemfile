@@ -24,6 +24,7 @@ gem 'font_awesome'
 gem 'darksky_weather-api'
 gem 'dropbox_api'
 gem 'graphql'
+gem 'cancan'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

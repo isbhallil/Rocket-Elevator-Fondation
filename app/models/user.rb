@@ -5,9 +5,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable
 
       has_one :employee
-      # belongs_to :employee, optional: true
+      has_one :customer
+      has_one :admin
 
       def employee?
         self.employee
+      end
+
+      def admin?
+        self.admin
+      end
+
+      def customer?
+        self.customer
+      end
+
+      def can_access_dashboard?
+        self.admin || self.customer
       end
 end

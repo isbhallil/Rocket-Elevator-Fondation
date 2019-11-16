@@ -21,10 +21,10 @@ class LeadController < ApplicationController
     puts params_attach
         @lead.file.attach(params["lead_file"])
         @lead.original_filename = params_attach.original_filename
-    
+
 
     if @lead.try(:save)
-        LeadsMailer.leads_email(@lead).deliver
+        # LeadsMailer.leads_email(@lead).deliver
         # @lead.file.purge
         redirect_to root_path
     else

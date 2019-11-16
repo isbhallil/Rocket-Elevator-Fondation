@@ -25,7 +25,7 @@ module Zendesk
             :descrpition => "Create Ticket",
             :comment => { :value => comment},
             :submitter_id => @@client.current_user.id,
-            :type => "Problem",
+            :type => "problem",
             :priority => "urgent"
         )
     end

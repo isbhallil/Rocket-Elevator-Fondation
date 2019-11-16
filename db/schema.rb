@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_183412) do
+ActiveRecord::Schema.define(version: 2019_11_16_005556) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 2019_11_11_183412) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+  end
+
+  create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
   create_table "awards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -178,9 +185,11 @@ ActiveRecord::Schema.define(version: 2019_11_11_183412) do
     t.bigint "employee_id", null: false
     t.string "intervention_begins_at"
     t.string "intervention_finished_at"
-    t.string "result", default: 'Incomplete'
+    t.string "result", default: "Incomplete"
     t.string "report"
-    t.string "status", default: 'Pending'
+    t.string "status", default: "Pending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_interventions_on_author_id"
     t.index ["battery_id"], name: "index_interventions_on_battery_id"
     t.index ["building_id"], name: "index_interventions_on_building_id"
@@ -260,6 +269,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_183412) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "admins", "users"
   add_foreign_key "batteries", "buildings", on_update: :cascade, on_delete: :cascade
   add_foreign_key "batteries", "employees", on_update: :cascade, on_delete: :cascade
   add_foreign_key "building_details", "buildings", on_update: :cascade, on_delete: :cascade

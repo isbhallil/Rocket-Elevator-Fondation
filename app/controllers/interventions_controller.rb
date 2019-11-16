@@ -1,14 +1,5 @@
 class InterventionsController < ApplicationController
 
-  def test
-    ap "PARAMS #{params[:id]}"
-    render :json => Intervention
-    .select('interventions.id as id', 'buildings.id as building_id', :street, :city, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
-    .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
-    .where('interventions.id = ' + params[:id])
-
-  end
-
   def create
     intervention = Intervention.new do |i|
       i.author_id = current_user.employee.id

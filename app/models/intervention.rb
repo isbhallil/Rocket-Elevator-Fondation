@@ -19,7 +19,7 @@ class Intervention < ApplicationRecord
         intervention = Intervention
         .select('interventions.id as id', 'buildings.id as building_id', :street, :city, :full_name_tech_person, :email_tech_person, :phone_number_tech_person, :company_name, :email_contact_person, :phone_number_contact_person)
         .joins(:building, :customer, "LEFT JOIN addresses ON buildings.address_id = addresses.id")
-        .where('interventions.id = ' + params[:id])[0]
+        .where('interventions.id = ' + id.to_s)[0]
 
         subject = "Intervention needed at #{intervention.street}, #{intervention.city} on building #{intervention.building_id} \n"
 
@@ -44,6 +44,6 @@ class Intervention < ApplicationRecord
 
     def notify_problem
         message = notification_message
-        Zendesk.notify_problem(message[0], message[1])
+        # Zendesk.notify_problem(message[0], message[1])
     end
 end
