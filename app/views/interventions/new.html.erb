@@ -45,6 +45,9 @@
 
     $(document).ready(function(){
         hideAll()
+        $('.selector-wrapper').addClass('fancy-form fancy-form-select type-select')
+        $('select').addClass('form-control')
+        $('#report').addClass('form-control')
 
         $("#customer_id").on("change", function() {
             updateFormData(`/buildings/customers/:customer_id`, 'building', 'street' )
