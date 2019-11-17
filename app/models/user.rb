@@ -25,6 +25,6 @@ class User < ApplicationRecord
       end
 
       def can_access_dashboard?
-        self.admin?
+        self.admin
       end
 end
