@@ -54,8 +54,8 @@ class MapController < ApplicationController
             interventions_to_do = []
 
             building["interventions"].each do |intervention|
-                if intervetnion["status"] == "Pending"
-                    interventions_to_do << {thing: "intervetnion", id: intervetnion["id"]}
+                if intervention["status"] == "Pending"
+                    interventions_to_do << {thing: "intervetnion", id: intervention["id"]}
                 end
             end
 
