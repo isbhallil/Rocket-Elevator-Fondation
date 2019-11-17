@@ -25,7 +25,7 @@
         <% end %>
     </ul>
 
-    <% building["intervention"].each do |intervention|]%>
+    <% building["interventions"].each do |intervention|]%>
         <a href="/admin/interventions/<%= intervention["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-danger">Edit intervention <%= intervention["id" ]%></a>
     <% end %>
     <a href="/admin/building/<%= building["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-success">Edit building</a>
