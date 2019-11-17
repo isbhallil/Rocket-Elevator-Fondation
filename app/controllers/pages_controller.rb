@@ -3,38 +3,28 @@ class PagesController < ApplicationController
     def root
     end
 
+
+
     def quote
     end
 
     def test
-        buildings = Building.select(
+        render :json => Building.select(
             :id,
+            :building_type,
+            "full_name_contact_person as customer_name",
+            "full_name_tech_person as tech_name",
+            "email_tech_person as tech_email",
             "count(batteries.id) as batteries",
             "count(columns.id) as columns",
+            "count(interventions.id) as interventions",
+            :floors,
+            :latitude,
+            :longitude,
             "count(elevators.id) as elevators"
         )
-        .joins(:batteries, :columns, :elevators, :customer, :address)
+        .joins(:batteries, :columns, :elevators, :customer, :address, :interventions)
         .group("buildings.id")
-
-        current_building = Building.first
-
-        intervention = {
-            employeeId: Employee.all.sample.id,
-            buildingId: current_building.id,
-            result: get_random_from("success", "failure", "incomplete"),
-            report: Faker::Lorem.paragraph,
-            status: get_random_from("Pending" ,"InProgress" ,"Interrupted" ,"Resumed" ,"Complete")
-        }
-
-        get_intervention_type(current_building).each do |type, value|
-            intervention[type] = value
-        end
-
-        get_intervention_timestamps.each do |key, value|
-            intervention[key] = value
-        end
-
-        render :json => intervention
     end
 
     def get_random_from(*args)

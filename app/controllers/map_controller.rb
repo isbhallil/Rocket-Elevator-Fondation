@@ -1,6 +1,8 @@
 class MapController < ApplicationController
     before_action :is_user_admin?
 
+
+
     def index
         load_markers
     end
@@ -17,7 +19,7 @@ class MapController < ApplicationController
             marker.lat building['latitude']
             marker.lng building["longitude"]
 
-            marker_picture_url = "/map_pins/red.png" ? building["interventions_to_do"].length > 0 : "/map_pins/blue.png"
+            marker_picture_url =  building["interventions"].length > 0 ? "/map_pins/red.png" : "/map_pins/blue.png"
             marker.picture({
                 "url" => marker_picture_url,
                 "width" => 35,

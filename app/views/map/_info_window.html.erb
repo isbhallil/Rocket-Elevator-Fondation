@@ -15,14 +15,6 @@
         <li><strong>the temperature is <%= weather[:temperature] %> F</strong></li>
         <li><strong>the sky is <%= weather[:sky_desc] %></strong></li>
         <hr>
-        <% if building["interventions_to_do"].length > 0 %>
-            <h6 style="margin-bottom: 10px;">These items needs your attentions : </h6>
-            <p>
-                <% building["interventions_to_do"].each do |intervention| %>
-                    <strong> <%= intervention[:thing] %>: <%= intervention[:id]%> </strong> <br>
-                <% end %>
-            </p>
-        <% end %>
     </ul>
 
     <% building["interventions"].each do |intervention| %>
