@@ -197,6 +197,8 @@ GEM
     pg (1.1.4)
     puma (3.12.1)
     rack (2.0.7)
+    rack-attack (6.2.1)
+      rack (>= 1.0, < 3)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
@@ -358,6 +360,7 @@ DEPENDENCIES
   owlcarousel-rails
   pg
   puma (~> 3.11)
+  rack-attack
   rails (~> 5.2.3)
   rails_admin (~> 2.0)
   rails_admin_charts

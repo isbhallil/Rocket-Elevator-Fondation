@@ -1,4 +1,6 @@
 class QuotesController < ApplicationController
+  before_action permit_quote_params
+
   def new
   end
 
@@ -114,7 +116,7 @@ class QuotesController < ApplicationController
       total: q.total
     }
 
-    
+
     if q.try(:save)
     redirect_to print_path(quote_summary)
     else
@@ -124,6 +126,11 @@ class QuotesController < ApplicationController
 
   def print
     @quote = params
+  end
+
+  private
+  def permit_quote_params
+    params.permit('range-type-select','building-type-select',"full_name","business_name","email","phone_number","building_project_name","project_description","message","department_in_charge_of_elevators")
   end
 
 end

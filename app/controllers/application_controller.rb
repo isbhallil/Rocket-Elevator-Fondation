@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
     before_action :init_global_variables
-   
-    private 
+    protect_from_forgery with: :exception
+
+    private
     def init_global_variables
         @navs = Nav.all
         @awards = Award.all
