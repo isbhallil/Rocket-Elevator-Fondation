@@ -1,12 +1,12 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <section>
     <div class="container">
-      
+
       <div class="row">
 
         <div class="col-md-6 offset-md-3">
 
-          
+
 
           <div class="box-static box-border-top p-30">
             <div class="box-title mb-30">
@@ -15,36 +15,36 @@
             </div>
 
             <form class="m-0" method="post" action="#" autocomplete="off">
-              
+
               <div class="clearfix">
-                
+
                 <!-- Email -->
                 <div class="form-group">
-                  <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) class: "form-control"%>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "form-control"%>
                 </div>
-                
+
                 <!-- Password -->
                 <div class="form-group">
                   <%= f.password_field :password, autocomplete: "current-password", placeholder: "Password", class: "form-control"%>
                 </div>
-                  
+
               </div>
-              
+
               <div class="row">
-                
+
                 <div class="col-md-6 col-sm-6 col-6 text-right">
-                  <%= f.submit "Login now" class: 'btn btn-primary'%>
+                  <%= f.submit "Login now", class: 'btn btn-primary'%>
                 </div>
-                
+
               </div>
-              
+
             </form>
 
           </div>
 
         </div>
       </div>
-      
+
     </div>
   </section>
 <% end %>
