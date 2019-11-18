@@ -18,7 +18,7 @@
     </ul>
 
     <% building["interventions"].each do |intervention| %>
-        <a href="/admin/interventions/<%= intervention["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-danger">Edit intervention <%= intervention["id"]%></a>
+        <a href="/admin/intervention/<%= intervention["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-danger">Edit intervention <%= intervention["id"]%></a>
     <% end %>
     <a href="/admin/building/<%= building["id"]%>/edit" type="button" class="btn btn-sm btn-block btn-success">Edit building</a>
     <a href= "mailto: <%= building["tech_email"] %>" type="button" class="btn btn-sm btn-block btn-warning">Contact Support</a>

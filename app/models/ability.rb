@@ -5,6 +5,7 @@ class Ability
     if user && user.admin?
       can :access, :rails_admin
       can :read, :all
+      can :manage, :all
       can :read, :dashboard
     end
   end

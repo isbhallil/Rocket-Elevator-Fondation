@@ -10,8 +10,15 @@ class InterventionsController < ApplicationController
   end
 
   def create
+    id = 0
+    if current_user && current_user.admin?
+      id = current_user.employee.id
+    elsif current_user && current_user.customer?
+      id = nil
+    end
+
     intervention = Intervention.new do |i|
-      i.author_id = current_user.employee.id
+      i.author_id = id
       i.customer_id = params["customer_id"]
       i.building_id = params["building_id"]
       i.battery_id = params["battery_id"]
