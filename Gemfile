@@ -27,7 +27,7 @@ gem 'graphql'
 gem 'cancan'
 gem 'rack-attack'
 gem 'simplecov', require: false, group: :test
-
+gem 'rest-client'
 #
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
