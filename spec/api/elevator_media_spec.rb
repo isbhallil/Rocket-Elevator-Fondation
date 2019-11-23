@@ -16,8 +16,8 @@ describe "ElevatorMedia::Streamer" do
 
     it "should @streamer.get_content return valid html" do
         content = @streamer.get_content()
-        expect(valid_html).to include("<div>")
-        expect(valid_html).to include("</div>")
+        expect(content).to include("<div>")
+        expect(content).to include("</div>")
     end
 
   end
