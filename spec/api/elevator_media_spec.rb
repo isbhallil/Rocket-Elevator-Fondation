@@ -20,4 +20,25 @@ describe "ElevatorMedia::Streamer" do
         expect(content).to include("</div>")
     end
 
+    it "should get a starwars character" do
+        person = @streamer.get_character
+        expect(person).not_to be_empty
+    end
+
+    it "should get a starwars character with a name attribute" do
+        person = @streamer.get_character
+        expect(person).to have_key("name")
+    end
+
+    it "should get return an adjective" do
+        adjective = @streamer.get_adjective
+        expect(adjective).not_to be_empty
+    end
+
+    it "should get a adjective from" do
+        adjectives_list = ['hero', 'badass', 'monster', 'princess', 'fish', 'cucumber', 'popcorn']
+        adjective = @streamer.get_adjective
+        expect(adjectives_list).to include(adjective)
+    end
+
   end
