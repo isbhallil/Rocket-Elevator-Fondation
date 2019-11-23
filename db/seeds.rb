@@ -59,13 +59,13 @@ end
 # # # ELEVATORS
 def seed_elevator(column_id)
     model_types = ["Standard", "Premium", "Excelium"]
-    statuses = ["On", "Off", "Intervention"]
+    statuses = ["Running", "Running", "Running", "Running", "Intervention"]
     ap "ELEVATOR"
     Elevator.create({
         "column_id": column_id,
         "serial_number": Faker::Alphanumeric.alpha(number: 15),
         "model_type": model_types[rand(0..2)],
-        "status": statuses[rand(0..2)],
+        "status": statuses[rand(0..4)],
         "date_of_installation": "3/23/2017",
         "date_of_inspection": "9/17/2018",
         "inspection_certificate": Faker::Alphanumeric.alpha(number: 25),
