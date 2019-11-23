@@ -9,3 +9,9 @@ development:
   database: database_development
   username: root
   password: test
+
+test:
+  <<: *default
+  database: database_test
+  username: root
+  password: test

@@ -1,7 +1,7 @@
 class WatsonSpeakController < ApplicationController
-        require "ibm_watson"
-        require "ibm_watson/authenticators"
-        require "ibm_watson/text_to_speech_v1"
+        # require "ibm_watson"
+        # require "ibm_watson/authenticators"
+        # require "ibm_watson/text_to_speech_v1"
 
 
 
