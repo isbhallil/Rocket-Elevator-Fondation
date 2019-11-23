@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'elevator_media'
 
-describe "Instantiate the streamer class" do
+describe "ElevatorMedia::Streamer" do
     before do
       @streamer = ElevatorMedia::Streamer.new
     end
@@ -12,6 +12,12 @@ describe "Instantiate the streamer class" do
 
     it "should execute Streamer.get_content" do
         expect(@streamer).to respond_to(:get_content)
+    end
+
+    it "should @streamer.get_content return valid html" do
+        content = @streamer.get_content()
+        expect(valid_html).to include("<div>")
+        expect(valid_html).to include("</div>")
     end
 
   end
