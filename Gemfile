@@ -26,6 +26,7 @@ gem 'dropbox_api'
 gem 'graphql'
 gem 'cancan'
 gem 'rack-attack'
+gem 'simplecov', require: false, group: :test
 
 #
 
