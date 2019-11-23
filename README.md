@@ -1,5 +1,9 @@
 # README
 
+TO ACCESS FILES FORE THE SPECS
+spec\models\intervention_spec.rb
+spec\api\elevator_media_spec.rb
+
 
 ## Number of single request (ContactId) created by month (Creation date)
 SELECT COUNT(id), to_char( creation_date, 'yyyy-mm')
