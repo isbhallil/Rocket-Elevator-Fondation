@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   get 'interventions/new' => 'interventions#new'
   post 'interventions/create' => 'interventions#create'
 
+  # ShipingsController
+  get 'shippings' => 'pages#shippings'
+
   # DropboxController
   get 'dropbox/auth' => 'dropbox#auth'
   get 'dropbox/auth_callback' => 'dropbox#auth_callback'

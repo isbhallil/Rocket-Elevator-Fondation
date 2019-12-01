@@ -3,28 +3,7 @@ class PagesController < ApplicationController
     def root
     end
 
-
-
     def quote
-    end
-
-    def test
-        render :json => Building.select(
-            :id,
-            :building_type,
-            "full_name_contact_person as customer_name",
-            "full_name_tech_person as tech_name",
-            "email_tech_person as tech_email",
-            "count(batteries.id) as batteries",
-            "count(columns.id) as columns",
-            "count(interventions.id) as interventions",
-            :floors,
-            :latitude,
-            :longitude,
-            "count(elevators.id) as elevators"
-        )
-        .joins(:batteries, :columns, :elevators, :customer, :address, :interventions)
-        .group("buildings.id")
     end
 
     def get_random_from(*args)
@@ -64,5 +43,8 @@ class PagesController < ApplicationController
         end
 
         intervention_type
+    end
+
+    def shippings
     end
 end
