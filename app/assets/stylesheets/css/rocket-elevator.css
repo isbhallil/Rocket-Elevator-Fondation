@@ -91,3 +91,9 @@
 #building-type-select {
     border: 5px red solid;
 }
+
+.shipment-item {
+    max-width: 18rem;
+    display: inline-block;
+    min-width: 250px;
+}

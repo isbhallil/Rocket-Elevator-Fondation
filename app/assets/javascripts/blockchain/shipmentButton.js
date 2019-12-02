@@ -1,5 +1,6 @@
 let shipping;
 let shippingContract;
+let contract
 let abi;
 let items;
 let shipment;
@@ -41,26 +42,14 @@ const call = (contractEndpoint, ...args) => {
     })
 }
 
-const revealTitle = (shipmentId, title, itemsCount, shipmentStatus) => {
-    let status = shipmentStatus == true ? "delvered" : "in transit";
-    $('#shipment-title').text(`TrackingNumber #${shipmentId} for ${title.toUpperCase()} has ${itemsCount} items and is ${status}`);
-    $('#shipment-title-wrapper').show();
-}
-
-const appendItem = (itemId, itemName, itemStatus, shipmentId) => {
-    var item = itemComponent(itemId, itemName, itemStatus, shipmentId);
-
-    $("#shipment-items").append(item);
-}
-
-const itemComponent = (itemId, itemName, itemStatus, shipmentId) => {
-    let metaData = getMetaData(itemStatus);
+const createItemComponent = (item, shipmentId) => {
+    let metaData = getMetaData(item);
 
     return `
-    <div id="shipment-item-${itemId}" class="shipment-item border-${metaData.border} card mb-3" style="max-width: 18rem;">
+    <div id="shipment-item-${item.id}" class="shipment-item border-${metaData.border} card mb-3" style="max-width: 18rem;">
         <div class="card-body">
-         <h5 class="card-title">ITEM ${itemId}: ${itemName}</h5>
-            <button id="record-action-${itemId}" class="record-action-btn btn btn-${metaData.color} col-md-12" data-action="${metaData.action}" data-id="${itemId}" data-shipmentId="${shipmentId}">${metaData.action}</button>
+         <h5 class="card-title">ITEM ${item.id}: ${item.name}</h5>
+            <button id="record-action-${item.id}" class="record-action-btn btn btn-${metaData.color} col-md-12" data-action="${metaData.action}" data-id="${item.id}" data-shipmentId="${shipmentId}">${metaData.action}</button>
         </div>
         <div class="card-footer bg-transparent border-success">Status: ${metaData.stage}</div>
     </div>
@@ -68,7 +57,7 @@ const itemComponent = (itemId, itemName, itemStatus, shipmentId) => {
 }
 
 const getMetaData = (itemStatus) => {
-    if (itemStatus.isDelvered == true) {
+    if (itemStatus.isDelivered == true) {
         return {color:'success', stage: "delivered", action: "No Action Needed"}
     } else if (itemStatus.isCleared == true) {
         return {color: 'primary', stage: "cleared", action: "Deliver"}
@@ -106,61 +95,59 @@ const removeItems = () => {
     $(`.shipment-item`).remove()
 }
 
-const getItems = (result) => {
-    shipmentId = result[0]
-    itemsCount = result[1]
-    companyName = result[2]
+const getItems = async (shipment) => {
+    const items = await Promise.all(
+        Array.from({ length: shipment.itemsCount })
+            .map((_, index) => call('getItemAtIndex', shipment.id, index).then((item) => {
+                console.log(item)
+                return createItem(item, shipment.id)
+            })
+            .catch(err => alert(err)))
+    )
 
-    for (let index = 0; index < itemsCount; index++) {
-        call('getItemAtIndex', shipmentId, index)
-            .then(result => {
-                setItemState(result);
-            })
-            .catch(error => {
-                alert(error);
-            })
-    }
+    return items
 }
 
 const createShipment = (companyName, orderId) => {
-    return call("createShipment", companyName, orderId)
-}
-
-const getShipment = (shipmentId) => {
-    return call("getShipment", shipmentId)
-}
-
-const itemState = (result) => {
-    let id = result[0]
-    let name = result[1]
-    let isCertified = result[2]
-    let isWrapped = result[3]
-    let isLoaded = result[4]
-    let isCleared = result[5]
-    let isDelivered = result[6]
-
-    return {id, name, isCertified, isWrapped, isLoaded, isCleared, isDelivered}
-}
-
-const setItemState = (result) => {
-    state.items.set(result[0], {
-        ...itemState(result),
-        recordAction,
-    });
-}
-
-const recordAction = (action) => {
-    console.log(this)
-    call('recordAction', this.id, action)
+    send("createShipment", companyName, orderId)
         .then(result => {
-            setItemState(result)
+            console.log(result)
         })
-        .catch(error => {
-            alert(error)
-        })
+        .catch(err => alert(err) );
 }
 
-const shipmentState = (result) => {
+const getShipment = async (shipmentId) => {
+    const result = await call("getShipment", shipmentId);
+    const shipmentIdResult = result[0];
+
+    if (shipmentIdResult == 0) {
+        throw new Error("No shippment found at this id")
+    }
+
+    // syncStateAndDomWithResult(result)
+    return shipmentObject(result);
+}
+
+const createItem = (item, shipmentId) => {
+    let id = item[0]
+    let name = item[1]
+    let isCertified = item[2]
+    let isWrapped = item[3]
+    let isLoaded = item[4]
+    let isCleared = item[5]
+    let isDelivered = item[6]
+
+    return {id, name, isCertified, isWrapped, isLoaded, isCleared, isDelivered,  recordAction: (action) => recordAction(shipmentId, id, action),}
+}
+
+const recordAction = (shipmentId, itemId, action) => {
+    send('recordAction', shipmentId, itemId, action)
+        .then(itemData => createItem(itemData, shipmentId))
+        .catch(error => alert(error))
+}
+
+const shipmentObject = (result) => {
+    console.log("shipmentObject", result)
     let id = result[0]
     let itemsCount = result[1]
     let companyName = result[2]
@@ -169,25 +156,17 @@ const shipmentState = (result) => {
     return {id, itemsCount, companyName, isDelivered}
 }
 
-const syncItemsWithState = () => {
-    state.items.forEach(item => {
-        console.log(item)
-    });
-}
-
-const syncTitleWithState = () => {
-    let shipment = state.shipment.get('current')
+const displayShipmentAndItems = (shipment, items) => {
+    removeItems();
     let status = shipment.isDelivered == true ? "Delvered !" : "In Transit";
     $('#shipment-title').text(`TrackingNumber #${shipment.id} for ${shipment.companyName.toUpperCase()} has ${shipment.itemsCount} items and is ${status}`);
     $('#shipment-title-wrapper').show();
-}
 
-const syncStateAndDomWithResult = (result) => {
-    removeItems();
-    state.shipment.set('current', { ...shipmentState(result) });
-    getItems(result);
-    syncTitleWithState();
-    syncItemsWithState();
+    console.log("items", items)
+
+    items.forEach((item) => {
+        $("#shipment-items").append(createItemComponent(item ,shipment.id));
+    });
 }
 
 $(document).on('click', '#create-shipment-button', (ev) => {
@@ -195,31 +174,19 @@ $(document).on('click', '#create-shipment-button', (ev) => {
     removeItems();
     let companyName = $('#create-shipment-company-name').val();
     let orderId = $('#create-shipment-order-id').val();
-    console.log(companyName, orderId);
-    createShipment(companyName, orderId)
-        .then(result => syncStateAndDomWithResult(result) )
-        .catch(err => alert(err) );
+    createShipment(companyName, orderId);
 });
 
-$(document).on('click', '#shippment-id-button', (ev) => {
+$(document).on('click', '#shippment-id-button', async (ev) => {
     ev.preventDefault();
-    removeItems();
-    let shipmentId = $('#shipment-id').val();
-    getShipment(shipmentId)
-        .then(result => {
-            if (result[0] == 0) {
-                alert("No shippment found at this id")
-            }
-            else {
-                syncStateAndDomWithResult(result)
-            }
-        })
-        .catch(err => {
-            alert(err);
-        });
+    let shipmentId = 1 //$('#shipment-id').val();
+    const shipment = await getShipment(shipmentId);
+    const items = await getItems(shipment)
+    displayShipmentAndItems(shipment, items);
+    console.log(items)
 });
 
-$(document).on('click', '.record-action-btn', (ev) => {
+$(document).on('click', '.record-action-btn', async (ev) => {
     let dataset = ev.target.dataset
     let action = dataset["action"].toLowerCase()
     let itemId = dataset["id"]
@@ -227,26 +194,8 @@ $(document).on('click', '.record-action-btn', (ev) => {
 
     console.log(dataset)
 
-    shippingContract.methods.recordAction(shipmentId, itemId, action).send(shipping, function(err, res){
-        if(err){
-            alert(err)
-        }
-        else{
-            shippingContract.methods.getItem(shipmentId, itemId).call(shipping, function(err, getItemRes){
-                let id = getItemRes[0];
-                let name = getItemRes[1];
-                let status = {
-                    isCertified: getItemRes[2],
-                    isWrapped: getItemRes[3],
-                    isLoaded: getItemRes[4],
-                    isCleared: getItemRes[5],
-                    isDeliered: getItemRes[6],
-                }
-
-                $(`#shipment-item-${itemId}`).replaceWith(itemComponent(id, name, status, shipmentId))
-            })
-        }
-    })
-
-    console.log(action, itemId, shipmentId)
+    await send("recordAction", shipmentId, itemId, action);
+    const item = await call('getItem', shipmentId, itemId);
+    const itemComponent = createItemComponent(createItem(item))
+    $(`#shipment-item-${itemId}`).replaceWith(itemComponent)
 });
