@@ -12,11 +12,14 @@
                                    locals: { nav: nav  } %>
                        <% end %>
 
+
+
                         <% if user_signed_in? and current_user.can_acces_intervention? %>
                             <%= render partial: 'common/nav-with-links', locals: { title: 'intervention', path: interventions_new_path(current_user), method: 'get'}%>
                         <% end %>
 
                         <% if user_signed_in? and current_user.can_access_dashboard? %>
+                            <%= render partial: 'common/nav-with-links', locals: { title: 'shippment', path: shippings_path(), method: 'get'}%>
                             <%= render partial: 'common/nav-with-links', locals: { title: 'admin', path: rails_admin_path(current_user), method: 'get'}%>
                         <% end %>
 

@@ -179,7 +179,7 @@ $(document).on('click', '#create-shipment-button', (ev) => {
 
 $(document).on('click', '#shippment-id-button', async (ev) => {
     ev.preventDefault();
-    let shipmentId = 1 //$('#shipment-id').val();
+    let shipmentId = $('#shipment-id').val();
     const shipment = await getShipment(shipmentId);
     const items = await getItems(shipment)
     displayShipmentAndItems(shipment, items);
