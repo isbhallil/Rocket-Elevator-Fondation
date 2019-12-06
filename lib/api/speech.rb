@@ -4,6 +4,7 @@ module Speech
 
     ocp_apim_subscription_key = "2c7952cd710e4c34a3ac9e629ed950ef"
     cognitive_sevices_url = "https://rocketspeakerrecognition.cognitiveservices.azure.com/spid/v1.0/identify?identificationProfileIds/"
+    speaker_recognition_url = "https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?"
 
     def self.create_profile(language)
         uri = URI(cognitive_sevices_url)
@@ -70,9 +71,27 @@ module Speech
     end
 
     def self.transpile
-        
+
     end
 
     def self.recognize_profile
     end
+
+    def recognize(audio, language)
+        uri = URI(speaker_recognition_url + 'language=' + language + '&format=detailed')
+
+        request = Net::HTTP::Post.new(uri.request_uri)
+        request['Content-Type'] = 'audio/vnd.wave'
+        request['Ocp-Apim-Subscription-Key'] = ocp_apim_subscription_key
+        request.body = File.read(audio.path)
+
+        response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+            http.request(request)
+        end
+
+        result = JSON.parse(response2.body)
+
+        redirect_to identified_profile_path(operationnal_status: result['status'], identifiedId: result['processingResult']['identifiedProfileId'], identifiedName: identifiedProfile.name, identifiedLanguage: identifiedProfile.language, confidence: result['processingResult']['confidence'], text: result2['DisplayText'])
+    end
+
 end

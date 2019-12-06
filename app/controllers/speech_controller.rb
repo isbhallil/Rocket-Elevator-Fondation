@@ -3,7 +3,7 @@ class SpeechController < ApplicationController
     require 'net/http'
     require 'json'
 
-    def createProfile
+    def create_profile
         profile = Profile.new
         profile.name = params['Name']
         profile.profile_id =  Speech.create_profile(language);
@@ -15,7 +15,7 @@ class SpeechController < ApplicationController
         end
     end
 
-    def deleteProfile
+    def delete_profile
         profile_id = params['profile'].to_str
 
         profile = Profile.where(speech_id: profileId).take
@@ -25,7 +25,7 @@ class SpeechController < ApplicationController
         end
     end
 
-    def enroll
+    def enroll_profile
         @audio = params['audio_file']
         @profile = Profile.where(speech_id: params['profile_id'].to_str).take
 
@@ -72,7 +72,7 @@ class SpeechController < ApplicationController
         # redirect_to confirm_enroll_path(profile_name: @profile.name, operationnal_status: result['status'], enrollement_status: result['processingResult']['enrollmentStatus'])
     end
 
-    def recognize
+    def transpile_profile
         profileId = params['theprofile'].to_str
 
         @audio = params['Audio']
