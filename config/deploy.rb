@@ -5,6 +5,10 @@ before 'deploy', 'rvm1:install:ruby'
 set :rvm_map_bins, [ 'rake', 'gem', 'bundle', 'ruby', 'puma', 'pumactl' ]
 set :application, "MohammedBhallil"
 set :repo_url, "https://github.com/ishaqbhall/Rocket-Elevator-Fondation.git"
+set :deploy_to, '/var/www/my-app-name'
+set :use_sudo, true
+set :branch, 'master' #or whichever branch you want to use
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
