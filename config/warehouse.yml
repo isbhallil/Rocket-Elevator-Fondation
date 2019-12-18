@@ -1,8 +1,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  host: localhost
-  username: postgres
-  password: test
+  host: ls-d9d3c0ff7d60fc70e86560f5fd83325b2a7cc4ed.c5yssiuzporz.us-east-1.rds.amazonaws.com
+  username: dbmasteruser
+  password: C=jmwCZq+M3E9([I-#78JZ3i&0M+pewR
+  port: 5432
   pool: 5
   database: pg_dev
