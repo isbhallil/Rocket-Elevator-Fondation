@@ -10,6 +10,12 @@ development:
   username: root
   password: test
 
+production:
+  <<: *default
+  database:
+  username:
+  password:
+
 test:
   <<: *default
   database: database_test
