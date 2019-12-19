@@ -29,7 +29,7 @@ gem 'rack-attack'
 gem 'simplecov', require: false, group: :test
 gem 'rest-client'
 gem 'swapi'
-#
+gem 'newrelic_rpm'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
