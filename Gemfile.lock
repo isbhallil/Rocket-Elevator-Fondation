@@ -75,10 +75,10 @@ GEM
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
-    capistrano3-puma (3.1.1)
+    capistrano3-puma (4.0.0)
       capistrano (~> 3.7)
       capistrano-bundler
-      puma (~> 3.4)
+      puma (~> 4.0)
     chronic (0.10.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -205,7 +205,8 @@ GEM
     orm_adapter (0.5.0)
     owlcarousel-rails (2.2.3.5)
     pg (1.1.4)
-    puma (3.12.2)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-attack (6.2.1)
       rack (>= 1.0, < 3)
@@ -402,7 +403,7 @@ DEPENDENCIES
   newrelic_rpm
   owlcarousel-rails
   pg
-  puma (~> 3.11)
+  puma (~> 4.3)
   rack-attack
   rails (~> 5.2.3)
   rails_admin (~> 2.0)
