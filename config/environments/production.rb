@@ -26,8 +26,8 @@ Rails.application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.uglifier = { harmony: true }
-  # config.assets.js_compressor = :uglifier
-  config.assets.js_compressor = Uglifier.new(harmony: true)
+  config.assets.js_compressor = :uglifier
+  # config.assets.js_compressor = Uglifier.new(harmony: true)
 
   # config.assets.css_compressor = :sass
 
@@ -88,7 +88,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
